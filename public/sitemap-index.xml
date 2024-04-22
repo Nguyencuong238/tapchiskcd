@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/vendor/sitemap/styles/sitemapindex.xsl" type="text/xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<sitemap>
+		<loc>http://conggiao.test/category-sitemap.xml</loc>
+		</sitemap>
+	<sitemap>
+		<loc>http://conggiao.test/post-sitemap.xml</loc>
+		</sitemap>
+	<sitemap>
+		<loc>http://conggiao.test/business-sitemap.xml</loc>
+		</sitemap>
+</sitemapindex>
