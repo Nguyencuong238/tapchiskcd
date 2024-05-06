@@ -52,7 +52,7 @@
                             <x-media-library-collection
                                 name="attachments"
                                 :model="$post"
-                                collection="media"
+                                collection="attachments"
                             />
                         </div>
 

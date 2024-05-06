@@ -60,15 +60,15 @@
                         <td class="text-center">
                             <div class="d-inline-flex justify-content-center">
                                 @if(auth()->user()->can('official_dispatch.edit') || $item->author_id == auth()->id())
-                                <a href="{{ route('official_dispatch.edit', $item) }}" class="dropdown-item px-2 rounded">
-                                    <i class="fa fa-pencil mr-1"></i> {{ __('Edit') }}
+                                <a href="{{ route('official_dispatch.edit', $item) }}" class="dropdown-item px-2 rounded" title="{{ __('Edit') }}">
+                                    <i class="fa fa-pencil mr-1"></i>
                                 </a>
                                 @endcan
 
                                 @can('official_dispatch.delete')
                                 <a href="javascript:void(0)" data-action-url="{{ route('official_dispatch.destroy', $item) }}" 
-                                    data-behavior="delete-resource" class="dropdown-item px-2 rounded">
-                                    <i class="fa fa-trash mr-1"></i> {{ __('Delete') }}
+                                    data-behavior="delete-resource" class="dropdown-item px-2 rounded" title="{{ __('Xoas') }}">
+                                    <i class="fa fa-trash mr-1"></i> 
                                 </a>
                                 @endcan
                             </div>

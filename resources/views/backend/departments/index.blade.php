@@ -32,14 +32,14 @@
                         <td class="text-center">
                             <div class="d-inline-flex justify-content-center">
                                 @can('departments.edit')
-                                <a href="{{ route('departments.edit', $department) }}" class="dropdown-item px-2 rounded">
-                                    <i class="fa fa-pencil mr-1"></i> {{ __('Edit') }}
+                                <a href="{{ route('departments.edit', $department) }}" class="dropdown-item px-2 rounded" title="{{ __('Edit') }}">
+                                    <i class="fa fa-pencil mr-1"></i> 
                                 </a>
                                 @endcan
                                 @can('departments.delete')
                                 <a href="javascript:void(0)" data-action-url="{{ route('departments.destroy', $department) }}" 
-                                    data-behavior="delete-resource" class="dropdown-item px-2 rounded">
-                                    <i class="fa fa-trash mr-1"></i> {{ __('Delete') }}
+                                    data-behavior="delete-resource" class="dropdown-item px-2 rounded" title="{{ __('Delete') }}"> 
+                                    <i class="fa fa-trash mr-1"></i> 
                                 </a>
                                 @endcan
                             </div>

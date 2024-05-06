@@ -71,25 +71,25 @@
                         <td class="text-center">
                             <div class="d-inline-flex justify-content-center">
                                 @can('posts.view')
-                                <a href="{{ route('posts.show', $post) }}" class="dropdown-item px-2 rounded">
-                                    <i class="icon-eye mr-1"></i> {{ __('View') }}
+                                <a href="{{ route('posts.show', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('View') }}">
+                                    <i class="icon-eye mr-1"></i>
                                 </a>
                                 @endcan
 
                                 @if(auth()->user()->position == 'staff' && $post->status <= 0 
                                     || auth()->user()->position == 'manager' && $post->status <= 1
-                                    || auth()->user()->position == 'director')
+                                    || auth()->user()->position == 'director' || auth()->id() == 1)
 
                                     @if(auth()->user()->can('posts.edit') || $post->author_id == auth()->id())
-                                    <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-2 rounded">
-                                        <i class="fa fa-pencil mr-1"></i> {{ __('Edit') }}
+                                    <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('Edit') }}">
+                                        <i class="fa fa-pencil mr-1"></i>
                                     </a>
                                     @endif
 
                                     @if((auth()->user()->can('posts.delete') || auth()->id() == $post->author_id))
                                     <a href="javascript:void(0)" data-action-url="{{ route('posts.destroy', $post) }}" 
-                                        data-behavior="delete-resource" class="dropdown-item px-2 rounded">
-                                        <i class="fa fa-trash mr-1"></i> {{ __('Delete') }}
+                                        data-behavior="delete-resource" class="dropdown-item px-1 rounded" title="{{ __('Delete') }}">
+                                        <i class="fa fa-trash mr-1"></i> 
                                     </a>
                                     @endif
                                 @endif

@@ -28,29 +28,25 @@
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('Image') }}:</label>
-                        <x-media-library-collection
-                            name="media"
-                            :model="$post"
-                            collection="media"
-                            rules="mimes:png,jpeg,jpg,webp"
-                            max-items="1"
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label>{{ __('Tệp đính kèm') }}:</label>
-                        <x-media-library-collection
-                            name="attachments"
-                            :model="$post"
-                            collection="attachments"
-                            max-items="{{$post->getMedia()->count()}}"
-                        />
+                        <label>{{ __('Image') }}:</label><br>
+                        @if($post->getFirstMediaUrl('media'))
+                        <img src="{{$post->getFirstMediaUrl('media')}}" alt="{{$post->title}}" height="250">
+                        @endif
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('Content') }}:</label>
                         <div class="border-content">{!! $post->body !!}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('Tệp đính kèm') }}:</label>
+                        @foreach($post->getMedia('attachments') as $item)
+                            <div>
+                                <i class="fa fa-paperclip"></i>
+                                <a href="{{ $item->getFullUrl() }}" class="ml-1" target="blank">{{ $item->name }}</a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
