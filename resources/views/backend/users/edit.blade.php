@@ -54,7 +54,7 @@
                             </select>
                         </div>
 
-
+                        @if(auth()->id() != 1)
                         <div class="form-group">
                             <label>{{ __('Roles') }}</label>
 
@@ -64,6 +64,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        @endif
 
                     </div>
                 </div>
