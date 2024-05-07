@@ -18,29 +18,29 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label>{{ __('Title') }}:</label>
+                        <label class="font-weight-semibold">{{ __('Title') }}:</label>
                         <div class="border-content">{{ $post->title }}</div>
                     </div>
 
                     <div class="form-group">
-                        <label>Mô tả:</label>
+                        <label class="font-weight-semibold">Mô tả:</label>
                         <div class="border-content">{{ $post->excerpt }}</div>
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('Image') }}:</label><br>
+                        <label class="font-weight-semibold">{{ __('Image') }}:</label><br>
                         @if($post->getFirstMediaUrl('media'))
                         <img src="{{$post->getFirstMediaUrl('media')}}" alt="{{$post->title}}" height="250">
                         @endif
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('Content') }}:</label>
+                        <label class="font-weight-semibold">{{ __('Content') }}:</label>
                         <div class="border-content">{!! $post->body !!}</div>
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('Tệp đính kèm') }}:</label>
+                        <label class="font-weight-semibold">{{ __('Tệp đính kèm') }}:</label>
                         @foreach($post->getMedia('attachments') as $item)
                             <div>
                                 <i class="fa fa-paperclip"></i>
