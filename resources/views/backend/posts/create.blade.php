@@ -107,13 +107,13 @@
                     <div class="sidebar-section-header">
                         <span class="font-weight-semibold">{{ __('Thời gian') }}</span>
                         <div class="list-icons ml-auto">
-                            <a href="#category" class="list-icons-item" data-toggle="collapse" aria-expanded="true">
+                            <a href="#timer" class="list-icons-item" data-toggle="collapse" aria-expanded="true">
                                 <i class="icon-arrow-down12"></i>
                             </a>
                         </div>
                     </div>
 
-                    <div class="collapse show">
+                    <div class="collapse show" id="timer">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>{{ __('Ngày bắt đầu') }}:</label>

@@ -8,14 +8,18 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -47,7 +51,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'is_admin' => 'boolean'
+        'is_admin' => 'boolean',
+        'parent_info' => 'array',
+        'siblings_info' => 'array',
+        'children_info' => 'array',
     ];
 
     public function isAdmin(): bool
@@ -57,5 +64,12 @@ class User extends Authenticatable
 
     public function department() {
         return $this->belongsTo(Department::class);
+    }
+
+    public function registerMediaCollections(Media $media = null): void
+    {
+        $this
+        ->addMediaCollection('media')
+        ->singleFile();
     }
 }

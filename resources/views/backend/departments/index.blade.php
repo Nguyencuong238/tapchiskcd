@@ -5,12 +5,12 @@
 
             <div class="d-flex justify-content-between mt-2">
                 <form action="">
-                <input type="search" style="width: 300px;" class="form-control" name="search" value="{{ request('search') }}" placeholder="Search">
+                    <input type="search" style="width: 300px;" class="form-control" name="search" value="{{ request('search') }}" placeholder="Search">
                 </form>
                 @can('departments.create')
-                <a href="{{ route('departments.create') }}" class="btn btn-primary"><i class="icon-plus-circle2 mr-1"></i> {{ __('Create') }}</a>
+                    <a href="{{ route('departments.create') }}" class="btn btn-primary"><i class="icon-plus-circle2 mr-1"></i> {{ __('Create') }}</a>
+                @endcan
             </div>
-            @endcan
         </div>
 
         <div class="table-responsive">

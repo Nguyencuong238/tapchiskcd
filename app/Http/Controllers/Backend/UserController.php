@@ -8,9 +8,12 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use Spatie\MediaLibraryPro\Rules\Concerns\ValidatesMedia;
 
 class UserController extends Controller
 {
+    use ValidatesMedia;
+
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +25,28 @@ class UserController extends Controller
             abort(403);
         }
 
-        $users = User::paginate();
+        $users = User::when(request()->search, function($q) {
+                $q->where('name', 'like', '%'.request()->search.'%');
+            })
+            ->when(request()->filled('gender'), function($q) {
+                $q->where('gender', request()->gender);
+            })
+            ->when(request()->filled('journalist_code'), function($q) {
+                $q->where('journalist_code', request()->journalist_code);
+            })
+            ->when(request()->filled('hnb_code'), function($q) {
+                $q->where('hnb_code', request()->hnb_code);
+            })
+            ->when(request()->filled('certificate_type'), function($q) {
+                $q->where('certificate_type', request()->certificate_type);
+            })
+            ->when(request()->filled('department_id'), function($q) {
+                $q->where('department_id', request()->department_id);
+            })
+            ->paginate();
+        $departments = Department::get();
 
-        return view('backend.users.index', compact('users'));
+        return view('backend.users.index', compact('users', 'departments'));
     }
 
     /**
@@ -41,7 +63,10 @@ class UserController extends Controller
         $roles = Role::get();
         $departments = Department::get();
 
-        return view('backend.users.create', compact('roles', 'departments'));
+        $jsonContents = file_get_contents(storage_path('app/listNation.json'));
+        $listNation = json_decode($jsonContents, true);
+
+        return view('backend.users.create', compact('roles', 'departments', 'listNation'));
     }
 
     /**
@@ -62,15 +87,26 @@ class UserController extends Controller
             'password' => ['required', Password::default()],
             'roles'    => ['required'],
             'position'    => ['required'],
+            'hnb_code_start'    => ['nullable', 'date'],
+            'hnb_code_end'      => ['nullable', 'date', 'after:hnb_code_start'],
+            'labor_contract_start'    => ['nullable', 'date'],
+            'labor_contract_end'      => ['nullable', 'date', 'after:labor_contract_start'],
         ]);
 
-        $user = User::create([
-            'email'    => $request->email,
-            'name'     => $request->name,
-            'department_id' => $request->department_id,
-            'position' => $request->position,
-            'password' => bcrypt($request->password),
-        ]);
+        $data = $request->except(['_token', 'roles', 'media', 'certificate']);
+        $data['password'] = bcrypt($request->password);
+        $data['siblings_info'] = array_values($request->input('siblings_info', []));
+        $data['children_info'] = array_values($request->input('children_info', []));
+
+        $user = User::create($data);
+
+        $user
+            ->addFromMediaLibraryRequest($request->media)
+            ->toMediaCollection('media');
+
+        $user
+            ->addFromMediaLibraryRequest($request->certificate)
+            ->toMediaCollection('certificate');
 
         $user->assignRole($request->roles);
 
@@ -102,12 +138,15 @@ class UserController extends Controller
             abort(403);
         }
 
-        $user = User::findOrFail($id);
+        $user = User::where('id', $id)->with('media')->firstOrFail();
 
         $roles = Role::get();
         $departments = Department::get();
 
-        return view('backend.users.edit', compact('roles', 'user', 'departments'));
+        $jsonContents = file_get_contents(storage_path('app/listNation.json'));
+        $listNation = json_decode($jsonContents, true);
+
+        return view('backend.users.edit', compact('roles', 'user', 'departments', 'listNation'));
     }
 
     /**
@@ -131,20 +170,29 @@ class UserController extends Controller
             'password' => ['nullable', Password::default()],
             'roles'    => ['required'],
             'position'    => ['required'],
+            'hnb_code_start'    => ['nullable', 'date'],
+            'hnb_code_end'      => ['nullable', 'date', 'after:hnb_code_start'],
+            'labor_contract_start'    => ['nullable', 'date'],
+            'labor_contract_end'      => ['nullable', 'date', 'after:labor_contract_start'],
         ]);
 
-        $data = [
-            'email' => $request->email,
-            'name'  => $request->name,
-            'department_id' => $request->department_id,
-            'position' => $request->position,
-        ];
+        $data = $request->except(['_token', '_method', 'roles', 'media', 'certificate']);
+        $data['siblings_info'] = array_values($request->input('siblings_info', []));
+        $data['children_info'] = array_values($request->input('children_info', []));
 
         if ($request->filled('password')) {
             $data['password'] = bcrypt($request->password);
         }
 
-        $user->fill($data)->save();
+        $user->update($data);
+
+        $user
+            ->syncFromMediaLibraryRequest($request->media)
+            ->toMediaCollection('media');
+
+        $user
+            ->syncFromMediaLibraryRequest($request->certificate)
+            ->toMediaCollection('certificate');
 
         $user->syncRoles($request->roles);
 
