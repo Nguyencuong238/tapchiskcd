@@ -1,4 +1,8 @@
 <x-app-layout>
+    @push('css')
+	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @endpush
+
     <form action="{{ route('official_dispatch.store') }}" method="post">
         @csrf
         <div class="row">
@@ -6,14 +10,66 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h5 class="card-title">{{ __('Thêm Công văn') }}</h5>
+                            <h5 class="card-title">Thêm Công văn @if(request('type') == 'receive') đến @else đi @endif</h5>
                         </div>
                     </div>
                     <div class="card-body">
+                        <input type="hidden" name="type" value="{{request('type')}}">
+
                         <div class="form-group">
                             <label>{{ __('Title') }}:</label>
-                            <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title')is-invalid @enderror" placeholder="Thêm tiêu đề">
+                            <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title')is-invalid @enderror">
                             @error('title')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{ __('Số hiệu') }}:</label>
+                            <input type="text" name="code" value="{{ old('code') }}" class="form-control @error('code')is-invalid @enderror">
+                            @error('code')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        @if(request('type') == 'receive')
+                        <div class="form-group">
+                            <label>Nơi gửi:</label>
+                            <input type="text" name="sending_place" value="{{ old('sending_place') }}" class="form-control @error('sending_place')is-invalid @enderror">
+                            @error('sending_place')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ngày nhận:</label>
+                            <div class="input-group">
+                                <input type="text" name="date_receive" value="{{ old('date_receive') }}" 
+                                    class="form-control date_receive cursor-pointer @error('date_receive')is-invalid @enderror">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
+                                    <span class="input-group-text">
+                                        <i class="icon-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @error('date_receive')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số công văn đến:</label>
+                            <input type="text" name="count" value="{{ old('count') }}" class="form-control @error('count')is-invalid @enderror">
+                            @error('count')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        @endif
+
+                        <div class="form-group">
+                            <label>Tóm tắt nội dung:</label>
+                            <textarea name="body" class="editor form-control @error('body')is-invalid @enderror" placeholder="Tóm tắt nội dung">{{ old('body') }}</textarea>
+                            @error('body')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -40,25 +96,42 @@
                             <x-media-library-collection
                                 name="attachments"
                                 :model="$officialDispatch"
-                                collection="media"
+                                collection="attachments"
                             />
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Content') }}:</label>
-                            <textarea name="body" class="editor form-control @error('body')is-invalid @enderror" placeholder="Thêm nội dung">{{ old('body') }}</textarea>
-                            @error('body')
+                            @if(request('type') == 'receive')
+                            <label>Phòng ban xử lý: </label>
+                            @else
+                            <label>Của phòng ban: </label>
+                            @endif
+                            <select class="form-control form-control-select2 w-100" name="department_id">
+                                <option value="">{{ __('-- Phòng ban --') }}</option>
+                                @foreach($departments as $d)
+                                    <option {{ $d->id == old('department_id') ? 'selected' : null }} value="{{ $d->id }}">{{ $d->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @if(request('type') == 'receive')
+                        <div class="form-group">
+                            <label>Thời gian xử lý:</label>
+                            <div class="input-group">
+                                <input type="text" name="date_handle" value="{{ old('date_handle') }}" 
+                                    class="form-control date_handle cursor-pointer @error('date_handle')is-invalid @enderror">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
+                                    <span class="input-group-text">
+                                        <i class="icon-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @error('date_handle')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        {{--  <div class="form-group">
-                            <label>Ghi chú:</label>
-                            <textarea name="note" class="form-control @error('note')is-invalid @enderror" placeholder="Thêm ghi chú">{{ old('note') }}</textarea>
-                            @error('note')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>  --}}
+                        @endif
+                        
                     </div>
                 </div>
             </div>
@@ -97,32 +170,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="sidebar-section-header">
-                        <span class="font-weight-semibold">{{ __('Nhười nhận') }}</span>
-                        <div class="list-icons ml-auto">
-                            <a href="#tag" class="list-icons-item" data-toggle="collapse" aria-expanded="true">
-                                <i class="icon-arrow-down12"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="collapse show">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <select name="receiver[]" data-placeholder="{{ __('Chọn người nhận') }}"  multiple class="form-control form-control-select2 @error('receiver')is-invalid @enderror" data-fouc>
-                                    <option></option>
-                                    @foreach($otherUsers as $item)
-                                        <option {{ in_array($item->id, old('receiver', [])) ? 'selected' : null }} value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('receiver')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -130,6 +177,7 @@
     </form>
     
     @push('js')
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script>
             $(function() {
                 $('#select-user').select2({
@@ -137,6 +185,25 @@
                     tokenSeparators: [',']
                 });
 
+                $('.dispatch-select2').select2({
+                    minimumResultsForSearch: -1
+                });
+
+                $(".date_receive").flatpickr({
+                    altInput: true,
+                    dateFormat: "Y-m-d",
+                    altFormat: 'd/m/Y'
+                })
+
+                $(".date_handle").flatpickr({
+                    altInput: true,
+                    dateFormat: "Y-m-d",
+                    altFormat: 'd/m/Y'
+                })
+
+                $('.date-picker-icon').on('click', function() {
+                    $(this).siblings('input').trigger('click');
+                })
             })
         </script>
     @endpush

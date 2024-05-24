@@ -23,6 +23,9 @@
 		.navbar-brand img {
 			height: 60px;
 		}
+		.cursor-pointer {
+			cursor: pointer;
+		}
 	</style>
 	@stack('css')
 </head>

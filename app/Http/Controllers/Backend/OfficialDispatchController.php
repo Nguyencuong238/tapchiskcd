@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\OfficialDispatch\Store;
 use App\Http\Requests\Backend\OfficialDispatch\Update;
 use App\Models\Category;
+use App\Models\Department;
 use App\Models\OfficialDispatch;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -68,9 +69,9 @@ class OfficialDispatchController extends Controller
             $query->where('type','official_dispatch')->orWhere('type', 'image')->orWhere('type', 'video');
         })->tree()->get()->toTree();
 
-        $otherUsers = User::where('id', '<>', auth()->id())->get(['id', 'name']);
+        $departments = Department::get();
 
-        return view('backend.official_dispatch.create', compact('categories', 'otherUsers'));
+        return view('backend.official_dispatch.create', compact('categories', 'departments'));
     }
 
     /**
@@ -86,10 +87,15 @@ class OfficialDispatchController extends Controller
         }
 
         $officialDispatch = OfficialDispatch::create([
-            'title'     => request('title'),
-            'note'      => request('note'),
-            'body'      => request('body'),
-            'author_id' => $request->user()->id,
+            'title'         => request('title'),
+            'code'          => request('code'),
+            'sending_place' => request('sending_place'),
+            'count'         => request('count'),
+            'date_receive'  => request('date_receive'),
+            'department_id' => request('department_id'),
+            'date_handle'   => request('date_handle'),
+            'body'          => request('body'),
+            'author_id'     => $request->user()->id,
         ]);
 
         $officialDispatch
@@ -134,11 +140,9 @@ class OfficialDispatchController extends Controller
         }
 
         $categories = Category::where('type', 'official_dispatch')->tree()->get()->toTree();
+        $departments = Department::get();
 
-        $otherUsers = User::where('id', '<>', auth()->id())->get(['id', 'name']);
-        $receiver_ids = $officialDispatch->receiver->pluck('id')->toArray();
-
-        return view('backend.official_dispatch.edit', compact('categories', 'officialDispatch', 'otherUsers', 'receiver_ids'));
+        return view('backend.official_dispatch.edit', compact('categories', 'officialDispatch', 'departments'));
     }
 
     /**
@@ -156,11 +160,17 @@ class OfficialDispatchController extends Controller
             abort(403);
         }
 
-        $officialDispatch->fill([
-            'title' => request('title'),
-            'note'  => request('note'),
-            'body'  => request('body'),
-        ])->save();
+        $officialDispatch->update([
+            'title'         => request('title'),
+            'code'          => request('code'),
+            'sending_place' => request('sending_place'),
+            'count'         => request('count'),
+            'date_receive'  => request('date_receive'),
+            'department_id' => request('department_id'),
+            'date_handle'   => request('date_handle'),
+            'body'          => request('body'),
+            'author_id'     => $request->user()->id,
+        ]);
 
         $officialDispatch
             ->syncFromMediaLibraryRequest($request->media)
@@ -171,7 +181,6 @@ class OfficialDispatchController extends Controller
             ->toMediaCollection('attachments');
 
         $officialDispatch->categories()->sync(request('categories'));
-        $officialDispatch->receiver()->sync(request('receiver'));
 
         flash(__('Record ":model" updated', ['model' => $officialDispatch->title]), 'success');
 

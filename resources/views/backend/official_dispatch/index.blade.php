@@ -1,4 +1,9 @@
 <x-app-layout>
+    <style>
+        .dispatch_type a:hover {
+            background: #eee;
+        }
+    </style>
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">{{ __('Quản lý Công văn') }}</h5>
@@ -8,7 +13,15 @@
                 <input type="search" style="width: 300px;" class="form-control" name="search" value="{{ request('search') }}" placeholder="Tìm kiếm">
                 </form>
                 @can('official_dispatch.create')
-                <a href="{{ route('official_dispatch.create') }}" class="btn btn-primary"><i class="icon-plus-circle2 mr-1"></i> {{ __('Thêm') }}</a>
+                <span class="dropdown">
+                    <button class="btn btn-primary" data-toggle="dropdown">
+                        <i class="icon-plus-circle2 mr-1"></i> {{ __('Thêm') }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right dispatch_type">
+                        <a href="{{ route('official_dispatch.create', ['type' => 'receive']) }}" class="d-block px-3 py-2">Công văn đến</a>
+                        <a href="{{ route('official_dispatch.create', ['type' => 'send']) }}" class="d-block px-3 py-2">Công văn đi</a>
+                    </div>
+                </span>
                 @endcan
             </div>
         </div>

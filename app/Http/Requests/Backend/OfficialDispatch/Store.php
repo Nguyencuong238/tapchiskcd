@@ -27,12 +27,15 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'title'       => ['required'],
-            'excerpt'     => [],
-            'body'        => 'required',
-            'media'       => ['nullable', $this->validateSingleMedia()->maxItemSizeInKb(3000)],
-            'attachments' => ['nullable'],
-            'receiver'    => ['required']
+            'title'         => ['required'],
+            'body'          => 'required',
+            'media'         => ['nullable', $this->validateSingleMedia()->maxItemSizeInKb(3000)],
+            'attachments'   => ['nullable'],
+            'code'          => ['required'],
+            'count'         => ['nullable', 'integer|min:1'],
+            'date_receive'  => ['nullable', 'date'],
+            'department_id' => ['required'],
+            'date_handle'   => ['nullable', 'date'],
         ];
     }
 }

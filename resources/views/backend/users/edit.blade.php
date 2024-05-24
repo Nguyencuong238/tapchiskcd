@@ -83,7 +83,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" name="birthday" value="{{ old('birthday', $user->birthday) }}" 
                                     class="form-control birthday @error('birthday')is-invalid @enderror" required>
-                                <div class="input-group-append">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
                                     <span class="input-group-text"><i class="icon-calendar"></i></span>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" name="journalist_code_date" value="{{ old('journalist_code_date', $user->journalist_code_date) }}" 
                                     class="form-control journalist_code_date">
-                                <div class="input-group-append">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
                                     <span class="input-group-text">
                                         <i class="icon-calendar"></i>
                                     </span>
@@ -149,7 +149,7 @@
                             <label>Ngày cấp thẻ Hội viên Hội nhà báo:</label>
                             <div class="input-group mb-3">
                                 <input type="text" name="hnb_code_start" value="{{ old('hnb_code_start', $user->hnb_code_start) }}" class="form-control hnb_code_start">
-                                <div class="input-group-append">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
                                     <span class="input-group-text">
                                         <i class="icon-calendar"></i>
                                     </span>
@@ -161,7 +161,7 @@
                             <label>Thời hạn thẻ Hội viên Hội nhà báo:</label>
                             <div class="input-group mb-3">
                                 <input type="text" name="hnb_code_end" value="{{ old('hnb_code_end', $user->hnb_code_end) }}" class="form-control hnb_code_end">
-                                <div class="input-group-append">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
                                     <span class="input-group-text">
                                         <i class="icon-calendar"></i>
                                     </span>
@@ -216,7 +216,7 @@
                             <label>Ngày vào Đảng:</label>
                             <div class="input-group mb-3">
                                 <input type="text" name="date_party" value="{{ old('date_party', $user->date_party) }}" class="form-control date_party">
-                                <div class="input-group-append">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
                                     <span class="input-group-text">
                                         <i class="icon-calendar"></i>
                                     </span>
@@ -268,7 +268,7 @@
                             <label>HĐLĐ từ ngày:</label>
                             <div class="input-group mb-3">
                                 <input type="text" name="labor_contract_start" value="{{ old('labor_contract_start', $user->labor_contract_start) }}" class="form-control labor_contract_start">
-                                <div class="input-group-append">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
                                     <span class="input-group-text">
                                         <i class="icon-calendar"></i>
                                     </span>
@@ -280,7 +280,7 @@
                             <label>HĐLĐ đến ngày:</label>
                             <div class="input-group mb-3">
                                 <input type="text" name="labor_contract_end" value="{{ old('labor_contract_end', $user->labor_contract_end) }}" class="form-control labor_contract_end">
-                                <div class="input-group-append">
+                                <div class="input-group-append date-picker-icon cursor-pointer">
                                     <span class="input-group-text">
                                         <i class="icon-calendar"></i>
                                     </span>
@@ -452,7 +452,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" name="siblings_info[{{$loop->index}}][birthday]" value="{{ old('siblings_info', $s['birthday']) }}" 
                                         class="form-control siblings_birthday @error('siblings_info[{{$loop->index}}][birthday]')is-invalid @enderror">
-                                    <div class="input-group-append">
+                                    <div class="input-group-append date-picker-icon cursor-pointer">
                                         <span class="input-group-text">
                                             <i class="icon-calendar"></i>
                                         </span>
@@ -676,6 +676,10 @@
                     altFormat: 'd/m/Y'
                 })
 
+                $('.date-picker-icon').on('click', function() {
+                    $(this).siblings('input').trigger('click');
+                })
+
                 var i = {{count($user->children_info)}} ;
                 $('.btn-add-children').on('click', function() {
                     var html = $('#list_children').html();
@@ -722,7 +726,7 @@
                     <label>Ngày sinh:</label>
                     <div class="input-group mb-3">
                         <input type="text" name="siblings_info[${j}][birthday]" value="{{ old('siblings_info') }}" class="form-control siblings_birthday_${j} @error('siblings_info[${j}][birthday]')is-invalid @enderror">
-                        <div class="input-group-append">
+                        <div class="input-group-append date-picker-icon cursor-pointer">
                             <span class="input-group-text">
                                 <i class="icon-calendar"></i>
                             </span>
