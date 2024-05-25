@@ -10,30 +10,35 @@
                 @endcan
             </div>
 
-            <form action="" class="d-flex mt-2">
-                <input type="search" style="width: 200px;" class="form-control" name="search" value="{{ request('search') }}" placeholder="Tìm kiếm">
-                <div style="width: 160px;" class="ml-2">
+            <form action="" class="d-flex flex-wrap">
+                <input type="search" style="width: 200px;" class="form-control mt-2 mr-2" 
+                    name="search" value="{{ request('search') }}" placeholder="Tìm kiếm">
+                
+                <div style="width: 160px;" class="mr-2 mt-2">
                     <select class="form-control gender-select2" name="gender">
                         <option value="">-- Giới tính --</option>
                         <option @if(request('gender')) selected @endif value="1">Nam</option>
                         <option @if(request('gender') == '0') selected @endif value="0">Nữ</option>
                     </select>
                 </div>
-                <div style="width: 160px;" class="ml-2">
+
+                <div style="width: 160px;" class="mr-2 mt-2">
                     <select class="form-control gender-select2" name="journalist_code">
                         <option value="">-- Thẻ nhà báo --</option>
                         <option @if(request('journalist_code')) selected @endif value="1">Có</option>
                         <option @if(request('journalist_code') == '0') selected @endif value="0">Không</option>
                     </select>
                 </div>
-                <div style="width: 160px;" class="ml-2">
+
+                <div style="width: 160px;" class="mr-2 mt-2">
                     <select class="form-control gender-select2" name="hnb_code">
                         <option value="">-- Hội nhà báo --</option>
                         <option @if(request('hnb_code')) selected @endif value="1">Có</option>
                         <option @if(request('hnb_code') == '0') selected @endif value="0">Không</option>
                     </select>
                 </div>
-                <div style="width: 160px;" class="ml-2">
+                
+                <div style="width: 160px;" class="mr-2 mt-2">
                     <select class="form-control gender-select2" name="certificate_type">
                         <option value="">-- Bằng cấp --</option>
                         <option @if(request('certificate_type') == 'dh') selected @endif value="dh">Đại học</option>
@@ -42,7 +47,7 @@
                     </select>
                 </div>
                 
-                <div style="width: 250px" class="ml-2">
+                <div style="width: 250px" class="mr-2 mt-2">
                     <select class="form-control form-control-select2" name="department_id">
                         <option value="">-- Phòng ban --</option>
                         @foreach($departments as $d)
@@ -50,7 +55,7 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary ml-2 px-4"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-primary mt-2 px-4"><i class="fa fa-search"></i></button>
             </form>
         </div>
 
