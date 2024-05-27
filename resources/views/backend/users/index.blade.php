@@ -21,6 +21,16 @@
                         <option @if(request('gender') == '0') selected @endif value="0">Nữ</option>
                     </select>
                 </div>
+                
+                <div style="width: 200px;" class="mr-2 mt-2">
+                    <select class="form-control gender-select2" name="age">
+                        <option value="">-- Độ tuổi --</option>
+                        <option @if(request('age') == '0-25') selected @endif value="0-25">Dưới 25 tuổi</option>
+                        <option @if(request('age') == '25-35') selected @endif value="25-35">Từ 25 đến dưới 35 tuổi</option>
+                        <option @if(request('age') == '35-45') selected @endif value="35-45">Từ 25 đến dưới 35 tuổi</option>
+                        <option @if(request('age') == '45-100') selected @endif value="45-100">Trên 45 tuổi</option>
+                    </select>
+                </div>
 
                 <div style="width: 160px;" class="mr-2 mt-2">
                     <select class="form-control gender-select2" name="journalist_code">

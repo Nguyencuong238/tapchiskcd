@@ -31,6 +31,20 @@ class UserController extends Controller
             ->when(request()->filled('gender'), function($q) {
                 $q->where('gender', request()->gender);
             })
+            ->when(request()->filled('age'), function($q) {
+                $before25years = date('Y-m-d', strtotime('-25 years', strtotime(now())));
+                $before35years = date('Y-m-d', strtotime('-35 years', strtotime(now())));
+                $before45years = date('Y-m-d', strtotime('-45 years', strtotime(now())));
+                if(request('age') == '0-25') {
+                    $q->where('birthday', '>', $before25years);
+                } elseif(request('age') == '25-35') {
+                    $q->where('birthday', '<=', $before25years)->where('birthday', '>', $before35years);
+                } elseif(request('age') == '35-45') {
+                    $q->where('birthday', '<=', $before35years)->where('birthday', '>', $before45years);
+                } else {
+                    $q->where('birthday', '<', $before45years);
+                }
+            })
             ->when(request()->filled('journalist_code'), function($q) {
                 $q->where('journalist_code', request()->journalist_code);
             })
