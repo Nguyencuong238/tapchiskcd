@@ -59,8 +59,8 @@
 
                         <div class="form-group">
                             <label>Số công văn đến:</label>
-                            <input type="text" name="count" value="{{ old('count') }}" class="form-control @error('count')is-invalid @enderror">
-                            @error('count')
+                            <input type="text" name="receive_code" value="{{ old('receive_code') }}" class="form-control @error('receive_code')is-invalid @enderror">
+                            @error('receive_code')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>

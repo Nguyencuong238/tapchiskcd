@@ -18,8 +18,16 @@ class CreateOfficialDispatchTable extends Migration
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('body');
+            $table->integer('department_id')->nullable();
+            $table->date('date_handle')->nullable();
+            $table->integer('author_id');
+            $table->string('code');
+            $table->string('code_receive')->nullable();
+            $table->date('date_receive')->nullable();
+            $table->string('sending_place')->nullable();
             $table->text('note')->nullable();
             $table->foreignId('author_id')->index();
+
             $table->timestamps();
         });
     }
