@@ -435,6 +435,9 @@
                         </div>
                     </div>
                     <div class="card-body siblings-info">   
+                        @php
+                            $user->siblings_info = $user->siblings_info ?? [];
+                        @endphp
                         @foreach($user->siblings_info as $s)
                         <div class="row pb-2 mb-4">
                             <i class="fa fa-times text-danger" title="Xóa"></i>
@@ -501,6 +504,9 @@
                         </div>
                     </div>
                     <div class="card-body children-info">   
+                        @php
+                            $user->children_info = $user->children_info ?? [];
+                        @endphp
                         @foreach($user->children_info as $c)
                         <div class="row pb-2 mb-4">
                             <i class="fa fa-times text-danger" title="Xóa"></i>                   
