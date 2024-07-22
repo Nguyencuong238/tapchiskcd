@@ -332,7 +332,10 @@
                             </form>
                         @endif
                         @endif
-                        <a href="{{ route('posts.index') }}" class="btn btn btn-light px-2 mb-2 ml-1"><i class="icon-backward"></i> {{ __('Back') }} </a>
+                        <a href="{{ route('posts.index') }}" class="btn btn btn-light px-2 mb-2 ml-1">
+                            <i class="icon-backward"></i> {{ __('Back') }} </a>
+                        <a class="btn btn btn-primary px-2 mb-2 ml-2" title="In giấy giới thiệu" onclick="window.print()">
+                            <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} </a>
                     </div>
                 </div>
             </div>

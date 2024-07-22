@@ -312,6 +312,8 @@
                         <div class="card-body">
                             <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>{{ __('Save') }} </button>
                             <a href="{{ route('posts.index') }}" class="btn btn btn-light ml-2"><i class="icon-backward mr-2"></i>{{ __('Back') }} </a>
+                            <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
+                                <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} </a>
                         </div>
                     </div>
                 </div>
