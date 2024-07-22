@@ -31,7 +31,7 @@
 </head>
 <body>
 	<div class="page-content">
-		<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg">
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-lg print-hide">
 			<div class="navbar navbar-light bg-light-100 navbar-static border-0">
 				<div class="navbar-brand flex-fill wmin-0 py-0 text-center">
 					<a href="{{ route('home')}}" class="d-inline-block py-3">
@@ -206,7 +206,7 @@
 			</div>
 
 			<div class="page-header">
-				<div class="page-header page-header-light d-flex justify-content-between">
+				<div class="page-header page-header-light d-flex justify-content-between print-hide">
 
 					<div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
 						<div class="d-flex">

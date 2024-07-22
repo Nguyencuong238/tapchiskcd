@@ -50,7 +50,7 @@ class Post extends Model implements HasMedia
      * @var array<string, string>
      */
     protected $casts = [
-        
+        'ggt' => 'array'
     ];
 
     /**
