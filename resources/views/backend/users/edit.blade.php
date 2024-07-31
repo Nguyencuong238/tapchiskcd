@@ -594,7 +594,7 @@
                             <label>{{ __('Roles') }}</label>
                             <select class="form-control form-control-select2" name="roles[]">
                                 @foreach($roles as $role)
-                                    <option {{ in_array($role->name, old('roles', [])) ? 'selected' : null }} value="{{ $role->name }}">{{ $role->name }}</option>
+                                    <option {{ $user->hasRole($role->id) ? 'selected' : null }} value="{{ $role->name }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                         </div>
