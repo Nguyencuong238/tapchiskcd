@@ -28,7 +28,6 @@ class Store extends FormRequest
     {
         return [
             'title'         => ['required'],
-            'excerpt'       => [],
             'body'          => 'required',
             'media'         => ['nullable', $this->validateSingleMedia()->maxItemSizeInKb(3000)],
             'start_date'    => ['required', 'date'],

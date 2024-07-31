@@ -2,7 +2,6 @@
     @push('css')
     <style>
         .border-content {
-            border: 1px solid #ddd;
             padding: 7px 14px;
             border-radius: 4px;
         }

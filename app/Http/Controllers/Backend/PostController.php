@@ -168,7 +168,6 @@ class PostController extends Controller
             'body'          => request('body'),
             'start_date'    => request('start_date'),
             'end_date'      => request('end_date'),
-            'status'        => auth()->user()->position == 'staff' ? 0 : (auth()->user()->position == 'manager' ? 1 : 2),
             'ggt'           => request('ggt')    
         ])->save();
 
