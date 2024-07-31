@@ -52,6 +52,13 @@
             color: #333;
             outline: 0;
         }
+        #category .custom-control-label {
+            color: inherit;
+        }
+        #category .custom-control-label:before {
+            opacity: 1;
+        }
+
         @page {
             size: auto;
         }
