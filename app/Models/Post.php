@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model implements HasMedia
 {
@@ -20,6 +21,7 @@ class Post extends Model implements HasMedia
     use HasSLug;
     use HasCategories;
     use InteractsWithMedia;
+    use SoftDeletes;
 
     public function author()
     {
@@ -50,7 +52,9 @@ class Post extends Model implements HasMedia
      * @var array<string, string>
      */
     protected $casts = [
-        'ggt' => 'array'
+        'ggt' => 'array',
+        'start_date' => 'date',
+        'end_date' => 'date'
     ];
 
     /**
@@ -155,5 +159,9 @@ class Post extends Model implements HasMedia
     public function scopeForCard($query)
     {
         $query->select('id', 'title', 'slug', 'created_at');
+    }
+
+    public function notes() {
+        return $this->hasMany(Note::class);
     }
 }

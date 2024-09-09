@@ -97,12 +97,12 @@
                 <div class="card print-hide">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h5 class="card-title">{{ __('Thêm Đề tài') }}</h5>
+                            <h5 class="card-title">Đăng ký đề tài</h5>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label>{{ __('Title') }}:</label>
+                            <label>Tiêu đề:</label>
                             <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title')is-invalid @enderror" placeholder="Thêm tiêu đề">
                             @error('title')
                                 <span class="invalid-feedback">{{ $message }}</span>
@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>{{ __('Image') }}:</label>
+                            <label>{{ __('Hồ sơ, tư liệu phụ vụ đề tài') }}:</label>
                             @php
                                 $post = new \App\Models\Post;
                             @endphp
@@ -150,7 +150,7 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-
+                        
                     </div>
                 </div>
 
@@ -294,30 +294,15 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 print-hide">
-                <div class="card">
-                    <div class="sidebar-section-header">
-                        <span class="font-weight-semibold">{{ __('Publish') }}</span>
-                        <div class="list-icons ml-auto">
-                            <a href="#publish" class="list-icons-item" data-toggle="collapse" aria-expanded="true">
-                                <i class="icon-arrow-down12"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="collapse show" id="publish">
-                        <div class="card-body">
-                            <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>{{ __('Save') }} </button>
-                            <a href="{{ route('posts.index') }}" class="btn btn btn-light ml-2"><i class="icon-backward mr-2"></i>{{ __('Back') }} </a>
+                        <hr style="border-style: dashed">
+                        <div class="text-right">
                             <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
                                 <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} </a>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="col-md-3 print-hide">
                 <div class="card">
                     <div class="sidebar-section-header">
                         <span class="font-weight-semibold">{{ __('Categories') }}</span>
@@ -334,37 +319,29 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card">
-                    <div class="sidebar-section-header">
-                        <span class="font-weight-semibold">{{ __('Thời gian') }}</span>
-                        <div class="list-icons ml-auto">
-                            <a href="#timer" class="list-icons-item" data-toggle="collapse" aria-expanded="true">
-                                <i class="icon-arrow-down12"></i>
-                            </a>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>{{ __('Ngày bắt đầu') }}:</label>
+                            <input type="text" name="start_date" value="{{ old('start_date') }}" 
+                                class="form-control @error('start_date')is-invalid @enderror start_date">
+                            @error('start_date')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>{{ __('Ngày kết thúc') }}:</label>
+                            <input type="text" name="end_date" value="{{ old('end_date') }}" 
+                                class="form-control @error('end_date')is-invalid @enderror end_date">
+                            @error('end_date')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
+                </div>
 
-                    <div class="collapse show" id="timer">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>{{ __('Ngày bắt đầu') }}:</label>
-                                <input type="text" name="start_date" value="{{ old('start_date') }}" 
-                                    class="form-control @error('start_date')is-invalid @enderror start_date">
-                                @error('start_date')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>{{ __('Ngày kết thúc') }}:</label>
-                                <input type="text" name="end_date" value="{{ old('end_date') }}" 
-                                    class="form-control @error('end_date')is-invalid @enderror end_date">
-                                @error('end_date')
-                                    <span class="invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
+                <div class="">
+                    <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>{{ __('Save') }} </button>
                 </div>
             </div>
         </div>
@@ -375,17 +352,17 @@
         <script>
             $(function() {
                 $(".start_date").flatpickr({
-                    enableTime: true,
+                    enableTime: false,
                     altInput: true,
-                    dateFormat: "Y-m-d H:i",
-                    altFormat: 'd/m/Y H:i'
+                    dateFormat: "Y-m-d",
+                    altFormat: 'd/m/Y'
                 })
 
                 $(".end_date").flatpickr({
-                    enableTime: true,
+                    enableTime: false,
                     altInput: true,
-                    dateFormat: "Y-m-d H:i",
-                    altFormat: 'd/m/Y H:i'
+                    dateFormat: "Y-m-d",
+                    altFormat: 'd/m/Y'
                 })
             })
             $('textarea.print-hide, input.print-hide').on('change', function() {

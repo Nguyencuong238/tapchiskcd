@@ -8,8 +8,16 @@
     </style>
     @endpush
     <div class="card">
+        @php
+            $pageTitles = [
+                0 => 'Đề tài chờ TP duyệt',
+                1 => 'Đề tài chờ TBT duyệt',
+                2 => 'Đề tài được duyệt',
+                -1 => 'Đề tài bị trả lại'
+            ];
+        @endphp
         <div class="card-header">
-            <h5 class="card-title">{{ __('Quản lý đề tài') }}</h5>
+            <h5 class="card-title">{{ $pageTitles[request('status', 0)] }}</h5>
 
             <div class="d-flex justify-content-between mt-2">
                 <form action="">
@@ -39,7 +47,7 @@
                         <th>{{ __('Categories') }}</th>
                         {{--  <th>{{ __('Tags') }}</th>  --}}
                         <th>{{ __('Date') }}</th>
-                        <th>Trạng thái</th>
+                        {{--  <th>Trạng thái</th>  --}}
                         <th class="text-center">{{ __('Action') }}</th>
                     </tr>
                 </thead>
@@ -67,7 +75,7 @@
                             @endif
                         </td>
                         <td>{{ formatDate($post->created_at) }}</td>
-                        <td><span class="btn btn-{{$statusNames[$post->status]['color']}}">{{ $statusNames[$post->status]['name'] }}</span></td>
+                        {{--  <td><span class="btn btn-{{$statusNames[$post->status]['color']}}">{{ $statusNames[$post->status]['name'] }}</span></td>  --}}
                         <td class="text-center">
                             <div class="d-inline-flex justify-content-center">
                                 @can('posts.view')
@@ -80,13 +88,13 @@
                                     || auth()->user()->position == 'manager' && $post->status <= 1
                                     || auth()->user()->position == 'director' || auth()->id() == 1)
 
-                                    @if(auth()->user()->can('posts.edit') || $post->author_id == auth()->id())
+                                    @if($post->author_id == auth()->id() && $post->status != 2)
                                     <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('Edit') }}">
                                         <i class="fa fa-pencil mr-1"></i>
                                     </a>
                                     @endif
 
-                                    @if((auth()->user()->can('posts.delete') || auth()->id() == $post->author_id))
+                                    @if((auth()->user()->can('posts.delete') || auth()->id() == $post->author_id) && $post->status != 2)
                                     <a href="javascript:void(0)" data-action-url="{{ route('posts.destroy', $post) }}" 
                                         data-behavior="delete-resource" class="dropdown-item px-1 rounded" title="{{ __('Delete') }}">
                                         <i class="fa fa-trash mr-1"></i> 

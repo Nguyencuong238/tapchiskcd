@@ -45,6 +45,7 @@ Route::prefix('backend')
         Route::resource('notifications', NotificationController::class);
 
 		Route::resource('departments', DepartmentController::class);
+		Route::post('create-note', [PostController::class, 'createNote'])->name('createNote');
 
 		Route::mediaLibrary();
 	});

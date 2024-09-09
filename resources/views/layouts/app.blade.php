@@ -26,6 +26,19 @@
 		.cursor-pointer {
 			cursor: pointer;
 		}
+		.post-manage .icon-arrow-up12, .post-manage.collapsed .icon-arrow-down12 {
+			display: none;
+		}
+		.post-manage.collapsed .icon-arrow-up12, .post-manage .icon-arrow-down12 {
+			display: inline;
+		}
+		#post_menu .nav-link {
+			padding-left: 54px;
+			padding-right: 20px;
+		}
+		#post_menu .nav-link.active {
+			background: #eee;
+		}
 	</style>
 	@stack('css')
 </head>
@@ -108,12 +121,40 @@
 
 						@canany('posts.view', 'posts.create', 'posts.edit', 'posts.delete')
 						<li class="nav-item">
-							<a href="{{ route('posts.index')}}" class="nav-link @if(request()->routeIs('posts.*')) active @endif">
+							<a class="post-manage nav-link"  href="#post_menu" 
+									data-toggle="collapse" aria-expanded="true">
 								<i class="icon-newspaper"></i>
 								<span>
 									{{ __('Quản lý đề tài') }}
 								</span>
+								<span class="d-flex flex-1 justify-content-end">
+									<i class="icon-arrow-up12"></i>
+									<i class="icon-arrow-down12"></i>
+								</span>
 							</a>
+							<div class="collapse show" id="post_menu">
+								<div class="py-0">
+									<a href="{{ route('posts.create') }}" class="nav-link {{!request()->routeIs('posts.create') ?: 'active'}}">
+										Thêm mới
+									</a>
+									<a href="{{ route('posts.index', ['status' => 0]) }}" id="post-status-0"
+									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 0) ? 'active' : ''}}">
+										Đề tài chờ TP duyệt
+									</a>
+									<a href="{{ route('posts.index', ['status' => 1]) }}" id="post-status-1"
+									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 1) ? 'active' : ''}}">
+										Đề tài chờ TBT duyệt
+									</a>
+									<a href="{{ route('posts.index', ['status' => 2]) }}" id="post-status-2"
+									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 2) ? 'active' : ''}}">
+										Đề tài được duyệt
+									</a>
+									<a href="{{ route('posts.index', ['status' => -1]) }}" id="post-status--1"
+									class="nav-link {{(request()->routeIs('posts.index') && request('status') == -1) ? 'active' : ''}}">
+										Đề tài bị trả lại
+									</a>
+								</div>
+							</div>
 						</li>
 						@endcan
 

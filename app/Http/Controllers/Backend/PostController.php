@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Post\Store;
 use App\Http\Requests\Backend\Post\Update;
 use App\Models\Category;
+use App\Models\Note;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -40,11 +41,11 @@ class PostController extends Controller
             ->when(request('author'), function ($q) {
                 $q->where('author_id', request('author'));
             })
+            ->when(request()->filled('status'), function ($q) {
+                $q->where('status', request('status'));
+            })
             ->when(auth()->user()->position == 'staff', function($q) {
                 $q->where('author_id', auth()->id());
-            })
-            ->when(auth()->user()->position == 'director', function($q) {
-                $q->whereIn('status', [-2,2,1]);
             })
             ->paginate();
 
@@ -121,10 +122,8 @@ class PostController extends Controller
         }
 
         $post = Post::with('media')->findOrFail($id);
-        $selectedIds = $post->categories->pluck('id')->toArray();
-        $categories = Category::where('type', 'post')->whereIn('id', $selectedIds)->tree()->get()->toTree();
 
-        return view('backend.posts.show', compact('post', 'categories', 'selectedIds'));
+        return view('backend.posts.show', compact('post'));
         
     }
 
@@ -237,5 +236,25 @@ class PostController extends Controller
         
 
         return redirect()->back();
+    }
+
+    public function createNote(Request $request) {
+        $post = Post::findOrFail($request->post_id);
+
+        $note = new Note();
+        $note->content = $request->content;
+        $note->user_id = auth()->id();
+        $note->post_id = $request->post_id;
+        $note->save();
+
+        return [
+            'status' => 'success',
+            'data' => [
+                'first_character' => substr($note->user->name, 0, 1),
+                'name' => $note->user->name,
+                'content' => $note->content,
+                'date' => $note->created_at->format('H:i d/m/Y')
+            ]
+        ];
     }
 }
