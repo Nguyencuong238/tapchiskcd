@@ -8,6 +8,7 @@ use App\Http\Requests\Backend\Post\Update;
 use App\Models\Category;
 use App\Models\Note;
 use App\Models\Post;
+use App\Models\PostHistory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -84,14 +85,21 @@ class PostController extends Controller
         }
 
         $post = Post::create([
-            'title'         => request('title'),
-            'excerpt'       => request('excerpt'),
-            'body'          => request('body'),
-            'start_date'    => request('start_date'),
-            'end_date'      => request('end_date'),
+            'title'         => $request->title,
+            'excerpt'       => $request->excerpt,
+            'body'          => $request->body,
+            'start_date'    => $request->start_date,
+            'end_date'      => $request->end_date,
             'author_id'     => $request->user()->id,
             'status'        => auth()->user()->position == 'staff' ? 0 : (auth()->user()->position == 'manager' ? 1 : 2),
-            'ggt'           => request('ggt')    
+            'ggt'           => $request->ggt    
+        ]);
+
+        PostHistory::create([
+            'post_id' => $post->id,
+            'user_id' => auth()->id(),
+            'type' => 'create',
+            'new_record' => $post
         ]);
 
         $post
@@ -102,7 +110,7 @@ class PostController extends Controller
             ->addFromMediaLibraryRequest($request->attachments)
             ->toMediaCollection('attachments');
 
-        $post->categories()->sync(request('categories'));
+        $post->categories()->sync($request->categories);
 
         flash(__('Record ":model" created', ['model' => $post->title]), 'success');
 
@@ -155,20 +163,56 @@ class PostController extends Controller
      */
     public function update(Update $request, $id)
     {
-        $post = Post::findOrFail($id);
+        $oldPost = $post = Post::findOrFail($id);
 
         if (! auth()->user()->can('posts.edit') && $post->author_id != auth()->id()) {
             abort(403);
         }
 
+        $changeFields = [];
+        $fields = [
+            'title'      => 'Tiêu đề',
+            'excerpt'    => 'Mô tả',
+            'body'       => 'Nội dung',
+            'ggt'        => 'Giấy giới thiệu'
+        ];
+
+        foreach ($fields as $key => $value) {
+            if($post->{$key} != request($key)) {
+                $changeFields[] = $value;
+            }
+        }
+
+        if($post->start_date->format('Y-m-d') != $request->start_date) {
+            $changeFields[] = 'Ngày bắt đầu';
+        }
+
+        if($post->end_date->format('Y-m-d') != $request->end_date) {
+            $changeFields[] = 'Ngày kết thúc';
+        }
+
+        $intersect = $post->categories->pluck('id')->intersect($request->categories);
+        if($intersect != $post->categories->pluck('id') || $intersect->count() != count($request->categories ?? []) ) {
+            $changeFields[] = 'Danh mục';
+        }
+
         $post->fill([
-            'title'         => request('title'),
-            'excerpt'       => request('excerpt'),
-            'body'          => request('body'),
-            'start_date'    => request('start_date'),
-            'end_date'      => request('end_date'),
-            'ggt'           => request('ggt')    
+            'title'      => $request->title,
+            'excerpt'    => $request->excerpt,
+            'body'       => $request->body,
+            'ggt'        => $request->ggt    
         ])->save();
+
+        if(!empty($changeFields)) {
+            PostHistory::create([
+                'post_id' => $post->id,
+                'user_id' => auth()->id(),
+                'type' => 'update',
+                'old_record' => $oldPost,
+                'new_record' => $post,
+                'note' => implode(', ', $changeFields),
+            ]);
+        }
 
         $post
             ->syncFromMediaLibraryRequest($request->media)
@@ -178,7 +222,7 @@ class PostController extends Controller
             ->syncFromMediaLibraryRequest($request->attachments)
             ->toMediaCollection('attachments');
 
-        $post->categories()->sync(request('categories'));
+        $post->categories()->sync($request->categories);
 
         flash(__('Record ":model" updated', ['model' => $post->title]), 'success');
 
@@ -227,6 +271,19 @@ class PostController extends Controller
 
         $post->status = $request->status;
         $post->save();
+
+        $labels = [
+            -1 => 'Trả lại',
+            1 => 'TP phê duyệt',
+            2 => 'TBT phê duyệt'
+        ];
+
+        PostHistory::create([
+            'post_id' => $post->id,
+            'user_id' => auth()->id(),
+            'type' => 'change_status',
+            'note' => $labels[$post->status]
+        ]);
 
         if($post->status == 1)
             flash(__('Đề tài "'. $post->title.'" đã được duyệt!'), 'success');

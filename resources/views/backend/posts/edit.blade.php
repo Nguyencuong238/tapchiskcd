@@ -48,6 +48,17 @@
             .section-ggt input, .section-ggt textarea {
                 color: #333;
             }
+            .action-bar {
+                position: fixed;
+                bottom: 0;
+                padding-top: 20px;
+                background: whitesmoke;
+                width: 100%;
+            }
+            .btn-history {
+                background: #333 !important;
+                border-color: #333 !important;
+            }
             @page {
                 size: auto;
             }
@@ -55,6 +66,7 @@
                 .section-ggt {
                     border: 0;
                     width: 100%;
+                    margin-bottom: 0 !important;
                 }
                 .section-ggt input {
                     border: 0;
@@ -156,7 +168,7 @@
                     </div>
                 </div>
 
-                <div class="card section-ggt">
+                <div class="card section-ggt mb-5">
                     <div class="card-body" style="font-family: 'Times New Roman';">
                         <div class="row">
                             <div class="col-4">
@@ -296,11 +308,6 @@
                                 </div>
                             </div>
                         </div>
-                        <hr style="border-style: dashed">
-                        <div class="text-right">
-                            <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
-                                <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -343,13 +350,68 @@
                     </div>
                 </div>
 
-                <div class="">
-                    <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>{{ __('Save') }} </button>
-                </div>
             </div>
+        </div>
+        <div class="action-bar print-hide pb-2">
+            <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>{{ __('Save') }} </button>
+            <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
+                <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} 
+            </a>
+            <a class="btn btn btn-primary btn-history ml-2" data-toggle="modal" data-target="#exampleModal">
+                <i class="icon-history mr-2"></i> Lịch sử
+            </a>
         </div>
     </form>
     
+    @php
+        $typeLabels = [
+            'update' => 'Cập nhật',
+            'create' => 'Khởi tạo',
+            'change_status' => 'Thay đổi trạng thái'
+        ];
+    @endphp
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lịch sử thay đổi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Người tạo</th>
+                            <th>Loại thay đổi</th>
+                            <th>Ghi chú</th>
+                            <th>Ngày</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($post->histories as $key => $h)
+                        <tr>
+                            <th>{{$key+1}}</th>
+                            <th>{{$h->user->name}}</th>
+                            <td>{{$typeLabels[$h->type]}}</td>
+                            @if(!empty($h->note))
+                            <td>{{$typeLabels[$h->type]}} {!!$h->note!!}</td>
+                            @else
+                            <td></td>
+                            @endif
+                            <td>{{$h->created_at->format('d/m/Y H:i:s')}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                  </table>
+                  
+            </div>
+            
+          </div>
+        </div>
+    </div>
     @push('js')
 	    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script>
@@ -364,8 +426,8 @@
                 $(".end_date").flatpickr({
                     enableTime: false,
                     altInput: true,
-                    dateFormat: "Y-m-d H:i",
-                    altFormat: 'd/m/Y H:i'
+                    dateFormat: "Y-m-d",
+                    altFormat: 'd/m/Y'
                 })
             })
             $('textarea.print-hide, input.print-hide').on('change', function() {

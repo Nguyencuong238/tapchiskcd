@@ -48,6 +48,13 @@
             .section-ggt input, .section-ggt textarea {
                 color: #333;
             }
+            .action-bar {
+                position: fixed;
+                bottom: 0;
+                padding-top: 20px;
+                background: whitesmoke;
+                width: 100%;
+            }
             @page {
                 size: auto;
             }
@@ -55,6 +62,7 @@
                 .section-ggt {
                     border: 0;
                     width: 100%;
+                    margin-bottom: 0 !important;
                 }
                 .section-ggt input {
                     border: 0;
@@ -154,7 +162,7 @@
                     </div>
                 </div>
 
-                <div class="card section-ggt">
+                <div class="card section-ggt mb-5">
                     <div class="card-body" style="font-family: 'Times New Roman';">
                         <div class="row">
                             <div class="col-4">
@@ -294,11 +302,6 @@
                                 </div>
                             </div>
                         </div>
-                        <hr style="border-style: dashed">
-                        <div class="text-right">
-                            <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
-                                <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -340,10 +343,14 @@
                     </div>
                 </div>
 
-                <div class="">
-                    <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>{{ __('Save') }} </button>
-                </div>
             </div>
+        </div>
+
+        <div class="action-bar print-hide pb-2">
+            <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>{{ __('Save') }} </button>
+            <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
+                <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} 
+            </a>
         </div>
     </form>
 

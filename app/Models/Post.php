@@ -164,4 +164,8 @@ class Post extends Model implements HasMedia
     public function notes() {
         return $this->hasMany(Note::class);
     }
+
+    public function histories() {
+        return $this->hasMany(PostHistory::class);
+    }
 }
