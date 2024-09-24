@@ -48,6 +48,11 @@ class PostController extends Controller
             ->when(auth()->user()->position == 'staff', function($q) {
                 $q->where('author_id', auth()->id());
             })
+            ->when(auth()->user()->position == 'manager' && !auth()->user()->hasRole(1), function($q) {
+                $q->whereHas('author', function($subQ) {
+                    $subQ->where('department_id', auth()->user()->department_id);
+                });
+            })
             ->paginate();
 
         return view('backend.posts.index', compact('posts'));
