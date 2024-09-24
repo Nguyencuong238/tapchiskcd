@@ -190,7 +190,7 @@ class UserController extends Controller
             'labor_contract_end'      => ['nullable', 'date', 'after:labor_contract_start'],
         ]);
 
-        $data = $request->except(['_token', '_method', 'roles', 'media', 'certificate']);
+        $data = $request->except(['_token', '_method', 'roles', 'media', 'certificate', 'password']);
         $data['siblings_info'] = array_values($request->input('siblings_info', []));
         $data['children_info'] = array_values($request->input('children_info', []));
 

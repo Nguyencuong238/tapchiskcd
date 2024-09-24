@@ -584,7 +584,7 @@
 
                         <div class="form-group col-md-6">
                             <label>{{ __('Password') }}: (từ 8 ký tự trở lên)</label>
-                            <input type="password" name="password" value="{{ old('password', $user->password) }}" class="form-control @error('password')is-invalid @enderror" required>
+                            <input type="password" name="password" class="form-control @error('password')is-invalid @enderror" >
                             @error('password')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
