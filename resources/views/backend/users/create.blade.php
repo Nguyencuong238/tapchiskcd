@@ -236,7 +236,8 @@
                             <label>{{ __('Chức vụ') }}</label>
                             <select class="form-control form-control-select2" name="position">
                                 <option value="staff" @if(old('position') == 'staff') selected @endif>Nhân viên</option>
-                                <option value="manager" @if(old('position') == 'manager') selected @endif>Trưởng phòng</option>
+                                <option value="manager" @if(old('position') == 'manager') selected @endif>Trưởng ban</option>
+                                <option value="secretary" @if(old('position') == 'secretary') selected @endif>Tổng thư ký</option>
                                 <option value="director" @if(old('position') == 'director') selected @endif>Tổng biên tập</option>
                             </select>
                         </div>

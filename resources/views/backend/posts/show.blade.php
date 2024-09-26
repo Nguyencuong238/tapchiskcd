@@ -400,7 +400,7 @@
         </div>
     </div>
     <div class="action-bar print-hide pb-2">
-        @if(auth()->user()->position == 'director' && $post->status == 1 || auth()->user()->position == 'manager' && $post->status == 0)
+        @if(auth()->user()->position == 'director' && $post->status == 1 || in_array(auth()->user()->position, ['manager', 'secretary']) && $post->status == 0)
             <form action="{{route('posts.updateStatus')}}" method="post" class="d-inline-block mb-2">
                 @csrf
 
