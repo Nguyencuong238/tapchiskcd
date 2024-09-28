@@ -54,7 +54,8 @@ class Post extends Model implements HasMedia
     protected $casts = [
         'ggt' => 'array',
         'start_date' => 'date',
-        'end_date' => 'date'
+        'end_date' => 'date',
+        'ggt' => 'array'
     ];
 
     /**

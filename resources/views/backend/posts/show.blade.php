@@ -218,6 +218,152 @@
                 </div>
             </div>
 
+            @if(count($post->ggt))
+                @foreach($post->ggt as $key => $item)
+                <div class="card section-ggt mb-5">
+                    <div class="card-body" style="font-family: 'Times New Roman';">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="fs-6pt">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
+                                        <div class="fs-6pt text-center fw-600">TẠP CHÍ SỨC KHỎE<br>CỘNG ĐỒNG</div>
+                                        <hr class="mt-2 mb-1" style="width: 60%;">
+                                        <div class="fs-8pt">
+                                            Số : ......Q....../GGT
+                                        </div>
+                                    </div>
+                                    <div class="col-7 text-center">
+                                        <div class="fs-6pt">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                                        <div class="fs-8pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
+                                        <hr style="margin-top: 10px; width: 75%;">
+                                    </div>
+                                </div>
+                                <div class="fs-14pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
+                                <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
+                                <div class="d-flex mt-1 fs-11pt">
+                                    <span class="mr-1">Ông (bà): </span>
+                                    <input readonly value="{{@$item['left']['name']}}" class="flex-1">
+                                </div>
+                                <div class="mt-1 d-flex fs-11pt">
+                                    <span class="mr-1">Chức vụ: </span>
+                                    <input readonly value="{{@$item['left']['position']}}" class="flex-1">
+                                </div>
+                                <div class="d-flex mt-1">
+                                    <span class="fs-11pt mr-1">Được cử đến: </span>
+                                    <div class="flex-1">
+                                        <input readonly value="{{@$item['left']['arrival_address_1']}}" class="fs-11pt w-100">
+                                        <input readonly value="{{@$item['left']['arrival_address_2']}}" class="fs-11pt w-100">
+                                        <input readonly value="{{@$item['left']['arrival_address_3']}}" class="fs-11pt w-100">
+                                    </div>
+                                </div>
+                                <div class="d-flex d-print-inline mt-1 fs-11pt">
+                                    <span class="mr-1">Về việc: </span>
+                                    <pre class="d-none print-show fs-11pt">{{@$item['left']['propose']}}</pre>
+                                    <textarea rows="3" class="print-hide flex-1" readonly>{{@$item['left']['propose']}}</textarea>
+                                </div>
+                                <div class="fs-11pt mt-1">
+                                    Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                    <input readonly value="{{@$item['left']['suggest']}}" class="print-hide">
+                                    <span class="d-none print-show"></span>
+                                    hoàn thành nhiệm vụ.
+                                </div>
+                                <div class="fs-11pt mt-1">
+                                    Giấy giới thiệu có giá trị đến hết ngày 
+                                    <input readonly value="{{@$item['left']['expire_date']}}" style="width: 20px;">
+                                    tháng  
+                                    <input readonly value="{{@$item['left']['expire_month']}}" style="width: 20px;">
+                                    năm 
+                                    <input readonly value="{{@$item['left']['expire_year']}}" style="width: 35px;">
+                                </div>
+                                <div class="text-right mt-4 mb-4">
+                                    <div class="d-inline-block text-center">
+                                        <div class="fs-11pt font-italic">
+                                            Hà Nội, ngày <input readonly value="{{@$item['left']['signature_date']}}" class="font-italic" style="width: 20px;">
+                                            tháng <input readonly value="{{@$item['left']['signature_month']}}" class="font-italic" style="width: 20px;">
+                                            năm <input readonly value="{{@$item['left']['signature_year']}}" class="font-italic" style="width: 35px;">
+                                        </div>
+                                        <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
+                                        <input readonly value="{{@$item['left']['signature']}}" class="fs-12pt mt-3 text-center">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-8 pl-4" style="border-left: 1px solid">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="fs-10pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
+                                        <div class="fs-11pt text-center fw-600">TẠP CHÍ SỨC KHỎE CỘNG ĐỒNG</div>
+                                        <hr class="mt-2 mb-1" style="width: 60%;">
+                                        <div class="fs-11pt text-center">
+                                            Số : ......Q....../GGT/SKCĐ
+                                        </div>
+                                    </div>
+                                    <div class="col-7 text-center">
+                                        <div class="fs-11pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                                        <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
+                                        <hr style="width: 33%;" class="mt-2 mb-2">
+                                        <div class="fs-13pt font-italic">
+                                            Hà Nội, ngày <input readonly value="{{@$item['right']['signature_date']}}" class="fs-11pt font-italic" style="width: 20px;">
+                                                tháng <input readonly value="{{@$item['right']['signature_month']}}" class="fs-11pt font-italic" style="width: 20px;">
+                                                năm <input readonly value="{{@$item['right']['signature_year']}}" class="fs-11pt font-italic" style="width: 35px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fs-18pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
+                                <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
+                                <div class="d-flex mt-1 fs-12pt5">
+                                    <span class="mr-1 font-italic">Ông (bà): </span>
+                                    <input readonly value="{{@$item['right']['name']}}" class="flex-1">
+                                </div>
+                                <div class="mt-1 d-flex fs-12pt5">
+                                    <span class="mr-1 font-italic">Chức vụ: </span>
+                                    <input readonly value="{{@$item['right']['position']}}" class="flex-1">
+                                </div>
+                                <div class="d-flex mt-1 fs-12pt5">
+                                    <span class="mr-1 font-italic">Được cử đến: </span>
+                                    <div class="flex-1">
+                                        <input readonly value="{{@$item['right']['arrival_address_1']}}" class="w-100">
+                                        <input readonly value="{{@$item['right']['arrival_address_2']}}" class="w-100">
+                                        <input readonly value="{{@$item['right']['arrival_address_3']}}" class="w-100">
+                                    </div>
+                                </div>
+                                <div class="d-flex d-print-inline mt-2 fs-12pt5">
+                                    <span class="font-italic mr-1">Về việc: </span>
+                                    <pre class="d-none print-show fs-11pt">{{@$item['right']['propose']}}</pre>
+                                    <textarea rows="3" class="print-hide flex-1" readonly>{{@$item['right']['propose']}}</textarea>
+                                </div>
+                                <div class="fs-12pt5 mt-1">
+                                    Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                    <input readonly value="{{@$item['right']['suggest']}}" class="print-hide">
+                                    <span class="d-none print-show"></span>
+                                    hoàn thành nhiệm vụ.
+                                </div>
+                                <div class="fs-12pt5 mt-1">
+                                    Giấy giới thiệu có giá trị đến hết ngày 
+                                    <input readonly value="{{@$item['right']['expire_date']}}" style="width: 20px;">
+                                    tháng  
+                                    <input readonly value="{{@$item['right']['expire_month']}}" style="width: 20px;">
+                                    năm 
+                                    <input readonly value="{{@$item['right']['expire_year']}}" style="width: 40px;">
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
+                                        <div class="fs-10pt mb-2">- Như trên;</div>
+                                        <div class="fs-10pt">- Lưu: Văn phòng</div>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
+                                        <input readonly value="{{@$item['right']['signature']}}" class="fs-13pt text-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            @else
             <div class="card section-ggt mb-5">
                 <div class="card-body" style="font-family: 'Times New Roman';">
                     <div class="row">
@@ -241,48 +387,48 @@
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-11pt">
                                 <span class="mr-1">Ông (bà): </span>
-                                <input readonly value="{{@$post->ggt['left']['name']}}" class="flex-1">
+                                <input readonlyass="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-11pt">
                                 <span class="mr-1">Chức vụ: </span>
-                                <input readonly value="{{@$post->ggt['left']['position']}}" class="flex-1">
+                                <input readonlyass="flex-1">
                             </div>
                             <div class="d-flex mt-1">
                                 <span class="fs-11pt mr-1">Được cử đến: </span>
                                 <div class="flex-1">
-                                    <input readonly value="{{@$post->ggt['left']['arrival_address_1']}}" class="fs-11pt w-100">
-                                    <input readonly value="{{@$post->ggt['left']['arrival_address_2']}}" class="fs-11pt w-100">
-                                    <input readonly value="{{@$post->ggt['left']['arrival_address_3']}}" class="fs-11pt w-100">
+                                    <input readonlyass="fs-11pt w-100">
+                                    <input readonlyass="fs-11pt w-100">
+                                    <input readonlyass="fs-11pt w-100">
                                 </div>
                             </div>
                             <div class="d-flex d-print-inline mt-1 fs-11pt">
                                 <span class="mr-1">Về việc: </span>
-                                <pre class="d-none print-show fs-11pt">{{@$post->ggt['left']['propose']}}</pre>
-                                <textarea rows="3" class="print-hide flex-1" readonly>{{@$post->ggt['left']['propose']}}</textarea>
+                                <pre class="d-none print-show fs-11pt">{{@$item['left']['propose']}}</pre>
+                                <textarea rows="3" class="print-hide flex-1" readonlyem['left']['propose']}}</textarea>
                             </div>
                             <div class="fs-11pt mt-1">
                                 Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                <input readonly value="{{@$post->ggt['left']['suggest']}}" class="print-hide">
+                                <input readonlyass="print-hide">
                                 <span class="d-none print-show"></span>
-                                  hoàn thành nhiệm vụ.
+                                    hoàn thành nhiệm vụ.
                             </div>
                             <div class="fs-11pt mt-1">
                                 Giấy giới thiệu có giá trị đến hết ngày 
-                                <input readonly value="{{@$post->ggt['left']['expire_date']}}" style="width: 20px;">
-                                 tháng  
-                                 <input readonly value="{{@$post->ggt['left']['expire_month']}}" style="width: 20px;">
-                                 năm 
-                                 <input readonly value="{{@$post->ggt['left']['expire_year']}}" style="width: 35px;">
+                                <input readonlyyle="width: 20px;">
+                                    tháng  
+                                    <input readonlyyle="width: 20px;">
+                                    năm 
+                                    <input readonlyyle="width: 35px;">
                             </div>
                             <div class="text-right mt-4 mb-4">
                                 <div class="d-inline-block text-center">
                                     <div class="fs-11pt font-italic">
-                                        Hà Nội, ngày <input readonly value="{{@$post->ggt['left']['signature_date']}}" class="font-italic" style="width: 20px;">
-                                         tháng <input readonly value="{{@$post->ggt['left']['signature_month']}}" class="font-italic" style="width: 20px;">
-                                          năm <input readonly value="{{@$post->ggt['left']['signature_year']}}" class="font-italic" style="width: 35px;">
+                                        Hà Nội, ngày <input readonlyass="font-italic" style="width: 20px;">
+                                            tháng <input readonlyass="font-italic" style="width: 20px;">
+                                            năm <input readonlyass="font-italic" style="width: 35px;">
                                     </div>
                                     <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                    <input readonly value="{{@$post->ggt['left']['signature']}}" class="fs-12pt mt-3 text-center">
+                                    <input readonlyass="fs-12pt mt-3 text-center">
                                 </div>
 
                             </div>
@@ -302,9 +448,9 @@
                                     <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
                                     <hr style="width: 33%;" class="mt-2 mb-2">
                                     <div class="fs-13pt font-italic">
-                                        Hà Nội, ngày <input readonly value="{{@$post->ggt['right']['signature_date']}}" class="fs-11pt font-italic" style="width: 20px;">
-                                            tháng <input readonly value="{{@$post->ggt['right']['signature_month']}}" class="fs-11pt font-italic" style="width: 20px;">
-                                            năm <input readonly value="{{@$post->ggt['right']['signature_year']}}" class="fs-11pt font-italic" style="width: 35px;">
+                                        Hà Nội, ngày <input readonlyass="fs-11pt font-italic" style="width: 20px;">
+                                            tháng <input readonlyass="fs-11pt font-italic" style="width: 20px;">
+                                            năm <input readonlyass="fs-11pt font-italic" style="width: 35px;">
                                     </div>
                                 </div>
                             </div>
@@ -312,38 +458,38 @@
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-12pt5">
                                 <span class="mr-1 font-italic">Ông (bà): </span>
-                                <input readonly value="{{@$post->ggt['right']['name']}}" class="flex-1">
+                                <input readonlyass="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-12pt5">
                                 <span class="mr-1 font-italic">Chức vụ: </span>
-                                <input readonly value="{{@$post->ggt['right']['position']}}" class="flex-1">
+                                <input readonlyass="flex-1">
                             </div>
                             <div class="d-flex mt-1 fs-12pt5">
                                 <span class="mr-1 font-italic">Được cử đến: </span>
                                 <div class="flex-1">
-                                    <input readonly value="{{@$post->ggt['right']['arrival_address_1']}}" class="w-100">
-                                    <input readonly value="{{@$post->ggt['right']['arrival_address_2']}}" class="w-100">
-                                    <input readonly value="{{@$post->ggt['right']['arrival_address_3']}}" class="w-100">
+                                    <input readonlyass="w-100">
+                                    <input readonlyass="w-100">
+                                    <input readonlyass="w-100">
                                 </div>
                             </div>
                             <div class="d-flex d-print-inline mt-2 fs-12pt5">
                                 <span class="font-italic mr-1">Về việc: </span>
-                                <pre class="d-none print-show fs-11pt">{{@$post->ggt['right']['propose']}}</pre>
-                                <textarea rows="3" class="print-hide flex-1" readonly>{{@$post->ggt['right']['propose']}}</textarea>
+                                <pre class="d-none print-show fs-11pt"></pre>
+                                <textarea rows="3" class="print-hide flex-1" readonlyxtarea>
                             </div>
                             <div class="fs-12pt5 mt-1">
                                 Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                <input readonly value="{{@$post->ggt['right']['suggest']}}" class="print-hide">
+                                <input readonlyass="print-hide">
                                 <span class="d-none print-show"></span>
-                                  hoàn thành nhiệm vụ.
+                                    hoàn thành nhiệm vụ.
                             </div>
                             <div class="fs-12pt5 mt-1">
                                 Giấy giới thiệu có giá trị đến hết ngày 
-                                <input readonly value="{{@$post->ggt['right']['expire_date']}}" style="width: 20px;">
-                                 tháng  
-                                 <input readonly value="{{@$post->ggt['right']['expire_month']}}" style="width: 20px;">
-                                 năm 
-                                 <input readonly value="{{@$post->ggt['right']['expire_year']}}" style="width: 40px;">
+                                <input readonlyyle="width: 20px;">
+                                    tháng  
+                                    <input readonlyyle="width: 20px;">
+                                    năm 
+                                    <input readonlyyle="width: 40px;">
                             </div>
                             <div class="row mt-4">
                                 <div class="col-6">
@@ -353,13 +499,14 @@
                                 </div>
                                 <div class="col-6 text-center">
                                     <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                    <input readonly value="{{@$post->ggt['right']['signature']}}" class="fs-13pt text-center">
+                                    <input readonlyass="fs-13pt text-center">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <div class="col-md-3 print-hide">
             <div class="card">

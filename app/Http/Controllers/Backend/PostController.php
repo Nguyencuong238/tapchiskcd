@@ -97,7 +97,7 @@ class PostController extends Controller
             'end_date'      => $request->end_date,
             'author_id'     => $request->user()->id,
             'status'        => auth()->user()->position == 'staff' ? 0 : (auth()->user()->position == 'manager' ? 1 : 2),
-            'ggt'           => $request->ggt    
+            'ggt'           => array_values($request->input('ggt', []))  
         ]);
 
         PostHistory::create([
@@ -205,7 +205,7 @@ class PostController extends Controller
             'title'      => $request->title,
             'excerpt'    => $request->excerpt,
             'body'       => $request->body,
-            'ggt'        => $request->ggt    
+            'ggt'        => array_values($request->input('ggt', []))
         ])->save();
 
         if(!empty($changeFields)) {
