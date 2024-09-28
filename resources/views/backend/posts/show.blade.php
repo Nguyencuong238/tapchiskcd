@@ -387,28 +387,28 @@
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-11pt">
                                 <span class="mr-1">Ông (bà): </span>
-                                <input readonlyass="flex-1">
+                                <input readonly class="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-11pt">
                                 <span class="mr-1">Chức vụ: </span>
-                                <input readonlyass="flex-1">
+                                <input readonly class="flex-1">
                             </div>
                             <div class="d-flex mt-1">
                                 <span class="fs-11pt mr-1">Được cử đến: </span>
                                 <div class="flex-1">
-                                    <input readonlyass="fs-11pt w-100">
-                                    <input readonlyass="fs-11pt w-100">
-                                    <input readonlyass="fs-11pt w-100">
+                                    <input readonly class="fs-11pt w-100">
+                                    <input readonly class="fs-11pt w-100">
+                                    <input readonly class="fs-11pt w-100">
                                 </div>
                             </div>
                             <div class="d-flex d-print-inline mt-1 fs-11pt">
                                 <span class="mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-11pt">{{@$item['left']['propose']}}</pre>
-                                <textarea rows="3" class="print-hide flex-1" readonlyem['left']['propose']}}</textarea>
+                                <textarea rows="3" class="print-hide flex-1" readonly></textarea>
                             </div>
                             <div class="fs-11pt mt-1">
                                 Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                <input readonlyass="print-hide">
+                                <input readonly class="print-hide">
                                 <span class="d-none print-show"></span>
                                     hoàn thành nhiệm vụ.
                             </div>
@@ -423,12 +423,12 @@
                             <div class="text-right mt-4 mb-4">
                                 <div class="d-inline-block text-center">
                                     <div class="fs-11pt font-italic">
-                                        Hà Nội, ngày <input readonlyass="font-italic" style="width: 20px;">
-                                            tháng <input readonlyass="font-italic" style="width: 20px;">
-                                            năm <input readonlyass="font-italic" style="width: 35px;">
+                                        Hà Nội, ngày <input readonly class="font-italic" style="width: 20px;">
+                                            tháng <input readonly class="font-italic" style="width: 20px;">
+                                            năm <input readonly class="font-italic" style="width: 35px;">
                                     </div>
                                     <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                    <input readonlyass="fs-12pt mt-3 text-center">
+                                    <input readonly class="fs-12pt mt-3 text-center">
                                 </div>
 
                             </div>
@@ -448,9 +448,9 @@
                                     <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
                                     <hr style="width: 33%;" class="mt-2 mb-2">
                                     <div class="fs-13pt font-italic">
-                                        Hà Nội, ngày <input readonlyass="fs-11pt font-italic" style="width: 20px;">
-                                            tháng <input readonlyass="fs-11pt font-italic" style="width: 20px;">
-                                            năm <input readonlyass="fs-11pt font-italic" style="width: 35px;">
+                                        Hà Nội, ngày <input readonly class="fs-11pt font-italic" style="width: 20px;">
+                                            tháng <input readonly class="fs-11pt font-italic" style="width: 20px;">
+                                            năm <input readonly class="fs-11pt font-italic" style="width: 35px;">
                                     </div>
                                 </div>
                             </div>
@@ -458,28 +458,28 @@
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-12pt5">
                                 <span class="mr-1 font-italic">Ông (bà): </span>
-                                <input readonlyass="flex-1">
+                                <input readonly class="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-12pt5">
                                 <span class="mr-1 font-italic">Chức vụ: </span>
-                                <input readonlyass="flex-1">
+                                <input readonly class="flex-1">
                             </div>
                             <div class="d-flex mt-1 fs-12pt5">
                                 <span class="mr-1 font-italic">Được cử đến: </span>
                                 <div class="flex-1">
-                                    <input readonlyass="w-100">
-                                    <input readonlyass="w-100">
-                                    <input readonlyass="w-100">
+                                    <input readonly class="w-100">
+                                    <input readonly class="w-100">
+                                    <input readonly class="w-100">
                                 </div>
                             </div>
                             <div class="d-flex d-print-inline mt-2 fs-12pt5">
                                 <span class="font-italic mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-11pt"></pre>
-                                <textarea rows="3" class="print-hide flex-1" readonlyxtarea>
+                                <textarea rows="3" class="print-hide flex-1" readonly></textarea>
                             </div>
                             <div class="fs-12pt5 mt-1">
                                 Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                <input readonlyass="print-hide">
+                                <input readonly class="print-hide">
                                 <span class="d-none print-show"></span>
                                     hoàn thành nhiệm vụ.
                             </div>
@@ -499,7 +499,7 @@
                                 </div>
                                 <div class="col-6 text-center">
                                     <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                    <input readonlyass="fs-13pt text-center">
+                                    <input readonly class="fs-13pt text-center">
                                 </div>
                             </div>
                         </div>
