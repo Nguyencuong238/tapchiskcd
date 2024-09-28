@@ -414,11 +414,11 @@
                             </div>
                             <div class="fs-11pt mt-1">
                                 Giấy giới thiệu có giá trị đến hết ngày 
-                                <input readonlyyle="width: 20px;">
+                                <input readonly style="width: 20px;">
                                     tháng  
-                                    <input readonlyyle="width: 20px;">
+                                    <input readonly style="width: 20px;">
                                     năm 
-                                    <input readonlyyle="width: 35px;">
+                                    <input readonly style="width: 35px;">
                             </div>
                             <div class="text-right mt-4 mb-4">
                                 <div class="d-inline-block text-center">
@@ -485,11 +485,11 @@
                             </div>
                             <div class="fs-12pt5 mt-1">
                                 Giấy giới thiệu có giá trị đến hết ngày 
-                                <input readonlyyle="width: 20px;">
+                                <input readonly style="width: 20px;">
                                     tháng  
-                                    <input readonlyyle="width: 20px;">
+                                    <input readonly style="width: 20px;">
                                     năm 
-                                    <input readonlyyle="width: 40px;">
+                                    <input readonly style="width: 40px;">
                             </div>
                             <div class="row mt-4">
                                 <div class="col-6">
