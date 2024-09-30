@@ -515,7 +515,7 @@
             </div>
         </div>
         <div class="action-bar print-hide pb-2">
-            <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>Gửi </button>
+            <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>Gửi @if($post->status == -1) lại @endif</button>
             <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
                 <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} 
             </a>
