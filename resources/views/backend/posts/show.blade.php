@@ -102,6 +102,9 @@
             background: #333 !important;
             border-color: #333 !important;
         }
+        .custom-checkbox .custom-control-label.error:before {
+            border-color: red;
+        }
         @page {
             size: auto;
         }
@@ -167,10 +170,10 @@
                         <div class="border-content">{{ $post->title }}</div>
                     </div>
 
-                    <div class="form-group">
+                    {{--  <div class="form-group">
                         <label class="font-weight-semibold">Mô tả:</label>
                         <div class="border-content">{{ $post->excerpt }}</div>
-                    </div>
+                    </div>  --}}
 
                     <div class="form-group">
                         <label class="font-weight-semibold">Hồ sơ, tư liệu phục vụ đề tài:</label><br>
@@ -185,6 +188,17 @@
                         <label class="font-weight-semibold">{{ __('Content') }}:</label>
                         <div class="border-content">{!! $post->body !!}</div>
                     </div>
+                    
+                    <div class="row mb-4 dateline">
+                        <div class="col-6">
+                            <label class="font-weight-semibold">{{ __('Ngày bắt đầu') }}:</label>
+                            <span class="border-content">{{ $post->start_date->format('d/m/Y') }}</span>
+                        </div>
+                        <div class="col-6">
+                            <label class="font-weight-semibold">{{ __('Ngày kết thúc') }}:</label>
+                            <span class="border-content">{{ $post->end_date->format('d/m/Y') }}</span>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label class="font-weight-semibold">{{ __('Tệp đính kèm') }}:</label>
@@ -196,25 +210,19 @@
                         @endforeach
                     </div>
                     
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="font-weight-semibold">{{ __('Ngày bắt đầu') }}:</label>
-                            <span class="border-content">{{ $post->start_date->format('d/m/Y') }}</span>
-                        </div>
-                        <div class="col-6">
-                            <label class="font-weight-semibold">{{ __('Ngày kết thúc') }}:</label>
-                            <span class="border-content">{{ $post->end_date->format('d/m/Y') }}</span>
-                        </div>
-                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Tôi đã kiểm tra, rà soát hồ sơ chứng cứ, tư liệu và xác nhận đã đủ điều kiện để phóng viên thực hiện đề tài. Tôi sẽ chỉ đạo, quản lý chặt chẽ phóng viên trong quá trình tác nghiệp. Đề nghị TBT cấp giấy giới thiệu/công văn kèm theo.</label>
+                      </div>
 
-                    <div class="form-group mt-2">
+                    {{--  <div class="form-group mt-2">
                         <label class="font-weight-semibold">{{ __('Danh mục') }}:</label>
                         <ul>
                             @foreach($post->categories as $c)
                             <li>{{$c->name}}</li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div>  --}}
                 </div>
             </div>
 
@@ -553,7 +561,7 @@
 
                 <input type="hidden" name="id" value="{{$post->id}}">
                 <input type="hidden" name="status" value="{{$post->satus == 0 ? 1 : 2}}">
-                <button type="submit" class="btn btn-success px-2 mw-100px">Phê duyệt </button>
+                <button type="submit" class="btn btn-success px-2 mw-100px btn-approve" title="Tick đã kiểm tra ... trước khi nhấn nút phê duyệt">Phê duyệt </button>
             </form>
 
             <form action="{{route('posts.updateStatus')}}" method="post" class="d-inline-block mb-2 ml-1">
@@ -641,7 +649,6 @@
                         _token: $('[name=csrf-token]').attr('content')
                     }
                 }).then(function (res) {
-                    console.log(res.data.name)
                     if(res.status == 'success') {
                         var note_html = $('#add-note').html();
 
@@ -655,7 +662,21 @@
                     }
                 });
             })
-            
+            $('.btn-approve').on('click', function(e) {
+                e.preventDefault();
+
+                if(!$('.custom-checkbox input').is(':checked')) {
+                    $('.dateline').get(0).scrollIntoView({behavior: 'smooth'});
+                    $('.custom-control-label').addClass('error');
+                } else {
+                    $(this).closest('form').submit();
+                }
+            });
+            $('.custom-checkbox input').on('click', function() {
+                if($(this).is(':checked')) {
+                    $('.custom-control-label').removeClass('error');
+                }
+            })
         </script>
         <script type="text/template" id="add-note">
             <div class="d-flex mb-3">

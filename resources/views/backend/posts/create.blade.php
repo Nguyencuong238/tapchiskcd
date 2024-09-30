@@ -116,7 +116,7 @@
     <form action="{{ route('posts.store') }}" method="post">
         @csrf
         <div class="row">
-            <div class="col-lg-9 w-print-100">
+            <div class="col-lg-12 w-print-100">
                 <div class="card print-hide">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
@@ -132,13 +132,13 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        {{--  <div class="form-group">
                             <label>Mô tả:</label>
                             <textarea name="excerpt" class="form-control @error('excerpt')is-invalid @enderror" placeholder="Thêm mô tả">{{ old('excerpt') }}</textarea>
                             @error('excerpt')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div>  --}}
 
                         <div class="form-group">
                             <label>{{ __('Hồ sơ, tư liệu phụ vụ đề tài') }}:</label>
@@ -173,7 +173,24 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        
+                        <div class="row mb-4">
+                            <div class="col-sm-6">
+                                <label>{{ __('Ngày bắt đầu') }}:</label>
+                                <input type="text" name="start_date" value="{{ old('start_date') }}" 
+                                    class="form-control @error('start_date')is-invalid @enderror start_date">
+                                @error('start_date')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6">
+                                <label>{{ __('Ngày kết thúc') }}:</label>
+                                <input type="text" name="end_date" value="{{ old('end_date') }}" 
+                                    class="form-control @error('end_date')is-invalid @enderror end_date">
+                                @error('end_date')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -321,7 +338,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 print-hide">
+            {{--  <div class="col-lg-3 print-hide">
                 <div class="card">
                     <div class="sidebar-section-header">
                         <span class="font-weight-semibold">{{ __('Categories') }}</span>
@@ -359,7 +376,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div>  --}}
         </div>
 
         <div class="action-bar print-hide pb-2">
