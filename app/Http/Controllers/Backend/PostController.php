@@ -202,20 +202,21 @@ class PostController extends Controller
         }
 
         $post->fill([
-            'title'      => $request->title,
-            'excerpt'    => $request->excerpt,
-            'body'       => $request->body,
-            'ggt'        => array_values($request->input('ggt', []))
+            'title'   => $request->title,
+            'excerpt' => $request->excerpt,
+            'body'    => $request->body,
+            'ggt'     => array_values($request->input('ggt', [])),
+            'status'  => 0
         ])->save();
 
         if(!empty($changeFields)) {
             PostHistory::create([
-                'post_id' => $post->id,
-                'user_id' => auth()->id(),
-                'type' => 'update',
+                'post_id'    => $post->id,
+                'user_id'    => auth()->id(),
+                'type'       => 'update',
                 'old_record' => $oldPost,
                 'new_record' => $post,
-                'note' => implode(', ', $changeFields),
+                'note'       => implode(', ', $changeFields),
             ]);
         }
 
