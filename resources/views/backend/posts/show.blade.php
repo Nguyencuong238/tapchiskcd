@@ -211,8 +211,8 @@
                     </div>
                     
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Tôi đã kiểm tra, rà soát hồ sơ chứng cứ, tư liệu và xác nhận đã đủ điều kiện để phóng viên thực hiện đề tài. Tôi sẽ chỉ đạo, quản lý chặt chẽ phóng viên trong quá trình tác nghiệp. Đề nghị TBT cấp giấy giới thiệu/công văn kèm theo.</label>
+                        <input type="checkbox" class="custom-control-input" @if($post->status == 1) checked @endif>
+                        <label class="custom-control-label">Tôi đã kiểm tra, rà soát hồ sơ chứng cứ, tư liệu và xác nhận đã đủ điều kiện để phóng viên thực hiện đề tài. Tôi sẽ chỉ đạo, quản lý chặt chẽ phóng viên trong quá trình tác nghiệp. Đề nghị TBT cấp giấy giới thiệu/công văn kèm theo.</label>
                       </div>
 
                     {{--  <div class="form-group mt-2">
@@ -561,7 +561,7 @@
 
                 <input type="hidden" name="id" value="{{$post->id}}">
                 <input type="hidden" name="status" value="{{$post->satus == 0 ? 1 : 2}}">
-                <button type="submit" class="btn btn-success px-2 mw-100px btn-approve" title="Tick đã kiểm tra ... trước khi nhấn nút phê duyệt">Phê duyệt </button>
+                <button type="submit" class="btn btn-success px-2 mw-100px @if($post->status == 0) btn-approve @endif" @if($post->status == 0) title="Tick đã kiểm tra ... trước khi nhấn nút phê duyệt" @endif>Phê duyệt </button>
             </form>
 
             <form action="{{route('posts.updateStatus')}}" method="post" class="d-inline-block mb-2 ml-1">
