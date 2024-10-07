@@ -10,10 +10,11 @@
     <div class="card">
         @php
             $pageTitles = [
-                0 => 'Đề tài chờ TP duyệt',
-                1 => 'Đề tài chờ TBT duyệt',
-                2 => 'Đề tài được duyệt',
-                -1 => 'Đề tài bị trả lại'
+                0 => 'Đề tài chờ TB đơn vị duyệt',
+                        1 => 'Đề tài chờ Tổng thư ký duyệt',
+                        2 => 'Đề tài chờ TBT duyệt',
+                        3 => 'Đề tài được duyệt',
+                        -1 => 'Đề tài bị trả lại'
             ];
         @endphp
         <div class="card-header">
@@ -84,22 +85,14 @@
                                 </a>
                                 @endcan
 
-                                @if(auth()->user()->position == 'staff' && $post->status <= 0 
-                                    || auth()->user()->position == 'manager' && $post->status <= 1
-                                    || auth()->user()->position == 'director' || auth()->id() == 1)
-
-                                    @if($post->author_id == auth()->id() && $post->status != 2)
+                                @if(auth()->user()->id == $post->author_id && $post->status <= 0 || auth()->id() == 1)
                                     <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('Edit') }}">
                                         <i class="fa fa-pencil mr-1"></i>
                                     </a>
-                                    @endif
-
-                                    @if((auth()->user()->can('posts.delete') || auth()->id() == $post->author_id) && $post->status != 2)
                                     <a href="javascript:void(0)" data-action-url="{{ route('posts.destroy', $post) }}" 
                                         data-behavior="delete-resource" class="dropdown-item px-1 rounded" title="{{ __('Delete') }}">
                                         <i class="fa fa-trash mr-1"></i> 
                                     </a>
-                                    @endif
                                 @endif
                             </div>
                         </td>

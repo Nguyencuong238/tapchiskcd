@@ -280,8 +280,9 @@ class PostController extends Controller
 
         $labels = [
             -1 => 'Trả lại',
-            1 => 'TP phê duyệt',
-            2 => 'TBT phê duyệt'
+            1 => 'Trưởng ban phê duyệt',
+            2 => 'Tổng thư ký phê duyệt',
+            3 => 'Tổng biên tập phê duyệt'
         ];
 
         PostHistory::create([

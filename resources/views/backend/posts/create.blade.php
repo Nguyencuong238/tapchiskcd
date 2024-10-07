@@ -70,6 +70,10 @@
                 background: #fff;
                 cursor: pointer;
             }
+
+            .custom-checkbox .custom-control-label.error:before {
+                border-color: red;
+            }
             @page {
                 size: auto;
             }
@@ -78,6 +82,7 @@
                     border: 0;
                     width: 100%;
                     margin-bottom: 0 !important;
+                    page-break-after: always;
                 }
                 .section-ggt input {
                     border: 0;
@@ -173,7 +178,8 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="row mb-4">
+
+                        <div class="row mb-4 dateline">
                             <div class="col-sm-6">
                                 <label>{{ __('Ngày bắt đầu') }}:</label>
                                 <input type="text" name="start_date" value="{{ old('start_date') }}" 
@@ -190,6 +196,11 @@
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
+                        </div>
+                    
+                        <div class="custom-control custom-checkbox pv-commit">
+                            <input type="checkbox" class="custom-control-input" id="commit-checkbox">
+                            <label class="custom-control-label" for="commit-checkbox">Tôi cam kết đã thu thập đủ chứng cứ ban đầu, hồ sơ tài liêu để thực hiện đề tài.</label>
                         </div>
                     </div>
                 </div>
@@ -422,6 +433,23 @@
 
             $('.w-print-100').on('click', '.fa-times', function() {
                 $(this).closest('.section-ggt').remove('');
+            })
+
+            $('.btn-success').on('click', function(e) {
+                e.preventDefault();
+
+                if(!$('.pv-commit input').is(':checked')) {
+                    $('.dateline').get(0).scrollIntoView({behavior: 'smooth'});
+                    $('.custom-control-label').addClass('error');
+                } else {
+                    $(this).closest('form').submit();
+                }
+            });
+
+            $('.pv-commit input').on('click', function() {
+                if($(this).is(':checked')) {
+                    $('.custom-control-label').removeClass('error');
+                }
             })
         </script>
 

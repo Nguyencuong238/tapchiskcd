@@ -139,15 +139,19 @@
 									</a>
 									<a href="{{ route('posts.index', ['status' => 0]) }}" id="post-status-0"
 									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 0) ? 'active' : ''}}">
-										Đề tài chờ TP duyệt
+										Đề tài chờ TB đơn vị duyệt
 									</a>
 									<a href="{{ route('posts.index', ['status' => 1]) }}" id="post-status-1"
 									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 1) ? 'active' : ''}}">
-										Đề tài chờ TBT duyệt
+										Đề tài chờ Tổng thư ký duyệt
 									</a>
 									<a href="{{ route('posts.index', ['status' => 2]) }}" id="post-status-2"
 									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 2) ? 'active' : ''}}">
-										Đề tài được duyệt
+										Đề tài chờ TBT duyệt
+									</a>
+									<a href="{{ route('posts.index', ['status' => 3]) }}" id="post-status-3"
+									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 3) ? 'active' : ''}}">
+										Đề tài đã được duyệt
 									</a>
 									<a href="{{ route('posts.index', ['status' => -1]) }}" id="post-status--1"
 									class="nav-link {{(request()->routeIs('posts.index') && request('status') == -1) ? 'active' : ''}}">

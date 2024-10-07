@@ -113,6 +113,7 @@
                 border: 0;
                 width: 100%;
                 margin-bottom: 0 !important;
+                page-break-after: always;
             }
             .section-ggt input {
                 border: 0;
@@ -152,9 +153,10 @@
         <div class="col-md-9 w-print-100">
             @php
                 $pageTitles = [
-                    0 => 'Đề tài chờ TP duyệt',
-                    1 => 'Đề tài chờ TBT duyệt',
-                    2 => 'Đề tài được duyệt',
+                    0 => 'Đề tài chờ TB đơn vị duyệt',
+                    1 => 'Đề tài chờ Tổng thư ký duyệt',
+                    2 => 'Đề tài chờ TBT duyệt',
+                    3 => 'Đề tài được duyệt',
                     -1 => 'Đề tài bị trả lại'
                 ];
             @endphp
@@ -209,11 +211,18 @@
                             </div>
                         @endforeach
                     </div>
+
+                    <div class="custom-control custom-checkbox pv-commit mb-4">
+                        <input type="checkbox" class="custom-control-input" checked>
+                        <label class="custom-control-label">Tôi cam kết đã thu thập đủ chứng cứ ban đầu, hồ sơ tài liêu để thực hiện đề tài.</label>
+                    </div>
                     
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" @if($post->status == 1) checked @endif>
-                        <label class="custom-control-label">Tôi đã kiểm tra, rà soát hồ sơ chứng cứ, tư liệu và xác nhận đã đủ điều kiện để phóng viên thực hiện đề tài. Tôi sẽ chỉ đạo, quản lý chặt chẽ phóng viên trong quá trình tác nghiệp. Đề nghị TBT cấp giấy giới thiệu/công văn kèm theo.</label>
-                      </div>
+                    <div class="custom-control custom-checkbox tb-commit">
+                        <input type="checkbox" class="custom-control-input" id="tb-commit" @if($post->status >= 1) checked @endif>
+                        <label class="custom-control-label" @if($post->status == 0 && in_array(auth()->user()->position, ['manager', 'director', 'secretary'])) for="tb-commit" @endif>
+                            Tôi đã kiểm tra, rà soát hồ sơ chứng cứ, tư liệu và xác nhận đã đủ điều kiện để phóng viên thực hiện đề tài. Tôi sẽ chỉ đạo, quản lý chặt chẽ phóng viên trong quá trình tác nghiệp. Đề nghị TBT cấp giấy giới thiệu/công văn kèm theo.
+                        </label>
+                    </div>
 
                     {{--  <div class="form-group mt-2">
                         <label class="font-weight-semibold">{{ __('Danh mục') }}:</label>
@@ -555,13 +564,21 @@
         </div>
     </div>
     <div class="action-bar print-hide pb-2">
-        @if(auth()->user()->position == 'director' && $post->status == 1 || in_array(auth()->user()->position, ['manager', 'secretary']) && $post->status == 0)
+        @php
+            $allowPositions = [
+                0 => ['manager', 'secretary', 'director'],
+                1 => ['secretary', 'director'],
+                2 => ['director']
+            ];
+            $nextStatus = [1, 2, 3];
+        @endphp
+        @if(in_array(auth()->user()->position, $allowPositions[$post->status] ?? []))
             <form action="{{route('posts.updateStatus')}}" method="post" class="d-inline-block mb-2">
                 @csrf
 
                 <input type="hidden" name="id" value="{{$post->id}}">
-                <input type="hidden" name="status" value="{{$post->satus == 0 ? 1 : 2}}">
-                <button type="submit" class="btn btn-success px-2 mw-100px @if($post->status == 0) btn-approve @endif" @if($post->status == 0) title="Tick đã kiểm tra ... trước khi nhấn nút phê duyệt" @endif>Phê duyệt </button>
+                <input type="hidden" name="status" value="{{$nextStatus[$post->status]}}">
+                <button type="submit" class="btn btn-success px-2 mw-100px @if($post->status == 0) btn-approve @endif">Phê duyệt </button>
             </form>
 
             <form action="{{route('posts.updateStatus')}}" method="post" class="d-inline-block mb-2 ml-1">
@@ -665,16 +682,16 @@
             $('.btn-approve').on('click', function(e) {
                 e.preventDefault();
 
-                if(!$('.custom-checkbox input').is(':checked')) {
+                if(!$('.tb-commit input').is(':checked')) {
                     $('.dateline').get(0).scrollIntoView({behavior: 'smooth'});
-                    $('.custom-control-label').addClass('error');
+                    $('.tb-commit .custom-control-label').addClass('error');
                 } else {
                     $(this).closest('form').submit();
                 }
             });
-            $('.custom-checkbox input').on('click', function() {
+            $('.tb-commit input').on('click', function() {
                 if($(this).is(':checked')) {
-                    $('.custom-control-label').removeClass('error');
+                    $('.tb-commit .custom-control-label').removeClass('error');
                 }
             })
         </script>
