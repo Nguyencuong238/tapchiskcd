@@ -84,6 +84,9 @@
                     margin-bottom: 0 !important;
                     page-break-after: always;
                 }
+                .section-ggt:last-child {
+                    page-break-after: auto;
+                }
                 .section-ggt input {
                     border: 0;
                     height: auto;

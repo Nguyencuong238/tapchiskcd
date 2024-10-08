@@ -78,7 +78,7 @@
                 border-color: red;
             }
             @page {
-                size: auto;
+                size: landscape;
             }
             @media print {
                 .section-ggt {
@@ -86,6 +86,9 @@
                     width: 100%;
                     margin-bottom: 0 !important;
                     page-break-after: always;
+                }
+                .section-ggt:last-child {
+                    page-break-after: auto;
                 }
                 .section-ggt input {
                     border: 0;
