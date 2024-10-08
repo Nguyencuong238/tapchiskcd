@@ -240,48 +240,45 @@
                                     <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                     <div class="d-flex mt-1 fs-11pt">
                                         <span class="mr-1">Ông (bà): </span>
-                                        <input name="ggt[{{$key}}][left][name]" value="{{@$item['left']['name']}}" class="flex-1">
+                                        <input name="ggt[{{$key}}][name]" value="{{@$item['name']}}" class="flex-1">
                                     </div>
                                     <div class="mt-1 d-flex fs-11pt">
                                         <span class="mr-1">Chức vụ: </span>
-                                        <input name="ggt[{{$key}}][left][position]" value="{{@$item['left']['position']}}" class="flex-1">
+                                        <input name="ggt[{{$key}}][position]" value="{{@$item['position']}}" class="flex-1">
                                     </div>
-                                    <div class="d-flex mt-1">
-                                        <span class="fs-11pt mr-1">Được cử đến: </span>
-                                        <div class="flex-1">
-                                            <input name="ggt[{{$key}}][left][arrival_address_1]" value="{{@$item['left']['arrival_address_1']}}" class="fs-11pt w-100">
-                                            <input name="ggt[{{$key}}][left][arrival_address_2]" value="{{@$item['left']['arrival_address_2']}}" class="fs-11pt w-100">
-                                            <input name="ggt[{{$key}}][left][arrival_address_3]" value="{{@$item['left']['arrival_address_3']}}" class="fs-11pt w-100">
-                                        </div>
+                                    <div class="d-flex d-print-block mt-1 fs-11pt">
+                                        <span class="mr-1">Được cử đến: </span>
+                                        <pre class="d-none print-show fs-11pt">{{@$item['arrival_address']}}</pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][arrival_address]">{{@$item['arrival_address']}}</textarea>
                                     </div>
                                     <div class="d-flex d-print-inline mt-1 fs-11pt">
                                         <span class="mr-1">Về việc: </span>
-                                        <pre class="d-none print-show fs-11pt">{{@$item['left']['propose']}}</pre>
-                                        <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][left][propose]">{{@$item['left']['propose']}}</textarea>
+                                        <pre class="d-none print-show fs-11pt">{{@$item['propose']}}</pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][propose]">{{@$item['propose']}}</textarea>
                                     </div>
                                     <div class="fs-11pt mt-1">
                                         Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                        <input name="ggt[{{$key}}][left][suggest]" value="{{@$item['left']['suggest']}}" class="print-hide">
+                                        <input name="ggt[{{$key}}][suggest]" value="{{@$item['suggest']}}" class="print-hide">
                                         <span class="d-none print-show"></span>
                                         hoàn thành nhiệm vụ.
                                     </div>
                                     <div class="fs-11pt mt-1">
                                         Giấy giới thiệu có giá trị đến hết ngày 
-                                        <input name="ggt[{{$key}}][left][expire_date]" value="{{@$item['left']['expire_date']}}" style="width: 20px;">
+                                        <input name="ggt[{{$key}}][expire_date]" value="{{@$item['expire_date']}}" style="width: 20px;">
                                         tháng  
-                                        <input name="ggt[{{$key}}][left][expire_month]" value="{{@$item['left']['expire_month']}}" style="width: 20px;">
+                                        <input name="ggt[{{$key}}][expire_month]" value="{{@$item['expire_month']}}" style="width: 20px;">
                                         năm 
-                                        <input name="ggt[{{$key}}][left][expire_year]" value="{{@$item['left']['expire_year']}}" style="width: 35px;">
+                                        <input name="ggt[{{$key}}][expire_year]" value="{{@$item['expire_year']}}" style="width: 35px;">
                                     </div>
                                     <div class="text-right mt-4 mb-4">
                                         <div class="d-inline-block text-center">
                                             <div class="fs-11pt font-italic">
-                                                Hà Nội, ngày <input name="ggt[{{$key}}][left][signature_date]" value="{{@$item['left']['signature_date']}}" class="font-italic" style="width: 20px;">
-                                                tháng <input name="ggt[{{$key}}][left][signature_month]" value="{{@$item['left']['signature_month']}}" class="font-italic" style="width: 20px;">
-                                                năm <input name="ggt[{{$key}}][left][signature_year]" value="{{@$item['left']['signature_year']}}" class="font-italic" style="width: 35px;">
+                                                Hà Nội, ngày <input name="ggt[{{$key}}][signature_date]" value="{{@$item['signature_date']}}" class="font-italic" style="width: 20px;">
+                                                tháng <input name="ggt[{{$key}}][signature_month]" value="{{@$item['signature_month']}}" class="font-italic" style="width: 20px;">
+                                                năm <input name="ggt[{{$key}}][signature_year]" value="{{@$item['signature_year']}}" class="font-italic" style="width: 35px;">
                                             </div>
                                             <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                            <input name="ggt[{{$key}}][left][signature]" value="{{@$item['left']['signature']}}" class="fs-12pt mt-3 text-center">
+                                            <input name="ggt[{{$key}}][signature]" value="{{@$item['signature']}}" class="fs-12pt mt-3 text-center">
                                         </div>
 
                                     </div>
@@ -301,9 +298,9 @@
                                             <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
                                             <hr style="width: 33%;" class="mt-2 mb-2">
                                             <div class="fs-13pt font-italic">
-                                                Hà Nội, ngày <input name="ggt[{{$key}}][right][signature_date]" value="{{@$item['right']['signature_date']}}" class="fs-11pt font-italic" style="width: 20px;">
-                                                    tháng <input name="ggt[{{$key}}][right][signature_month]" value="{{@$item['right']['signature_month']}}" class="fs-11pt font-italic" style="width: 20px;">
-                                                    năm <input name="ggt[{{$key}}][right][signature_year]" value="{{@$item['right']['signature_year']}}" class="fs-11pt font-italic" style="width: 35px;">
+                                                Hà Nội, ngày <input name="ggt[{{$key}}][signature_date]" value="{{@$item['signature_date']}}" class="fs-11pt font-italic" style="width: 20px;">
+                                                    tháng <input name="ggt[{{$key}}][signature_month]" value="{{@$item['signature_month']}}" class="fs-11pt font-italic" style="width: 20px;">
+                                                    năm <input name="ggt[{{$key}}][signature_year]" value="{{@$item['signature_year']}}" class="fs-11pt font-italic" style="width: 35px;">
                                             </div>
                                         </div>
                                     </div>
@@ -311,38 +308,35 @@
                                     <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                     <div class="d-flex mt-1 fs-12pt5">
                                         <span class="mr-1 font-italic">Ông (bà): </span>
-                                        <input name="ggt[{{$key}}][right][name]" value="{{@$item['right']['name']}}" class="flex-1">
+                                        <input name="ggt[{{$key}}][name]" value="{{@$item['name']}}" class="flex-1">
                                     </div>
                                     <div class="mt-1 d-flex fs-12pt5">
                                         <span class="mr-1 font-italic">Chức vụ: </span>
-                                        <input name="ggt[{{$key}}][right][position]" value="{{@$item['right']['position']}}" class="flex-1">
+                                        <input name="ggt[{{$key}}][position]" value="{{@$item['position']}}" class="flex-1">
                                     </div>
-                                    <div class="d-flex mt-1 fs-12pt5">
-                                        <span class="mr-1 font-italic">Được cử đến: </span>
-                                        <div class="flex-1">
-                                            <input name="ggt[{{$key}}][right][arrival_address_1]" value="{{@$item['right']['arrival_address_1']}}" class="w-100">
-                                            <input name="ggt[{{$key}}][right][arrival_address_2]" value="{{@$item['right']['arrival_address_2']}}" class="w-100">
-                                            <input name="ggt[{{$key}}][right][arrival_address_3]" value="{{@$item['right']['arrival_address_3']}}" class="w-100">
-                                        </div>
+                                    <div class="d-flex d-print-block mt-1 fs-12pt5">
+                                        <span class="font-italic mr-1">Được cử đến: </span>
+                                        <pre class="d-none print-show fs-12pt5">{{@$item['arrival_address']}}</pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][arrival_address]">{{@$item['arrival_address']}}</textarea>
                                     </div>
                                     <div class="d-flex d-print-inline mt-2 fs-12pt5">
                                         <span class="font-italic mr-1">Về việc: </span>
-                                        <pre class="d-none print-show fs-11pt">{{@$item['right']['propose']}}</pre>
-                                        <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][right][propose]">{{@$item['right']['propose']}}</textarea>
+                                        <pre class="d-none print-show fs-11pt">{{@$item['propose']}}</pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][propose]">{{@$item['propose']}}</textarea>
                                     </div>
                                     <div class="fs-12pt5 mt-1">
                                         Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                        <input name="ggt[{{$key}}][right][suggest]" value="{{@$item['right']['suggest']}}" class="print-hide">
+                                        <input name="ggt[{{$key}}][suggest]" value="{{@$item['suggest']}}" class="print-hide">
                                         <span class="d-none print-show"></span>
                                         hoàn thành nhiệm vụ.
                                     </div>
                                     <div class="fs-12pt5 mt-1">
                                         Giấy giới thiệu có giá trị đến hết ngày 
-                                        <input name="ggt[{{$key}}][right][expire_date]" value="{{@$item['right']['expire_date']}}" style="width: 20px;">
+                                        <input name="ggt[{{$key}}][expire_date]" value="{{@$item['expire_date']}}" style="width: 20px;">
                                         tháng  
-                                        <input name="ggt[{{$key}}][right][expire_month]" value="{{@$item['right']['expire_month']}}" style="width: 20px;">
+                                        <input name="ggt[{{$key}}][expire_month]" value="{{@$item['expire_month']}}" style="width: 20px;">
                                         năm 
-                                        <input name="ggt[{{$key}}][right][expire_year]" value="{{@$item['right']['expire_year']}}" style="width: 40px;">
+                                        <input name="ggt[{{$key}}][expire_year]" value="{{@$item['expire_year']}}" style="width: 40px;">
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-6">
@@ -352,7 +346,7 @@
                                         </div>
                                         <div class="col-6 text-center">
                                             <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                            <input name="ggt[{{$key}}][right][signature]" value="{{@$item['right']['signature']}}" class="fs-13pt text-center">
+                                            <input name="ggt[{{$key}}][signature]" value="{{@$item['signature']}}" class="fs-13pt text-center">
                                         </div>
                                     </div>
                                 </div>
@@ -384,48 +378,45 @@
                                 <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                 <div class="d-flex mt-1 fs-11pt">
                                     <span class="mr-1">Ông (bà): </span>
-                                    <input name="ggt[0][left][name]" class="flex-1">
+                                    <input name="ggt[0][name]" class="flex-1">
                                 </div>
                                 <div class="mt-1 d-flex fs-11pt">
                                     <span class="mr-1">Chức vụ: </span>
-                                    <input name="ggt[0][left][position]" class="flex-1">
+                                    <input name="ggt[0][position]" class="flex-1">
                                 </div>
-                                <div class="d-flex mt-1">
-                                    <span class="fs-11pt mr-1">Được cử đến: </span>
-                                    <div class="flex-1">
-                                        <input name="ggt[0][left][arrival_address_1]" class="fs-11pt w-100">
-                                        <input name="ggt[0][left][arrival_address_2]" class="fs-11pt w-100">
-                                        <input name="ggt[0][left][arrival_address_3]" class="fs-11pt w-100">
-                                    </div>
+                                <div class="d-flex d-print-block mt-1 fs-11pt">
+                                    <span class="mr-1">Được cử đến: </span>
+                                    <pre class="d-none print-show fs-11pt"></pre>
+                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
                                 </div>
-                                <div class="d-flex d-print-inline mt-1 fs-11pt">
+                                <div class="d-flex d-print-block mt-1 fs-11pt">
                                     <span class="mr-1">Về việc: </span>
-                                    <pre class="d-none print-show fs-11pt">{{@$item['left']['propose']}}</pre>
-                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][left][propose]">{{@$item['left']['propose']}}</textarea>
+                                    <pre class="d-none print-show fs-11pt">{{@$item['propose']}}</pre>
+                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]">{{@$item['propose']}}</textarea>
                                 </div>
                                 <div class="fs-11pt mt-1">
                                     Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                    <input name="ggt[0][left][suggest]" class="print-hide">
+                                    <input name="ggt[0][suggest]" class="print-hide">
                                     <span class="d-none print-show"></span>
                                       hoàn thành nhiệm vụ.
                                 </div>
                                 <div class="fs-11pt mt-1">
                                     Giấy giới thiệu có giá trị đến hết ngày 
-                                    <input name="ggt[0][left][expire_date]" style="width: 20px;">
+                                    <input name="ggt[0][expire_date]" style="width: 20px;">
                                      tháng  
-                                     <input name="ggt[0][left][expire_month]" style="width: 20px;">
+                                     <input name="ggt[0][expire_month]" style="width: 20px;">
                                      năm 
-                                     <input name="ggt[0][left][expire_year]" style="width: 35px;">
+                                     <input name="ggt[0][expire_year]" style="width: 35px;">
                                 </div>
                                 <div class="text-right mt-4 mb-4">
                                     <div class="d-inline-block text-center">
                                         <div class="fs-11pt font-italic">
-                                            Hà Nội, ngày <input name="ggt[0][left][signature_date]" class="font-italic" style="width: 20px;">
-                                             tháng <input name="ggt[0][left][signature_month]" class="font-italic" style="width: 20px;">
-                                              năm <input name="ggt[0][left][signature_year]" class="font-italic" style="width: 35px;">
+                                            Hà Nội, ngày <input name="ggt[0][signature_date]" class="font-italic" style="width: 20px;">
+                                             tháng <input name="ggt[0][signature_month]" class="font-italic" style="width: 20px;">
+                                              năm <input name="ggt[0][signature_year]" class="font-italic" style="width: 35px;">
                                         </div>
                                         <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][left][signature]" class="fs-12pt mt-3 text-center">
+                                        <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center">
                                     </div>
 
                                 </div>
@@ -445,9 +436,9 @@
                                         <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
                                         <hr style="width: 33%;" class="mt-2 mb-2">
                                         <div class="fs-13pt font-italic">
-                                            Hà Nội, ngày <input name="ggt[0][right][signature_date]" class="fs-11pt font-italic" style="width: 20px;">
-                                                tháng <input name="ggt[0][right][signature_month]" class="fs-11pt font-italic" style="width: 20px;">
-                                                năm <input name="ggt[0][right][signature_year]" class="fs-11pt font-italic" style="width: 35px;">
+                                            Hà Nội, ngày <input name="ggt[0][signature_date]" class="fs-11pt font-italic" style="width: 20px;">
+                                                tháng <input name="ggt[0][signature_month]" class="fs-11pt font-italic" style="width: 20px;">
+                                                năm <input name="ggt[0][signature_year]" class="fs-11pt font-italic" style="width: 35px;">
                                         </div>
                                     </div>
                                 </div>
@@ -455,38 +446,35 @@
                                 <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                 <div class="d-flex mt-1 fs-12pt5">
                                     <span class="mr-1 font-italic">Ông (bà): </span>
-                                    <input name="ggt[0][right][name]" class="flex-1">
+                                    <input name="ggt[0][name]" class="flex-1">
                                 </div>
                                 <div class="mt-1 d-flex fs-12pt5">
                                     <span class="mr-1 font-italic">Chức vụ: </span>
-                                    <input name="ggt[0][right][position]" class="flex-1">
+                                    <input name="ggt[0][position]" class="flex-1">
                                 </div>
-                                <div class="d-flex mt-1 fs-12pt5">
-                                    <span class="mr-1 font-italic">Được cử đến: </span>
-                                    <div class="flex-1">
-                                        <input name="ggt[0][right][arrival_address_1]" class="w-100">
-                                        <input name="ggt[0][right][arrival_address_2]" class="w-100">
-                                        <input name="ggt[0][right][arrival_address_3]" class="w-100">
-                                    </div>
+                                <div class="d-flex d-print-block mt-1 fs-12pt5">
+                                    <span class="font-italic mr-1">Được cử đến: </span>
+                                    <pre class="d-none print-show fs-12pt5"></pre>
+                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
                                 </div>
-                                <div class="d-flex d-print-inline mt-2 fs-12pt5">
+                                <div class="d-flex d-print-block mt-2 fs-12pt5">
                                     <span class="font-italic mr-1">Về việc: </span>
                                     <pre class="d-none print-show fs-11pt"></pre>
-                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][right][propose]"></textarea>
+                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
                                 </div>
                                 <div class="fs-12pt5 mt-1">
                                     Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                    <input name="ggt[0][right][suggest]" class="print-hide">
+                                    <input name="ggt[0][suggest]" class="print-hide">
                                     <span class="d-none print-show"></span>
                                       hoàn thành nhiệm vụ.
                                 </div>
                                 <div class="fs-12pt5 mt-1">
                                     Giấy giới thiệu có giá trị đến hết ngày 
-                                    <input name="ggt[0][right][expire_date]" style="width: 20px;">
+                                    <input name="ggt[0][expire_date]" style="width: 20px;">
                                      tháng  
-                                     <input name="ggt[0][right][expire_month]" style="width: 20px;">
+                                     <input name="ggt[0][expire_month]" style="width: 20px;">
                                      năm 
-                                     <input name="ggt[0][right][expire_year]" style="width: 40px;">
+                                     <input name="ggt[0][expire_year]" style="width: 40px;">
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-6">
@@ -496,7 +484,7 @@
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][right][signature]" class="fs-13pt text-center">
+                                        <input name="ggt[0][signature]" class="fs-13pt text-center">
                                     </div>
                                 </div>
                             </div>
@@ -660,6 +648,16 @@
                     $('.custom-control-label').removeClass('error');
                 }
             })
+            $('[name^="ggt"]').on('change', function() {console.log(999)
+                var name = $(this).attr('name');
+                var value = $(this).val();
+                var element = '[name="' + name + '"]'
+                $(element).val(value);
+                if($(element).hasClass('print-hide')) {
+                    $(element).siblings('.print-show').html(value);
+                }
+               
+            })
         </script>
 
         <script type="text/template" id="list_ggt">
@@ -687,48 +685,45 @@
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-11pt">
                                 <span class="mr-1">Ông (bà): </span>
-                                <input name="ggt[${j}][left][name]" class="flex-1">
+                                <input name="ggt[${j}][name]" class="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-11pt">
                                 <span class="mr-1">Chức vụ: </span>
-                                <input name="ggt[${j}][left][position]" class="flex-1">
+                                <input name="ggt[${j}][position]" class="flex-1">
                             </div>
-                            <div class="d-flex mt-1">
-                                <span class="fs-11pt mr-1">Được cử đến: </span>
-                                <div class="flex-1">
-                                    <input name="ggt[${j}][left][arrival_address_1]" class="fs-11pt w-100">
-                                    <input name="ggt[${j}][left][arrival_address_2]" class="fs-11pt w-100">
-                                    <input name="ggt[${j}][left][arrival_address_3]" class="fs-11pt w-100">
-                                </div>
+                            <div class="d-flex d-print-block mt-1 fs-11pt">
+                                <span class="mr-1">Được cử đến: </span>
+                                <pre class="d-none print-show fs-11pt"></pre>
+                                <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][arrival_address]"></textarea>
                             </div>
                             <div class="d-flex d-print-inline mt-1 fs-11pt">
                                 <span class="mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-11pt"></pre>
-                                <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][left][propose]"></textarea>
+                                <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
                             </div>
                             <div class="fs-11pt mt-1">
                                 Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                <input name="ggt[${j}][left][suggest]" class="print-hide">
+                                <input name="ggt[${j}][suggest]" class="print-hide">
                                 <span class="d-none print-show"></span>
                                   hoàn thành nhiệm vụ.
                             </div>
                             <div class="fs-11pt mt-1">
                                 Giấy giới thiệu có giá trị đến hết ngày 
-                                <input name="ggt[${j}][left][expire_date]" style="width: 20px;">
+                                <input name="ggt[${j}][expire_date]" style="width: 20px;">
                                  tháng  
-                                 <input name="ggt[${j}][left][expire_month]" style="width: 20px;">
+                                 <input name="ggt[${j}][expire_month]" style="width: 20px;">
                                  năm 
-                                 <input name="ggt[${j}][left][expire_year]" style="width: 35px;">
+                                 <input name="ggt[${j}][expire_year]" style="width: 35px;">
                             </div>
                             <div class="text-right mt-4 mb-4">
                                 <div class="d-inline-block text-center">
                                     <div class="fs-11pt font-italic">
-                                        Hà Nội, ngày <input name="ggt[${j}][left][signature_date]" class="font-italic" style="width: 20px;">
-                                         tháng <input name="ggt[${j}][left][signature_month]" class="font-italic" style="width: 20px;">
-                                          năm <input name="ggt[${j}][left][signature_year]" class="font-italic" style="width: 35px;">
+                                        Hà Nội, ngày <input name="ggt[${j}][signature_date]" class="font-italic" style="width: 20px;">
+                                         tháng <input name="ggt[${j}][signature_month]" class="font-italic" style="width: 20px;">
+                                          năm <input name="ggt[${j}][signature_year]" class="font-italic" style="width: 35px;">
                                     </div>
                                     <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                    <input name="ggt[${j}][left][signature]" class="fs-12pt mt-3 text-center">
+                                    <input name="ggt[${j}][signature]" class="fs-12pt mt-3 text-center">
                                 </div>
 
                             </div>
@@ -748,9 +743,9 @@
                                     <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
                                     <hr style="width: 33%;" class="mt-2 mb-2">
                                     <div class="fs-13pt font-italic">
-                                        Hà Nội, ngày <input name="ggt[${j}][right][signature_date]" class="fs-11pt font-italic" style="width: 20px;">
-                                            tháng <input name="ggt[${j}][right][signature_month]" class="fs-11pt font-italic" style="width: 20px;">
-                                            năm <input name="ggt[${j}][right][signature_year]" class="fs-11pt font-italic" style="width: 35px;">
+                                        Hà Nội, ngày <input name="ggt[${j}][signature_date]" class="fs-11pt font-italic" style="width: 20px;">
+                                            tháng <input name="ggt[${j}][signature_month]" class="fs-11pt font-italic" style="width: 20px;">
+                                            năm <input name="ggt[${j}][signature_year]" class="fs-11pt font-italic" style="width: 35px;">
                                     </div>
                                 </div>
                             </div>
@@ -758,38 +753,35 @@
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-12pt5">
                                 <span class="mr-1 font-italic">Ông (bà): </span>
-                                <input name="ggt[${j}][right][name]" class="flex-1">
+                                <input name="ggt[${j}][name]" class="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-12pt5">
                                 <span class="mr-1 font-italic">Chức vụ: </span>
-                                <input name="ggt[${j}][right][position]" class="flex-1">
+                                <input name="ggt[${j}][position]" class="flex-1">
                             </div>
-                            <div class="d-flex mt-1 fs-12pt5">
-                                <span class="mr-1 font-italic">Được cử đến: </span>
-                                <div class="flex-1">
-                                    <input name="ggt[${j}][right][arrival_address_1]" class="w-100">
-                                    <input name="ggt[${j}][right][arrival_address_2]" class="w-100">
-                                    <input name="ggt[${j}][right][arrival_address_3]" class="w-100">
-                                </div>
+                            <div class="d-flex d-print-block mt-1 fs-12pt5">
+                                <span class="font-italic mr-1">Được cử đến: </span>
+                                <pre class="d-none print-show fs-12pt5"></pre>
+                                <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][arrival_address]"></textarea>
                             </div>
                             <div class="d-flex d-print-inline mt-2 fs-12pt5">
                                 <span class="font-italic mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-11pt"></pre>
-                                <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][right][propose]"></textarea>
+                                <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
                             </div>
                             <div class="fs-12pt5 mt-1">
                                 Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
-                                <input name="ggt[${j}][right][suggest]" class="print-hide">
+                                <input name="ggt[${j}][suggest]" class="print-hide">
                                 <span class="d-none print-show"></span>
                                   hoàn thành nhiệm vụ.
                             </div>
                             <div class="fs-12pt5 mt-1">
                                 Giấy giới thiệu có giá trị đến hết ngày 
-                                <input name="ggt[${j}][right][expire_date]" style="width: 20px;">
+                                <input name="ggt[${j}][expire_date]" style="width: 20px;">
                                  tháng  
-                                 <input name="ggt[${j}][right][expire_month]" style="width: 20px;">
+                                 <input name="ggt[${j}][expire_month]" style="width: 20px;">
                                  năm 
-                                 <input name="ggt[${j}][right][expire_year]" style="width: 40px;">
+                                 <input name="ggt[${j}][expire_year]" style="width: 40px;">
                             </div>
                             <div class="row mt-4">
                                 <div class="col-6">
@@ -799,7 +791,7 @@
                                 </div>
                                 <div class="col-6 text-center">
                                     <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                    <input name="ggt[${j}][right][signature]" class="fs-13pt text-center">
+                                    <input name="ggt[${j}][signature]" class="fs-13pt text-center">
                                 </div>
                             </div>
                         </div>

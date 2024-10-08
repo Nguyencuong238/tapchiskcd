@@ -24,19 +24,19 @@
                         console.log(res);
                         if (res.success) {
                             $this[0].reset();
-                            $target.html("<div class='alert alert-success'><p>Message has been sent successfully.</p></div>");
+                            $target.html("<div class='alert alert-success print-hide'><p>Message has been sent successfully.</p></div>");
                         } else {
                             if (res.message.length) {
                                 var messages = null;
                                 res.message.forEach(function (message) {
                                     messages += "<p>" + message + "</p>";
                                 });
-                                $target.html("<div class='alert alert-success'><p>" + messages + "</p></div>");
+                                $target.html("<div class='alert alert-success print-hide'><p>" + messages + "</p></div>");
                             }
                         }
                     },
                     error: function () {
-                        $target.html("<div class='alert alert-success'><p>Error !!!</p></div>");
+                        $target.html("<div class='alert alert-success print-hide'><p>Error !!!</p></div>");
                     }
                 });
                 return false;
