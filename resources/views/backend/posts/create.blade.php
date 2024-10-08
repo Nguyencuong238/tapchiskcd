@@ -54,6 +54,7 @@
                 padding-top: 20px;
                 background: whitesmoke;
                 width: 100%;
+                z-index: 10;
             }
             .fa-times {
                 position: absolute;

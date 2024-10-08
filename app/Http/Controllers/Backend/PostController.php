@@ -130,14 +130,14 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        if (! auth()->user()->can('posts.view')) {
-            abort(403);
-        }
-
         $post = Post::with('media')->findOrFail($id);
 
-        return view('backend.posts.show', compact('post'));
-        
+        if (auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director']) 
+        && $post->status >= 1 || $post->status < 1)) {
+            return view('backend.posts.show', compact('post'));
+        }
+
+        abort(403);
     }
 
     /**
@@ -320,5 +320,41 @@ class PostController extends Controller
                 'date' => $note->created_at->format('H:i d/m/Y')
             ]
         ];
+    }
+
+    public function updateGgt(Request $request) {
+        $oldPost = $post = Post::findOrFail($request->post_id);
+
+        if (! auth()->user()->can('posts.edit') && $post->author_id != auth()->id()) {
+            abort(403);
+        }
+
+        if($post->ggt != $request->ggt) {
+            $post->ggt = array_values($request->input('ggt', []));
+            $post->save();
+
+            PostHistory::create([
+                'post_id'    => $post->id,
+                'user_id'    => auth()->id(),
+                'type'       => 'update',
+                'old_record' => $oldPost,
+                'new_record' => $post,
+                'note'       => 'Giấy giới thiệu',
+            ]);
+        }
+
+        $post
+            ->syncFromMediaLibraryRequest($request->media)
+            ->toMediaCollection('media');
+
+        $post
+            ->syncFromMediaLibraryRequest($request->attachments)
+            ->toMediaCollection('attachments');
+
+        $post->categories()->sync($request->categories);
+
+        flash(__('Record ":model" updated', ['model' => $post->title]), 'success');
+
+        return redirect()->back();
     }
 }

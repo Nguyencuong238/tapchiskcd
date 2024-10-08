@@ -30,6 +30,7 @@ Route::prefix('backend')
 
 		Route::get('/posts/search', [PostController::class, 'search'])->name('posts.search');
 		Route::post('post/update-status', [PostController::class, 'updateStatus'])->name('posts.updateStatus');
+		Route::post('update-ggt', [PostController::class, 'updateGgt'])->name('posts.updateGgt');
 		Route::resource('posts', PostController::class);
 		Route::resource('documents', DocumentController::class);
 		Route::resource('official_dispatch', OfficialDispatchController::class);
