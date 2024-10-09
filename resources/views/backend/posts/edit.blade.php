@@ -321,7 +321,7 @@
                                     </div>
                                     <div class="d-flex mt-2 fs-12pt5">
                                         <span class="font-italic mr-1">Về việc: </span>
-                                        <pre class="d-none print-show fs-11pt">{{@$item['propose']}}</pre>
+                                        <pre class="d-none print-show fs-12pt5">{{@$item['propose']}}</pre>
                                         <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][propose]">{{@$item['propose']}}</textarea>
                                     </div>
                                     <div class="fs-12pt5 mt-1">
