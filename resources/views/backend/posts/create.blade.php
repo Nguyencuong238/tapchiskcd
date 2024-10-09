@@ -314,7 +314,7 @@
                                 </div>
                                 <div class="d-flex mt-2 fs-12pt5">
                                     <span class="font-italic mr-1">Về việc: </span>
-                                    <pre class="d-none print-show fs-11pt"></pre>
+                                    <pre class="d-none print-show fs-12pt5"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
                                 </div>
                                 <div class="fs-12pt5 mt-1">
@@ -568,7 +568,7 @@
                             </div>
                             <div class="d-flex mt-2 fs-12pt5">
                                 <span class="font-italic mr-1">Về việc: </span>
-                                <pre class="d-none print-show fs-11pt"></pre>
+                                <pre class="d-none print-show fs-12pt5"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
                             </div>
                             <div class="fs-12pt5 mt-1">
