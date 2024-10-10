@@ -577,7 +577,7 @@
                         
                         <div class="form-group col-md-6">
                             <label>{{ __('Email') }}:</label>
-                            <input type="text" name="email" value="{{ old('email', $user->email) }}" class="form-control @error('email')is-invalid @enderror" required>
+                            <input type="text" name="email" value="{{ old('email', $user->email) }}" class="form-control @error('email')is-invalid @enderror" required autocomplete="off">
                             @error('email')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -585,7 +585,7 @@
 
                         <div class="form-group col-md-6">
                             <label>{{ __('Password') }}: (từ 8 ký tự trở lên)</label>
-                            <input type="password" name="password" class="form-control @error('password')is-invalid @enderror" >
+                            <input type="password" name="password" class="form-control @error('password')is-invalid @enderror" autocomplete="off">
                             @error('password')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
