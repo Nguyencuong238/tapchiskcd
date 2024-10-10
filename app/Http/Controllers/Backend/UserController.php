@@ -96,7 +96,7 @@ class UserController extends Controller
         }
 
         $request->validate([
-            'email'    => ['required', 'email', 'string', 'max:255'],
+            'email'    => ['required', 'email', 'string', 'max:255', 'unique:users'],
             'name'     => ['required', 'string', 'max:255'],
             'password' => ['required', Password::default()],
             'roles'    => ['required'],
@@ -179,7 +179,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $request->validate([
-            'email'    => ['required', 'email', 'string', 'max:255'],
+            'email'    => ['required', 'email', 'string', 'max:255', 'unique:users,id'],
             'name'     => ['required', 'string', 'max:255'],
             'password' => ['nullable', Password::default()],
             'roles'    => ['required'],
