@@ -239,7 +239,7 @@
                                     <div class="fs-14pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
                                     <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                     <div class="d-flex mt-1 fs-11pt">
-                                        <span class="mr-1">Ông (bà): </span>
+                                        <span class="mr-1">Ông/bà: </span>
                                         <input name="ggt[{{$key}}][name]" value="{{@$item['name']}}" class="flex-1">
                                     </div>
                                     <div class="mt-1 d-flex fs-11pt">
@@ -257,7 +257,7 @@
                                         <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][propose]">{{@$item['propose']}}</textarea>
                                     </div>
                                     <div class="fs-11pt mt-1">
-                                        Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                        Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                         <input name="ggt[{{$key}}][suggest]" value="{{@$item['suggest']}}" class="print-hide">
                                         <span class="d-none print-show"></span>
                                         hoàn thành nhiệm vụ.
@@ -307,7 +307,7 @@
                                     <div class="fs-18pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
                                     <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                     <div class="d-flex mt-1 fs-12pt5">
-                                        <span class="mr-1 font-italic">Ông (bà): </span>
+                                        <span class="mr-1 font-italic">Ông/bà: </span>
                                         <input name="ggt[{{$key}}][name]" value="{{@$item['name']}}" class="flex-1">
                                     </div>
                                     <div class="mt-1 d-flex fs-12pt5">
@@ -325,7 +325,7 @@
                                         <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][propose]">{{@$item['propose']}}</textarea>
                                     </div>
                                     <div class="fs-12pt5 mt-1">
-                                        Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                        Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                         <input name="ggt[{{$key}}][suggest]" value="{{@$item['suggest']}}" class="print-hide">
                                         <span class="d-none print-show"></span>
                                         hoàn thành nhiệm vụ.
@@ -377,7 +377,7 @@
                                 <div class="fs-14pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
                                 <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                 <div class="d-flex mt-1 fs-11pt">
-                                    <span class="mr-1">Ông (bà): </span>
+                                    <span class="mr-1">Ông/bà: </span>
                                     <input name="ggt[0][name]" class="flex-1">
                                 </div>
                                 <div class="mt-1 d-flex fs-11pt">
@@ -395,7 +395,7 @@
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]">{{@$item['propose']}}</textarea>
                                 </div>
                                 <div class="fs-11pt mt-1">
-                                    Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                    Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                     <input name="ggt[0][suggest]" class="print-hide">
                                     <span class="d-none print-show"></span>
                                       hoàn thành nhiệm vụ.
@@ -445,7 +445,7 @@
                                 <div class="fs-18pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
                                 <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                                 <div class="d-flex mt-1 fs-12pt5">
-                                    <span class="mr-1 font-italic">Ông (bà): </span>
+                                    <span class="mr-1 font-italic">Ông/bà: </span>
                                     <input name="ggt[0][name]" class="flex-1">
                                 </div>
                                 <div class="mt-1 d-flex fs-12pt5">
@@ -463,7 +463,7 @@
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
                                 </div>
                                 <div class="fs-12pt5 mt-1">
-                                    Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                    Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                     <input name="ggt[0][suggest]" class="print-hide">
                                     <span class="d-none print-show"></span>
                                       hoàn thành nhiệm vụ.
@@ -684,7 +684,7 @@
                             <div class="fs-14pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-11pt">
-                                <span class="mr-1">Ông (bà): </span>
+                                <span class="mr-1">Ông/bà: </span>
                                 <input name="ggt[${j}][name]" class="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-11pt">
@@ -702,7 +702,7 @@
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
                             </div>
                             <div class="fs-11pt mt-1">
-                                Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                 <input name="ggt[${j}][suggest]" class="print-hide">
                                 <span class="d-none print-show"></span>
                                   hoàn thành nhiệm vụ.
@@ -752,7 +752,7 @@
                             <div class="fs-18pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
                             <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
                             <div class="d-flex mt-1 fs-12pt5">
-                                <span class="mr-1 font-italic">Ông (bà): </span>
+                                <span class="mr-1 font-italic">Ông/bà: </span>
                                 <input name="ggt[${j}][name]" class="flex-1">
                             </div>
                             <div class="mt-1 d-flex fs-12pt5">
@@ -770,7 +770,7 @@
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
                             </div>
                             <div class="fs-12pt5 mt-1">
-                                Đề nghị Quý cơ quan tạo điều kiện để ông (bà): 
+                                Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                 <input name="ggt[${j}][suggest]" class="print-hide">
                                 <span class="d-none print-show"></span>
                                   hoàn thành nhiệm vụ.
