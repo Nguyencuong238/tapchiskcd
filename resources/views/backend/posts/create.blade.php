@@ -239,12 +239,12 @@
                                     <span class="mr-1">Chức vụ: </span>
                                     <input name="ggt[0][position]" class="flex-1">
                                 </div>
-                                <div class="d-flex mt-1 fs-11pt">
+                                <div class="d-flex mt-1 fs-11pt d-print-inline">
                                     <span class="mr-1">Được cử đến: </span>
                                     <pre class="d-none print-show fs-11pt"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
                                 </div>
-                                <div class="d-flex mt-1 fs-11pt">
+                                <div class="d-flex mt-1 fs-11pt d-print-inline">
                                     <span class="mr-1">Về việc: </span>
                                     <pre class="d-none print-show fs-11pt"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
@@ -271,7 +271,7 @@
                                               năm <input name="ggt[0][signature_year]" class="font-italic" style="width: 35px;">
                                         </div>
                                         <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center">
+                                        <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center" value="Vương Văn Việt">
                                     </div>
 
                                 </div>
@@ -307,12 +307,12 @@
                                     <span class="mr-1 font-italic">Chức vụ: </span>
                                     <input name="ggt[0][position]" class="flex-1">
                                 </div>
-                                <div class="d-flex mt-1 fs-12pt5">
+                                <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                     <span class="font-italic mr-1">Được cử đến: </span>
                                     <pre class="d-none print-show fs-12pt5"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
                                 </div>
-                                <div class="d-flex mt-1 fs-12pt5">
+                                <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                     <span class="font-italic mr-1">Về việc: </span>
                                     <pre class="d-none print-show fs-12pt5"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
@@ -339,7 +339,7 @@
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][signature]" class="fs-13pt text-center">
+                                        <input name="ggt[0][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
                                     </div>
                                 </div>
                             </div>
@@ -493,12 +493,12 @@
                                 <span class="mr-1">Chức vụ: </span>
                                 <input name="ggt[${j}][position]" class="flex-1">
                             </div>
-                            <div class="d-flex mt-1 fs-11pt">
+                            <div class="d-flex mt-1 fs-11pt d-print-inline">
                                 <span class="mr-1">Được cử đến: </span>
                                 <pre class="d-none print-show fs-11pt"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][arrival_address]"></textarea>
                             </div>
-                            <div class="d-flex mt-1 fs-11pt">
+                            <div class="d-flex mt-1 fs-11pt d-print-inline">
                                 <span class="mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-11pt"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
@@ -525,7 +525,7 @@
                                           năm <input name="ggt[${j}][signature_year]" class="font-italic" style="width: 35px;">
                                     </div>
                                     <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                    <input name="ggt[${j}][signature]" class="fs-12pt mt-3 text-center">
+                                    <input name="ggt[${j}][signature]" class="fs-12pt mt-3 text-center" value="Vương Văn Việt">
                                 </div>
 
                             </div>
@@ -561,12 +561,12 @@
                                 <span class="mr-1 font-italic">Chức vụ: </span>
                                 <input name="ggt[${j}][position]" class="flex-1">
                             </div>
-                            <div class="d-flex mt-1 fs-12pt5">
+                            <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                 <span class="font-italic mr-1">Được cử đến: </span>
                                 <pre class="d-none print-show fs-12pt5"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][arrival_address]"></textarea>
                             </div>
-                            <div class="d-flex mt-1 fs-12pt5">
+                            <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                 <span class="font-italic mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-12pt5"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
@@ -593,7 +593,7 @@
                                 </div>
                                 <div class="col-6 text-center">
                                     <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                    <input name="ggt[${j}][signature]" class="fs-13pt text-center">
+                                    <input name="ggt[${j}][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
                                 </div>
                             </div>
                         </div>

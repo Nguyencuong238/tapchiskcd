@@ -246,12 +246,12 @@
                                         <span class="mr-1">Chức vụ: </span>
                                         <input name="ggt[{{$key}}][position]" value="{{@$item['position']}}" class="flex-1">
                                     </div>
-                                    <div class="d-flex mt-1 fs-11pt">
+                                    <div class="d-flex mt-1 fs-11pt d-print-inline">
                                         <span class="mr-1">Được cử đến: </span>
                                         <pre class="d-none print-show fs-11pt">{{@$item['arrival_address']}}</pre>
                                         <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][arrival_address]">{{@$item['arrival_address']}}</textarea>
                                     </div>
-                                    <div class="d-flex mt-1 fs-11pt">
+                                    <div class="d-flex mt-1 fs-11pt d-print-inline">
                                         <span class="mr-1">Về việc: </span>
                                         <pre class="d-none print-show fs-11pt">{{@$item['propose']}}</pre>
                                         <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][propose]">{{@$item['propose']}}</textarea>
@@ -314,12 +314,12 @@
                                         <span class="mr-1 font-italic">Chức vụ: </span>
                                         <input name="ggt[{{$key}}][position]" value="{{@$item['position']}}" class="flex-1">
                                     </div>
-                                    <div class="d-flex mt-1 fs-12pt5">
+                                    <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                         <span class="font-italic mr-1">Được cử đến: </span>
                                         <pre class="d-none print-show fs-12pt5">{{@$item['arrival_address']}}</pre>
                                         <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][arrival_address]">{{@$item['arrival_address']}}</textarea>
                                     </div>
-                                    <div class="d-flex mt-1 fs-12pt5">
+                                    <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                         <span class="font-italic mr-1">Về việc: </span>
                                         <pre class="d-none print-show fs-12pt5">{{@$item['propose']}}</pre>
                                         <textarea rows="3" class="print-hide flex-1" name="ggt[{{$key}}][propose]">{{@$item['propose']}}</textarea>
@@ -384,12 +384,12 @@
                                     <span class="mr-1">Chức vụ: </span>
                                     <input name="ggt[0][position]" class="flex-1">
                                 </div>
-                                <div class="d-flex mt-1 fs-11pt">
+                                <div class="d-flex mt-1 fs-11pt d-print-inline">
                                     <span class="mr-1">Được cử đến: </span>
                                     <pre class="d-none print-show fs-11pt"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
                                 </div>
-                                <div class="d-flex mt-1 fs-11pt">
+                                <div class="d-flex mt-1 fs-11pt d-print-inline">
                                     <span class="mr-1">Về việc: </span>
                                     <pre class="d-none print-show fs-11pt">{{@$item['propose']}}</pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]">{{@$item['propose']}}</textarea>
@@ -452,12 +452,12 @@
                                     <span class="mr-1 font-italic">Chức vụ: </span>
                                     <input name="ggt[0][position]" class="flex-1">
                                 </div>
-                                <div class="d-flex mt-1 fs-12pt5">
+                                <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                     <span class="font-italic mr-1">Được cử đến: </span>
                                     <pre class="d-none print-show fs-12pt5"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
                                 </div>
-                                <div class="d-flex mt-1 fs-12pt5">
+                                <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                     <span class="font-italic mr-1">Về việc: </span>
                                     <pre class="d-none print-show fs-12pt5"></pre>
                                     <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
@@ -691,12 +691,12 @@
                                 <span class="mr-1">Chức vụ: </span>
                                 <input name="ggt[${j}][position]" class="flex-1">
                             </div>
-                            <div class="d-flex mt-1 fs-11pt">
+                            <div class="d-flex mt-1 fs-11pt d-print-inline">
                                 <span class="mr-1">Được cử đến: </span>
                                 <pre class="d-none print-show fs-11pt"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][arrival_address]"></textarea>
                             </div>
-                            <div class="d-flex mt-1 fs-11pt">
+                            <div class="d-flex mt-1 fs-11pt d-print-inline">
                                 <span class="mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-11pt"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
@@ -759,12 +759,12 @@
                                 <span class="mr-1 font-italic">Chức vụ: </span>
                                 <input name="ggt[${j}][position]" class="flex-1">
                             </div>
-                            <div class="d-flex mt-1 fs-12pt5">
+                            <div class="d-flex mt-1 fs-12pt5 d-print-inline">
                                 <span class="font-italic mr-1">Được cử đến: </span>
                                 <pre class="d-none print-show fs-12pt5"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][arrival_address]"></textarea>
                             </div>
-                            <div class="d-flex mt-2 fs-12pt5">
+                            <div class="d-flex mt-2 fs-12pt5 d-print-inline">
                                 <span class="font-italic mr-1">Về việc: </span>
                                 <pre class="d-none print-show fs-12pt5"></pre>
                                 <textarea rows="3" class="print-hide flex-1" name="ggt[${j}][propose]"></textarea>
