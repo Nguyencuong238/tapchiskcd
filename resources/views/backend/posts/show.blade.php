@@ -372,7 +372,7 @@
                                     <div class="row mt-4">
                                         <div class="col-6">
                                             <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
-                                            <div class="fs-10pt mb-2">- Như trên;</div>
+                                            <div class="fs-10pt mb-1">- Như trên;</div>
                                             <div class="fs-10pt">- Lưu: Văn phòng</div>
                                         </div>
                                         <div class="col-6 text-center">
@@ -510,7 +510,7 @@
                                 <div class="row mt-4">
                                     <div class="col-6">
                                         <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
-                                        <div class="fs-10pt mb-2">- Như trên;</div>
+                                        <div class="fs-10pt mb-1">- Như trên;</div>
                                         <div class="fs-10pt">- Lưu: Văn phòng</div>
                                     </div>
                                     <div class="col-6 text-center">
