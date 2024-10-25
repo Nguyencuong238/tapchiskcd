@@ -591,6 +591,7 @@
                             @enderror
                         </div>
 
+                        @if($user->id != 1 || $user->hasRole(1))
                         <div class="form-group col-12">
                             <label>{{ __('Roles') }}</label>
                             <select class="form-control form-control-select2" name="roles[]">
@@ -599,7 +600,7 @@
                                 @endforeach
                             </select>
                         </div>
-
+                        @endif
                     </div>
                 </div>
             </div>
