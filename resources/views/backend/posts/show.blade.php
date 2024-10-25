@@ -130,7 +130,7 @@
                 display: inline !important;
             }
             .d-print-inline {
-                display: inline !important;
+                display: block !important;
             }
             .w-print-100 {
                 width: 100% !important;
