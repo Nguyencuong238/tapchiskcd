@@ -134,6 +134,7 @@
 							</a>
 							<div class="collapse show" id="post_menu">
 								<div class="py-0">
+									@if(auth()->user()->position != 'assistant')
 									<a href="{{ route('posts.create') }}" class="nav-link {{!request()->routeIs('posts.create') ?: 'active'}}">
 										Thêm mới
 									</a>
@@ -149,14 +150,17 @@
 									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 2) ? 'active' : ''}}">
 										Đề tài chờ TBT duyệt
 									</a>
+									@endif
 									<a href="{{ route('posts.index', ['status' => 3]) }}" id="post-status-3"
 									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 3) ? 'active' : ''}}">
 										Đề tài đã được duyệt
 									</a>
+									@if(auth()->user()->position != 'assistant')
 									<a href="{{ route('posts.index', ['status' => -1]) }}" id="post-status--1"
 									class="nav-link {{(request()->routeIs('posts.index') && request('status') == -1) ? 'active' : ''}}">
 										Đề tài bị trả lại
 									</a>
+									@endif
 								</div>
 							</div>
 						</li>

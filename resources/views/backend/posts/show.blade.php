@@ -150,6 +150,9 @@
             .content {
                 padding: 0;
             }
+            .right-ggt {
+                padding-left: 45px !important;
+            }
         }
     </style>
     @endpush
@@ -311,7 +314,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-8 pl-4" style="border-left: 1px solid">
+                                <div class="col-8 pl-4 right-ggt" style="border-left: 1px solid">
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="fs-10pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
@@ -449,7 +452,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-8 pl-4" style="border-left: 1px solid">
+                            <div class="col-8 pl-4 right-ggt" style="border-left: 1px solid">
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="fs-10pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
