@@ -278,7 +278,7 @@
                                                 năm <input name="ggt[{{$key}}][signature_year]" value="{{@$item['signature_year']}}" class="font-italic" style="width: 35px;">
                                             </div>
                                             <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                            <input name="ggt[{{$key}}][signature]" value="{{@$item['signature']}}" class="fs-12pt mt-3 text-center">
+                                            <input name="ggt[{{$key}}][signature]" value="{{@$item['signature'] ?? 'Vương Văn Việt'}}" class="fs-12pt mt-3 text-center">
                                         </div>
 
                                     </div>
@@ -346,7 +346,7 @@
                                         </div>
                                         <div class="col-6 text-center">
                                             <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                            <input name="ggt[{{$key}}][signature]" value="{{@$item['signature']}}" class="fs-13pt text-center">
+                                            <input name="ggt[{{$key}}][signature]" value="{{@$item['signature'] ?? 'Vương Văn Việt'}}" class="fs-13pt text-center">
                                         </div>
                                     </div>
                                 </div>
@@ -416,7 +416,7 @@
                                               năm <input name="ggt[0][signature_year]" class="font-italic" style="width: 35px;">
                                         </div>
                                         <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center">
+                                        <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center" value="Vương Văn Việt">
                                     </div>
 
                                 </div>
@@ -484,7 +484,7 @@
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][signature]" class="fs-13pt text-center">
+                                        <input name="ggt[0][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
                                     </div>
                                 </div>
                             </div>
@@ -723,7 +723,7 @@
                                           năm <input name="ggt[${j}][signature_year]" class="font-italic" style="width: 35px;">
                                     </div>
                                     <div class="fw-600 fs-11pt mt-1 mb-4">TỔNG BIÊN TẬP</div>
-                                    <input name="ggt[${j}][signature]" class="fs-12pt mt-3 text-center">
+                                    <input name="ggt[${j}][signature]" class="fs-12pt mt-3 text-center" value="Vương Văn Việt">
                                 </div>
 
                             </div>
@@ -791,7 +791,7 @@
                                 </div>
                                 <div class="col-6 text-center">
                                     <div class="fw-600 fs-13pt mb-5">TỔNG BIÊN TẬP</div>
-                                    <input name="ggt[${j}][signature]" class="fs-13pt text-center">
+                                    <input name="ggt[${j}][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
                                 </div>
                             </div>
                         </div>
