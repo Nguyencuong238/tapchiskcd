@@ -290,7 +290,7 @@
                                     <div class="fs-11pt mt-1">
                                         Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                         <input name="ggt[{{$key}}][suggest]" value="{{@$item['suggest']}}" class="print-hide">
-                                        <span class="d-none print-show"></span>
+                                        <span class="d-none print-show">{{@$item['suggest']}}</span>
                                         hoàn thành nhiệm vụ.
                                     </div>
                                     <div class="fs-11pt mt-1">
@@ -358,7 +358,7 @@
                                     <div class="fs-12pt5 mt-1">
                                         Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
                                         <input name="ggt[{{$key}}][suggest]" value="{{@$item['suggest']}}" class="print-hide">
-                                        <span class="d-none print-show"></span>
+                                        <span class="d-none print-show">{{@$item['suggest']}}</span>
                                         hoàn thành nhiệm vụ.
                                     </div>
                                     <div class="fs-12pt5 mt-1">
@@ -708,8 +708,10 @@
             $('[name^="ggt"]').on('change', function() {
                 var name = $(this).attr('name');
                 var value = $(this).val();
-                var element = '[name="' + name + '"]'
+                var element = '[name="' + name + '"]';
+
                 $(element).val(value);
+
                 if($(element).hasClass('print-hide')) {
                     $(element).siblings('.print-show').html(value);
                 }
