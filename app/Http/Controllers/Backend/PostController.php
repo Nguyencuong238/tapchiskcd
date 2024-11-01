@@ -132,7 +132,7 @@ class PostController extends Controller
     {
         $post = Post::with('media')->findOrFail($id);
 
-        if (auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director']) 
+        if (auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director', 'assistant']) 
         && $post->status >= 1 || $post->status < 1)) {
             return view('backend.posts.show', compact('post'));
         }
