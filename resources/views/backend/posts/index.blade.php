@@ -79,7 +79,7 @@
                         {{--  <td><span class="btn btn-{{$statusNames[$post->status]['color']}}">{{ $statusNames[$post->status]['name'] }}</span></td>  --}}
                         <td class="text-center">
                             <div class="d-inline-flex justify-content-center">
-                                @if(auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director']) 
+                                @if(auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director', 'assistant']) 
                                 && $post->status >= 1 || $post->status < 1)) 
                                 <a href="{{ route('posts.show', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('View') }}">
                                     <i class="icon-eye mr-1"></i>
