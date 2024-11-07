@@ -705,7 +705,7 @@
                 $('#ggt-form').submit();
             });
 
-            $('[name^="ggt"]').on('change', function() {
+            $('.w-print-100').on('change', '[name^="ggt"]', function() {
                 var name = $(this).attr('name');
                 var value = $(this).val();
                 var element = '[name="' + name + '"]';
