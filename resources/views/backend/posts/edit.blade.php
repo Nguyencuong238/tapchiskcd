@@ -273,7 +273,7 @@
                                         năm 
                                         <input name="ggt[{{$key}}][expire_year]" value="{{@$item['expire_year']}}" style="width: 35px;">
                                     </div>
-                                    <div class="text-right mt-4 mb-4">
+                                    <div class="text-right mt-4">
                                         <div class="d-inline-block text-center">
                                             <div class="fs-11pt font-italic">
                                                 Hà Nội, ngày <input name="ggt[{{$key}}][signature_date]" value="{{@$item['signature_date']}}" class="font-italic" style="width: 20px;">
@@ -411,7 +411,7 @@
                                      năm 
                                      <input name="ggt[0][expire_year]" style="width: 35px;">
                                 </div>
-                                <div class="text-right mt-4 mb-4">
+                                <div class="text-right mt-4">
                                     <div class="d-inline-block text-center">
                                         <div class="fs-11pt font-italic">
                                             Hà Nội, ngày <input name="ggt[0][signature_date]" class="font-italic" style="width: 20px;">
@@ -718,7 +718,7 @@
                                  năm 
                                  <input name="ggt[${j}][expire_year]" style="width: 35px;">
                             </div>
-                            <div class="text-right mt-4 mb-4">
+                            <div class="text-right mt-4">
                                 <div class="d-inline-block text-center">
                                     <div class="fs-11pt font-italic">
                                         Hà Nội, ngày <input name="ggt[${j}][signature_date]" class="font-italic" style="width: 20px;">
