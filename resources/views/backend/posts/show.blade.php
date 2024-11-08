@@ -308,7 +308,7 @@
                                                 tháng <input name="ggt[{{$key}}][signature_month]" value="{{@$item['signature_month']}}" class="font-italic" style="width: 20px;">
                                                 năm <input name="ggt[{{$key}}][signature_year]" value="{{@$item['signature_year']}}" class="font-italic" style="width: 35px;">
                                             </div>
-                                            <div class="fw-600 fs-11pt mt-1 mb-5 pb-2">TỔNG BIÊN TẬP</div>
+                                            <div class="fw-600 fs-11pt mt-1 mb-4 pb-2">TỔNG BIÊN TẬP</div>
                                             <input name="ggt[{{$key}}][signature]" value="{{@$item['signature'] ?? 'Vương Văn Việt'}}" class="fs-12pt mt-3 text-center">
                                         </div>
 
@@ -446,7 +446,7 @@
                                              tháng <input name="ggt[0][signature_month]" class="font-italic" style="width: 20px;">
                                               năm <input name="ggt[0][signature_year]" class="font-italic" style="width: 35px;">
                                         </div>
-                                        <div class="fw-600 fs-11pt mt-1 mb-5 pb-2">TỔNG BIÊN TẬP</div>
+                                        <div class="fw-600 fs-11pt mt-1 mb-4 pb-2">TỔNG BIÊN TẬP</div>
                                         <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center" value="Vương Văn Việt">
                                     </div>
 
