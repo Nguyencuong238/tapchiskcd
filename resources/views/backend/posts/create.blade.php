@@ -75,9 +75,6 @@
             .custom-checkbox .custom-control-label.error:before {
                 border-color: red;
             }
-            @page {
-                size: auto;
-            }
             @media print {
                 .section-ggt {
                     border: 0;
@@ -122,6 +119,11 @@
                 .right-ggt {
                     padding-left: 45px !important;
                 }
+            }
+        </style>
+        <style id="page-size">
+            @page {
+                size: landscape;
             }
         </style>
     @endpush
@@ -180,7 +182,9 @@
 
                         <div class="form-group">
                             <label>Nội dung:</label>
-                            <textarea name="body" class="editor form-control @error('body')is-invalid @enderror" placeholder="Thêm nội dung">{{ old('body') }}</textarea>
+                            <textarea name="body" class="editor form-control @error('body')is-invalid @enderror" 
+                                placeholder="Thêm nội dung">{{ old('body') }}</textarea>
+
                             @error('body')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -212,140 +216,222 @@
                     </div>
                 </div>
 
-                <div class="card section-ggt mb-5">
-                <i class="fa fa-times text-danger print-hide" title="Xóa"></i> 
-                    <div class="card-body" style="font-family: 'Times New Roman';">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="fs-6pt">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
-                                        <div class="fs-6pt text-center fw-600">TẠP CHÍ SỨC KHỎE<br>CỘNG ĐỒNG</div>
-                                        <hr class="mt-2 mb-1" style="width: 60%;">
-                                        <div class="fs-8pt">
-                                            Số : ......Q....../GGT
-                                        </div>
-                                    </div>
-                                    <div class="col-7 text-center">
-                                        <div class="fs-6pt">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
-                                        <div class="fs-8pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
-                                        <hr style="margin-top: 10px; width: 75%;">
-                                    </div>
-                                </div>
-                                <div class="fs-14pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
-                                <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
-                                <div class="d-flex mt-1 fs-11pt">
-                                    <span class="mr-1">Ông/bà: </span>
-                                    <input name="ggt[0][name]" class="flex-1">
-                                </div>
-                                <div class="mt-1 d-flex fs-11pt">
-                                    <span class="mr-1">Chức vụ: </span>
-                                    <input name="ggt[0][position]" class="flex-1">
-                                </div>
-                                <div class="d-flex mt-1 fs-11pt d-print-inline">
-                                    <span class="mr-1">Được cử đến: </span>
-                                    <pre class="d-none print-show fs-11pt"></pre>
-                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
-                                </div>
-                                <div class="d-flex mt-1 fs-11pt d-print-inline">
-                                    <span class="mr-1">Về việc: </span>
-                                    <pre class="d-none print-show fs-11pt"></pre>
-                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
-                                </div>
-                                <div class="fs-11pt mt-1">
-                                    Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
-                                    <input name="ggt[0][suggest]" class="print-hide">
-                                    <span class="d-none print-show"></span>
-                                      hoàn thành nhiệm vụ.
-                                </div>
-                                <div class="fs-11pt mt-1">
-                                    Giấy giới thiệu có giá trị đến hết ngày 
-                                    <input name="ggt[0][expire_date]" style="width: 20px;">
-                                     tháng  
-                                     <input name="ggt[0][expire_month]" style="width: 20px;">
-                                     năm 
-                                     <input name="ggt[0][expire_year]" style="width: 35px;">
-                                </div>
-                                <div class="text-right mt-4">
-                                    <div class="d-inline-block text-center">
-                                        <div class="fs-11pt font-italic">
-                                            Hà Nội, ngày <input name="ggt[0][signature_date]" class="font-italic" style="width: 20px;">
-                                             tháng <input name="ggt[0][signature_month]" class="font-italic" style="width: 20px;">
-                                              năm <input name="ggt[0][signature_year]" class="font-italic" style="width: 35px;">
-                                        </div>
-                                        <div class="fw-600 fs-11pt mt-1 mb-4 pb-2">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center" value="Vương Văn Việt">
-                                    </div>
+                <div class="card print-hide">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">Loại giấy tờ kèm theo</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex print-hide">
 
-                                </div>
+                            <div class="custom-control">
+                                <input type="radio" name="is_ggt" checked value="1" id="paper_ggt">
+                                <label for="paper_ggt">Giấy giới thiệu</label>
                             </div>
-                            <div class="col-8 pl-4 right-ggt" style="border-left: 1px solid">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="fs-10pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
-                                        <div class="fs-11pt text-center fw-600">TẠP CHÍ SỨC KHỎE CỘNG ĐỒNG</div>
-                                        <hr class="mt-2 mb-1" style="width: 60%;">
-                                        <div class="fs-11pt text-center">
-                                            Số : ......Q....../GGT/SKCĐ
+                            
+                            <div class="custom-control  ml-3">
+                                <input type="radio" name="is_ggt" value="0" id="paper_cv">
+                                <label for="paper_cv">Công văn</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ggt-container">
+                    <div class="card section-ggt mb-5">
+                        <i class="fa fa-times text-danger print-hide" title="Xóa"></i> 
+                        <div class="card-body" style="font-family: 'Times New Roman';">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="fs-6pt">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
+                                            <div class="fs-6pt text-center fw-600">TẠP CHÍ SỨC KHỎE<br>CỘNG ĐỒNG</div>
+                                            <hr class="mt-2 mb-1" style="width: 60%;">
+                                            <div class="fs-8pt">
+                                                Số : ......Q....../GGT
+                                            </div>
+                                        </div>
+                                        <div class="col-7 text-center">
+                                            <div class="fs-6pt">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                                            <div class="fs-8pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
+                                            <hr style="margin-top: 10px; width: 75%;">
                                         </div>
                                     </div>
-                                    <div class="col-7 text-center">
-                                        <div class="fs-11pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
-                                        <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
-                                        <hr style="width: 33%;" class="mt-2 mb-2">
-                                        <div class="fs-13pt font-italic">
-                                            Hà Nội, ngày <input name="ggt[0][signature_date]" class="fs-11pt font-italic" style="width: 20px;">
-                                                tháng <input name="ggt[0][signature_month]" class="fs-11pt font-italic" style="width: 20px;">
-                                                năm <input name="ggt[0][signature_year]" class="fs-11pt font-italic" style="width: 35px;">
+                                    <div class="fs-14pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
+                                    <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
+                                    <div class="d-flex mt-1 fs-11pt">
+                                        <span class="mr-1">Ông/bà: </span>
+                                        <input name="ggt[0][name]" class="flex-1">
+                                    </div>
+                                    <div class="mt-1 d-flex fs-11pt">
+                                        <span class="mr-1">Chức vụ: </span>
+                                        <input name="ggt[0][position]" class="flex-1">
+                                    </div>
+                                    <div class="d-flex mt-1 fs-11pt d-print-inline">
+                                        <span class="mr-1">Được cử đến: </span>
+                                        <pre class="d-none print-show fs-11pt"></pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
+                                    </div>
+                                    <div class="d-flex mt-1 fs-11pt d-print-inline">
+                                        <span class="mr-1">Về việc: </span>
+                                        <pre class="d-none print-show fs-11pt"></pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
+                                    </div>
+                                    <div class="fs-11pt mt-1">
+                                        Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
+                                        <input name="ggt[0][suggest]" class="print-hide">
+                                        <span class="d-none print-show"></span>
+                                        hoàn thành nhiệm vụ.
+                                    </div>
+                                    <div class="fs-11pt mt-1">
+                                        Giấy giới thiệu có giá trị đến hết ngày 
+                                        <input name="ggt[0][expire_date]" style="width: 20px;">
+                                        tháng  
+                                        <input name="ggt[0][expire_month]" style="width: 20px;">
+                                        năm 
+                                        <input name="ggt[0][expire_year]" style="width: 35px;">
+                                    </div>
+                                    <div class="text-right mt-4">
+                                        <div class="d-inline-block text-center">
+                                            <div class="fs-11pt font-italic">
+                                                Hà Nội, ngày <input name="ggt[0][signature_date]" class="font-italic" style="width: 20px;">
+                                                tháng <input name="ggt[0][signature_month]" class="font-italic" style="width: 20px;">
+                                                năm <input name="ggt[0][signature_year]" class="font-italic" style="width: 35px;">
+                                            </div>
+                                            <div class="fw-600 fs-11pt mt-1 mb-4 pb-2">TỔNG BIÊN TẬP</div>
+                                            <input name="ggt[0][signature]" class="fs-12pt mt-3 text-center" value="Vương Văn Việt">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-8 pl-4 right-ggt" style="border-left: 1px solid">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="fs-10pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
+                                            <div class="fs-11pt text-center fw-600">TẠP CHÍ SỨC KHỎE CỘNG ĐỒNG</div>
+                                            <hr class="mt-2 mb-1" style="width: 60%;">
+                                            <div class="fs-11pt text-center">
+                                                Số : ......Q....../GGT/SKCĐ
+                                            </div>
+                                        </div>
+                                        <div class="col-7 text-center">
+                                            <div class="fs-11pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                                            <div class="fs-13pt"> Độc lập – Tự do – Hạnh phúc</div>
+                                            <hr style="width: 33%;" class="mt-2 mb-2">
+                                            <div class="fs-13pt font-italic">
+                                                Hà Nội, ngày <input name="ggt[0][signature_date]" class="fs-11pt font-italic" style="width: 20px;">
+                                                    tháng <input name="ggt[0][signature_month]" class="fs-11pt font-italic" style="width: 20px;">
+                                                    năm <input name="ggt[0][signature_year]" class="fs-11pt font-italic" style="width: 35px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fs-18pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
+                                    <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
+                                    <div class="d-flex mt-1 fs-12pt5">
+                                        <span class="mr-1 font-italic">Ông/bà: </span>
+                                        <input name="ggt[0][name]" class="flex-1">
+                                    </div>
+                                    <div class="mt-1 d-flex fs-12pt5">
+                                        <span class="mr-1 font-italic">Chức vụ: </span>
+                                        <input name="ggt[0][position]" class="flex-1">
+                                    </div>
+                                    <div class="d-flex mt-1 fs-12pt5 d-print-inline">
+                                        <span class="font-italic mr-1">Được cử đến: </span>
+                                        <pre class="d-none print-show fs-12pt5"></pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
+                                    </div>
+                                    <div class="d-flex mt-1 fs-12pt5 d-print-inline">
+                                        <span class="font-italic mr-1">Về việc: </span>
+                                        <pre class="d-none print-show fs-12pt5"></pre>
+                                        <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
+                                    </div>
+                                    <div class="fs-12pt5 mt-1">
+                                        Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
+                                        <input name="ggt[0][suggest]" class="print-hide">
+                                        <span class="d-none print-show"></span>
+                                        hoàn thành nhiệm vụ.
+                                    </div>
+                                    <div class="fs-12pt5 mt-1">
+                                        Giấy giới thiệu có giá trị đến hết ngày 
+                                        <input name="ggt[0][expire_date]" style="width: 20px;">
+                                        tháng  
+                                        <input name="ggt[0][expire_month]" style="width: 20px;">
+                                        năm 
+                                        <input name="ggt[0][expire_year]" style="width: 40px;">
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-6">
+                                            <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
+                                            <div class="fs-10pt mb-1">- Như trên;</div>
+                                            <div class="fs-10pt">- Lưu: Văn phòng</div>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <div class="fw-600 fs-13pt mb-5 pb-2">TỔNG BIÊN TẬP</div>
+                                            <input name="ggt[0][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="fs-18pt text-center fw-600 mt-4">GIẤY GIỚI THIỆU</div>
-                                <div class="fs-12pt text-center pt-2 pb-2">BAN BIÊN TẬP TRÂN TRỌNG GIỚI THIỆU</div>
-                                <div class="d-flex mt-1 fs-12pt5">
-                                    <span class="mr-1 font-italic">Ông/bà: </span>
-                                    <input name="ggt[0][name]" class="flex-1">
-                                </div>
-                                <div class="mt-1 d-flex fs-12pt5">
-                                    <span class="mr-1 font-italic">Chức vụ: </span>
-                                    <input name="ggt[0][position]" class="flex-1">
-                                </div>
-                                <div class="d-flex mt-1 fs-12pt5 d-print-inline">
-                                    <span class="font-italic mr-1">Được cử đến: </span>
-                                    <pre class="d-none print-show fs-12pt5"></pre>
-                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][arrival_address]"></textarea>
-                                </div>
-                                <div class="d-flex mt-1 fs-12pt5 d-print-inline">
-                                    <span class="font-italic mr-1">Về việc: </span>
-                                    <pre class="d-none print-show fs-12pt5"></pre>
-                                    <textarea rows="3" class="print-hide flex-1" name="ggt[0][propose]"></textarea>
-                                </div>
-                                <div class="fs-12pt5 mt-1">
-                                    Đề nghị Quý cơ quan tạo điều kiện để ông/bà: 
-                                    <input name="ggt[0][suggest]" class="print-hide">
-                                    <span class="d-none print-show"></span>
-                                      hoàn thành nhiệm vụ.
-                                </div>
-                                <div class="fs-12pt5 mt-1">
-                                    Giấy giới thiệu có giá trị đến hết ngày 
-                                    <input name="ggt[0][expire_date]" style="width: 20px;">
-                                     tháng  
-                                     <input name="ggt[0][expire_month]" style="width: 20px;">
-                                     năm 
-                                     <input name="ggt[0][expire_year]" style="width: 40px;">
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-6">
-                                        <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
-                                        <div class="fs-10pt mb-1">- Như trên;</div>
-                                        <div class="fs-10pt">- Lưu: Văn phòng</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-container d-none">
+                    <div class="card section-ggt mb-5">
+                        <i class="fa fa-times text-danger print-hide" title="Xóa"></i> 
+
+                        <div class="card-body" style="font-family: 'Times New Roman';">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="fs-12pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
+                                    <div class="fs-12pt text-center fw-600">TẠP CHÍ SỨC KHỎE CỘNG ĐỒNG</div>
+                                    <hr class="mt-2 mb-1" style="width: 30%;">
+                                    <div class="fs-12pt text-center">
+                                        Số : ....../{{date('Y')}}/CV-SKCĐ
                                     </div>
-                                    <div class="col-6 text-center">
-                                        <div class="fw-600 fs-13pt mb-5 pb-2">TỔNG BIÊN TẬP</div>
-                                        <input name="ggt[0][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
+                                </div>
+
+                                <div class="col-5 offset-2 text-center">
+                                    <div class="fs-12pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                                    <div class="fs-13pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
+                                    <hr style="width: 20%;" class="mt-2 mb-2">
+                                    <div class="fs-13pt font-italic">
+                                        <input name="cv[0][address]" class="fs-13pt font-italic text-right" style="width: 100px;">
+                                        , ngày <input name="cv[0][date]" class="fs-13pt font-italic" style="width: 20px;">
+                                            tháng <input name="cv[0][month]" class="fs-13pt font-italic" style="width: 20px;">
+                                            năm <input name="cv[0][year]" class="fs-13pt font-italic" style="width: 35px;">
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="fs-14pt text-center mt-4">
+                                <span>Kính gửi: </span>
+                                <input name="cv[0][sent_to]" class="flex-1 fs-14pt">
+                            </div>
+                            
+                            <div class="mt-4 fs-13pt d-print-inline">
+                                <div class="d-none print-show fs-13pt content-print"></div>
+                                <textarea name="cv[0][content]" class="cv-editor form-control print-hide"></textarea>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
+                                    <div class="fs-12pt mb-1">- Như trên;</div>
+                                    <div class="fs-12pt">- Lưu: Văn phòng</div>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <div class="fw-600 fs-13pt mb-5 pb-2">TỔNG BIÊN TẬP</div>
+                                    <input name="cv[0][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
+                                </div>
+                            </div>
+
+                            <div class="fs-11pt fw-600">Thông tin liên hệ:</div>
+                            <div class="fs-11pt">Tạp chí Sức Khỏe Cộng Đồng</div>
+                            <div class="fs-11pt">Tầng 4, Tòa nhà SaiGonbank, số 99 Nguyễn Phong Sắc, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội.</div>
+                            <div class="fs-11pt">Hotline: 0914946668</div>
                         </div>
                     </div>
                 </div>
@@ -394,10 +480,11 @@
         <div class="action-bar print-hide pb-2">
             <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>Gửi </button>
             <a class="btn btn-primary mx-2" title="In giấy giới thiệu" onclick="window.print()">
-                <i class="icon-printer2 mr-2"></i>{{ __('In GGT') }} 
+                <i class="icon-printer2 mr-2"></i><span class="in-ggt">In GGT </span>
             </a>
 
             <button type="button" class="btn btn-primary btn-add-ggt"><i class="icon-plus2 mr-1"></i>Thêm GGT</button>
+            <button type="button" class="btn btn-primary btn-add-cv d-none"><i class="icon-plus2 mr-1"></i>Thêm công văn</button>
         </div>
     </form>
 
@@ -427,12 +514,12 @@
             $('.btn-add-ggt').on('click', function() {
                 var html = $('#list_ggt').html();
                 html = html.replaceAll('${j}', j);
-                $('.w-print-100').append(html);
+                $('.ggt-container').append(html);
                 j++;
             });
 
 
-            $('.w-print-100').on('click', '.fa-times', function() {
+            $('.ggt-container').on('click', '.fa-times', function() {
                 $(this).closest('.section-ggt').remove('');
             })
 
@@ -453,7 +540,7 @@
                 }
             })
             
-            $('.w-print-100').on('change', '[name^="ggt"]', function() {
+            $('.ggt-container').on('change', '[name^="ggt"]', function() {
                 var name = $(this).attr('name');
                 var value = $(this).val();
                 var element = '[name="' + name + '"]'
@@ -461,7 +548,6 @@
                 if($(element).hasClass('print-hide')) {
                     $(element).siblings('.print-show').html(value);
                 }
-               
             })
         </script>
 
@@ -601,6 +687,200 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </script>
+
+        <script>            
+            $(function() {
+                initEditor();
+            });
+            function initEditor() {
+                tinymce.init({
+                    selector: '.cv-editor',
+                    plugins: ' paste  charmap hr   advlist lists ',
+                    imagetools_cors_hosts: ['picsum.photos'],
+                    menubar: 'edit insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    toolbar_sticky: true,
+                    autosave_ask_before_unload: true,
+                    autosave_interval: '30s',
+                    autosave_prefix: '{path}{query}-{id}-',
+                    autosave_restore_when_empty: false,
+                    autosave_retention: '2m',
+                    image_advtab: true,
+                    importcss_append: true,
+                    templates: [
+                        { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+                        { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+                        { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+                    ],
+                    template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+                    template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+                    height: 600,
+                    image_caption: true,
+                    quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quicktable',
+                    noneditable_noneditable_class: 'mceNonEditable',
+                    toolbar_mode: 'sliding',
+                    contextmenu: 'link image imagetools table',
+                    skin: 'oxide',
+                    content_css: 'default',
+                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                    file_picker_callback: elFinderBrowser,
+                    relative_urls : false,
+                    remove_script_host : false,
+                    convert_urls : true,
+                    toolbar_mode: 'wrap',
+                    language_url : "/plugins/tinymce_languages/langs/vi.js",
+                    language: 'vi',
+                    quickbars_insert_toolbar: 'quicktable image media codesample',
+                    extended_valid_elements : "script[async|src|charset],iframe[src|title|width|height|allowfullscreen|frameborder],img[class|style|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|loading=lazy]",
+                    setup: function (editor) {
+                        // Listen for change events
+                        editor.on('change', function (e) {
+                        $('.content-print').html(editor.getContent());
+                        });
+
+                        editor.on('init', function() {
+                            $('.tox-tinymce').addClass('print-hide');
+                        });
+                    }
+                });
+            }
+
+            function elFinderBrowser (callback, value, meta) {
+                tinymce.activeEditor.windowManager.openUrl({
+                    title: 'File Manager',
+                    url: "{{ route('elfinder.tinymce5') }}",
+                    /**
+                    * On message will be triggered by the child window
+                    *
+                    * @param dialogApi
+                    * @param details
+                    * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
+                    */
+                    onMessage: function (dialogApi, details) {
+                        if (details.mceAction === 'fileSelected') {
+                            const file = details.data.file;
+
+                            // Make file info
+                            const info = file.name;
+
+                            console.log(file)
+
+                            // Provide file and text for the link dialog
+                            if (meta.filetype === 'file') {
+                                callback(file.url, {text: info, title: info});
+                            }
+
+                            // Provide image and alt text for the image dialog
+                            if (meta.filetype === 'image') {
+                                callback(file.url, {alt: info});
+                            }
+
+                            // Provide alternative source and posted for the media dialog
+                            if (meta.filetype === 'media') {
+                                callback(file.url);
+                            }
+
+                            dialogApi.close();
+                        }
+                    }
+                });
+            }
+
+            var k = 1;
+            $('.btn-add-cv').on('click', function() {
+                var html = $('#list_cv').html();
+                html = html.replaceAll('${k}', k);
+                $('.cv-container').append(html);
+
+                initEditor();
+
+                k++;
+            });
+
+            $('[name=is_ggt]').on('change', function() {
+                var val = $("input[name=is_ggt]:checked").val();
+                
+                if(val == 1) {
+                    $('#page-size').html('@page { size: landscape}');
+
+                    $('.cv-container').addClass('d-none');
+                    $('.btn-add-cv').addClass('d-none');
+
+                    $('.ggt-container').removeClass('d-none');
+                    $('.btn-add-ggt').removeClass('d-none');
+
+                    $('.in-ggt').text('In GGT');
+                } else {
+                    $('#page-size').html('@page { size: portrait}');
+
+                    $('.ggt-container').addClass('d-none');
+                    $('.btn-add-ggt').addClass('d-none');
+
+                    $('.cv-container').removeClass('d-none');
+                    $('.btn-add-cv').removeClass('d-none');
+
+                    $('.in-ggt').text('In công văn');
+                }
+            })
+        </script>
+
+        <script type="text/template" id="list_cv">
+            <div class="card section-ggt mb-5">
+                <i class="fa fa-times text-danger print-hide" title="Xóa"></i> 
+
+                <div class="card-body" style="font-family: 'Times New Roman';">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="fs-12pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
+                            <div class="fs-12pt text-center fw-600">TẠP CHÍ SỨC KHỎE CỘNG ĐỒNG</div>
+                            <hr class="mt-2 mb-1" style="width: 30%;">
+                            <div class="fs-12pt text-center">
+                                Số : ....../{{date('Y')}}/CV-SKCĐ
+                            </div>
+                        </div>
+
+                        <div class="col-5 offset-2 text-center">
+                            <div class="fs-12pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                            <div class="fs-13pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
+                            <hr style="width: 20%;" class="mt-2 mb-2">
+                            <div class="fs-13pt font-italic">
+                                <input name="cv[${k}][address]" class="fs-13pt font-italic text-right" style="width: 100px;">
+                                , ngày <input name="cv[${k}][date]" class="fs-13pt font-italic" style="width: 20px;">
+                                    tháng <input name="cv[${k}][month]" class="fs-13pt font-italic" style="width: 20px;">
+                                    năm <input name="cv[${k}][year]" class="fs-13pt font-italic" style="width: 35px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fs-14pt text-center mt-4">
+                        <span>Kính gửi: </span>
+                        <input name="cv[${k}][sent_to]" class="flex-1 fs-14pt">
+                    </div>
+                    
+                    <div class="mt-4 fs-13pt d-print-inline">
+                        <div class="d-none print-show fs-13pt content-print"></div>
+                        <textarea name="cv[${k}][content]" class="cv-editor form-control print-hide"></textarea>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
+                            <div class="fs-12pt mb-1">- Như trên;</div>
+                            <div class="fs-12pt">- Lưu: Văn phòng</div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="fw-600 fs-13pt mb-5 pb-2">TỔNG BIÊN TẬP</div>
+                            <input name="cv[${k}][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
+                        </div>
+                    </div>
+
+                    <div class="fs-11pt fw-600">Thông tin liên hệ:</div>
+                    <div class="fs-11pt">Tạp chí Sức Khỏe Cộng Đồng</div>
+                    <div class="fs-11pt">Tầng 4, Tòa nhà SaiGonbank, số 99 Nguyễn Phong Sắc, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội.</div>
+                    <div class="fs-11pt">Hotline: 0914946668</div>
                 </div>
             </div>
         </script>

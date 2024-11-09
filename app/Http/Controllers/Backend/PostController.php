@@ -90,14 +90,15 @@ class PostController extends Controller
         }
 
         $post = Post::create([
-            'title'         => $request->title,
-            'excerpt'       => $request->excerpt,
-            'body'          => $request->body,
-            'start_date'    => $request->start_date,
-            'end_date'      => $request->end_date,
-            'author_id'     => $request->user()->id,
-            'status'        => auth()->user()->position == 'staff' ? 0 : (auth()->user()->position == 'manager' ? 1 : 2),
-            'ggt'           => array_values($request->input('ggt', []))  
+            'title'      => $request->title,
+            'excerpt'    => $request->excerpt,
+            'body'       => $request->body,
+            'start_date' => $request->start_date,
+            'end_date'   => $request->end_date,
+            'author_id'  => $request->user()->id,
+            'status'     => auth()->user()->position == 'staff' ? 0: (auth()->user()->position == 'manager' ? 1: 2),
+            'ggt'        => $request->is_ggt ? array_values($request->input('ggt', [])) : array_values($request->input('cv', [])),
+            'is_ggt'     => $request->is_ggt
         ]);
 
         PostHistory::create([
@@ -179,7 +180,7 @@ class PostController extends Controller
             'title'      => 'Tiêu đề',
             'excerpt'    => 'Mô tả',
             'body'       => 'Nội dung',
-            'ggt'        => 'Giấy giới thiệu'
+            'ggt'        => $post->is_ggt ? 'Giấy giới thiệu' : 'Công văn'
         ];
 
         foreach ($fields as $key => $value) {
@@ -339,7 +340,7 @@ class PostController extends Controller
                 'type'       => 'update',
                 'old_record' => $oldPost,
                 'new_record' => $post,
-                'note'       => 'Giấy giới thiệu',
+                'note'       => $post->is_ggt ? 'Giấy giới thiệu' : 'Công văn'
             ]);
         }
 
