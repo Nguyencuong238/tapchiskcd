@@ -85,6 +85,7 @@
                 .work_content {
                     border: 0 !important;
                     page-break-before: always;
+                    page-break-after: auto;
                 }
                 .section-ggt {
                     border: 0;
