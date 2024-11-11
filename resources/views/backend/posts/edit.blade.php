@@ -82,6 +82,10 @@
                 size: {{$post->is_ggt ? 'landscape' : 'portrait'}};
             }
             @media print {
+                .work_content {
+                    border: 0 !important;
+                    page-break-before: always;
+                }
                 .section-ggt {
                     border: 0;
                     width: 100%;
@@ -498,6 +502,18 @@
                             </div>
                         </div>
                     @endif
+
+                    <div class="card work_content">
+                        <div class="card-header print-hide">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">Nội dung làm việc kèm GGT</h5>
+                            </div>
+                        </div>
+                        <div class="card-body"> 
+                            <div class="d-none print-show fs-13pt content-print"></div>
+                            <textarea name="ggt_work_content" class="cv-editor form-control print-hide"></textarea>
+                        </div>
+                    </div>
                 </div>
                 @else
                     <div class="cv-container">

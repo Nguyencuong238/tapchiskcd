@@ -76,6 +76,10 @@
                 border-color: red;
             }
             @media print {
+                .work_content {
+                    border: 0 !important;
+                    page-break-before: always;
+                }
                 .section-ggt {
                     border: 0;
                     width: 100%;
@@ -375,6 +379,18 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card work_content">
+                    <div class="card-header print-hide">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">Nội dung làm việc kèm GGT</h5>
+                        </div>
+                    </div>
+                    <div class="card-body"> 
+                        <div class="d-none print-show fs-13pt content-print"></div>
+                        <textarea name="ggt_work_content" class="cv-editor form-control print-hide"></textarea>
                     </div>
                 </div>
 
@@ -738,7 +754,7 @@
                     setup: function (editor) {
                         // Listen for change events
                         editor.on('change', function (e) {
-                        $('.content-print').html(editor.getContent());
+                            $('.content-print').html(editor.getContent());
                         });
 
                         editor.on('init', function() {
@@ -811,6 +827,7 @@
 
                     $('.ggt-container').removeClass('d-none');
                     $('.btn-add-ggt').removeClass('d-none');
+                    $('.work_content').removeClass('d-none');
 
                     $('.in-ggt').text('In GGT');
                 } else {
@@ -818,6 +835,7 @@
 
                     $('.ggt-container').addClass('d-none');
                     $('.btn-add-ggt').addClass('d-none');
+                    $('.work_content').addClass('d-none');
 
                     $('.cv-container').removeClass('d-none');
                     $('.btn-add-cv').removeClass('d-none');
