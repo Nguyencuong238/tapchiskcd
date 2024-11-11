@@ -401,10 +401,10 @@
                         <div class="card-body" style="font-family: 'Times New Roman';">
                             <div class="row">
                                 <div class="col-5">
-                                    <div class="fs-12pt text-center">HỘI GIÁO DỤC CHĂM SÓC SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
+                                    <div class="fs-12pt text-center">HỘI GIÁO DỤC CHĂM SÓC<br>SỨC KHỎE CỘNG ĐỒNG VIỆT NAM</div>
                                     <div class="fs-12pt text-center fw-600">TẠP CHÍ SỨC KHỎE CỘNG ĐỒNG</div>
                                     <hr class="mt-2 mb-1" style="width: 30%;">
-                                    <div class="fs-12pt text-center">
+                                    <div class="fs-14pt text-center">
                                         Số : ....../{{date('Y')}}/CV-SKCĐ
                                     </div>
                                 </div>
@@ -413,22 +413,22 @@
                                     <div class="fs-12pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
                                     <div class="fs-13pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
                                     <hr style="width: 20%;" class="mt-2 mb-2">
-                                    <div class="fs-13pt font-italic">
-                                        <input name="cv[0][address]" class="fs-13pt font-italic text-right" style="width: 100px;">
-                                        , ngày <input name="cv[0][date]" class="fs-13pt font-italic" style="width: 20px;">
-                                            tháng <input name="cv[0][month]" class="fs-13pt font-italic" style="width: 20px;">
-                                            năm <input name="cv[0][year]" class="fs-13pt font-italic" style="width: 35px;">
+                                    <div class="fs-14pt font-italic">
+                                        <input name="cv[0][address]" class="fs-14pt font-italic text-right" style="width: 100px;">
+                                        , ngày <input name="cv[0][date]" class="fs-14pt font-italic" style="width: 20px;">
+                                            tháng <input name="cv[0][month]" class="fs-14pt font-italic" style="width: 20px;">
+                                            năm <input name="cv[0][year]" class="fs-14pt font-italic" style="width: 35px;">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="fs-14pt text-center mt-4">
                                 <span>Kính gửi: </span>
-                                <input name="cv[0][sent_to]" class="flex-1 fs-14pt">
+                                <textarea name="cv[0][sent_to]" class="flex-1 fs-14pt"></textarea>
                             </div>
                             
-                            <div class="mt-4 fs-13pt d-print-inline">
-                                <div class="d-none print-show fs-13pt content-print"></div>
+                            <div class="mt-4 fs-14pt d-print-inline">
+                                <div class="d-none print-show fs-14pt content-print"></div>
                                 <textarea name="cv[0][content]" class="cv-editor form-control print-hide"></textarea>
                             </div>
 
@@ -436,11 +436,12 @@
                                 <div class="col-6">
                                     <div class="fs-12pt fw-600 font-italic mb-2">Nơi nhận:</div>
                                     <div class="fs-12pt mb-1">- Như trên;</div>
+                                    <div class="fs-12pt mb-1">- Ban Biên tập (để báo cáo);</div>
                                     <div class="fs-12pt">- Lưu: Văn phòng</div>
                                 </div>
                                 <div class="col-6 text-center">
-                                    <div class="fw-600 fs-13pt mb-5 pb-2">TỔNG BIÊN TẬP</div>
-                                    <input name="cv[0][signature]" class="fs-13pt text-center" value="Vương Văn Việt">
+                                    <div class="fw-600 fs-14pt mb-5 pb-2">TỔNG BIÊN TẬP</div>
+                                    <input name="cv[0][signature]" class="fs-14pt text-center" value="Vương Văn Việt">
                                 </div>
                             </div>
 
