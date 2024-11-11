@@ -93,6 +93,9 @@
                     border: 0;
                     height: auto;
                 }
+                textarea {
+                    border: 0;
+                }
                 .print-hide {
                     display: none !important;
                 }
@@ -127,7 +130,7 @@
         </style>
         <style id="page-size">
             @page {
-                size: landscape;
+                size: auto;
             }
         </style>
     @endpush
@@ -390,7 +393,7 @@
                     </div>
                     <div class="card-body"> 
                         <div class="d-none print-show fs-13pt content-print"></div>
-                        <textarea name="ggt_work_content" class="cv-editor form-control print-hide"></textarea>
+                        <textarea name="work_content" class="cv-editor form-control print-hide"></textarea>
                     </div>
                 </div>
 
@@ -422,9 +425,9 @@
                                 </div>
                             </div>
 
-                            <div class="fs-14pt text-center mt-4">
-                                <span>Kính gửi: </span>
-                                <textarea name="cv[0][sent_to]" class="flex-1 fs-14pt"></textarea>
+                            <div class="fs-14pt mt-4 row">
+                                <div class="col-5 text-right">Kính gửi: </div>
+                                <textarea name="cv[0][sent_to]" class="flex-1 fs-14pt col-7" rows="2"></textarea>
                             </div>
                             
                             <div class="mt-4 fs-14pt d-print-inline">
@@ -821,7 +824,7 @@
                 var val = $("input[name=is_ggt]:checked").val();
                 
                 if(val == 1) {
-                    $('#page-size').html('@page { size: landscape}');
+                    $('#page-size').html('@page { size: auto}');
 
                     $('.cv-container').addClass('d-none');
                     $('.btn-add-cv').addClass('d-none');
@@ -874,9 +877,9 @@
                         </div>
                     </div>
 
-                    <div class="fs-14pt text-center mt-4">
-                        <span>Kính gửi: </span>
-                        <input name="cv[${k}][sent_to]" class="flex-1 fs-14pt">
+                    <div class="fs-14pt mt-4 row">
+                        <div class="col-5 text-right">Kính gửi: </div>
+                        <textarea name="cv[${k}][sent_to]" class="flex-1 fs-14pt col-7" rows="2"></textarea>
                     </div>
                     
                     <div class="mt-4 fs-13pt d-print-inline">

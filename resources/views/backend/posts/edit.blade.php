@@ -79,7 +79,7 @@
                 border-color: red;
             }
             @page {
-                size: {{$post->is_ggt ? 'landscape' : 'portrait'}};
+                size: {{$post->is_ggt ? 'auto' : 'portrait'}};
             }
             @media print {
                 .work_content {
@@ -510,8 +510,8 @@
                             </div>
                         </div>
                         <div class="card-body"> 
-                            <div class="d-none print-show fs-13pt content-print"></div>
-                            <textarea name="ggt_work_content" class="cv-editor form-control print-hide"></textarea>
+                            <div class="d-none print-show fs-13pt content-print">{!! $post->work_content !!}</div>
+                            <textarea name="work_content" class="cv-editor form-control print-hide">{{$post->work_content}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -546,9 +546,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="fs-14pt text-center mt-4">
-                                        <span>Kính gửi: </span>
-                                        <input name="ggt[{{$key}}][sent_to]" value="{{@$item['sent_to']}}" class="flex-1 fs-14pt">
+                                    <div class="fs-14pt mt-4 row">
+                                        <div class="col-5 text-right">Kính gửi: </div>
+                                        <textarea name="ggt[{{$key}}][sent_to]" class="flex-1 fs-14pt col-7" rows="2">{{@$item['sent_to']}}</textarea>
                                     </div>
                                     
                                     <div class="mt-4 fs-13pt d-print-inline">
@@ -603,9 +603,9 @@
                                     </div>
                                 </div>
 
-                                <div class="fs-14pt text-center mt-4">
-                                    <span>Kính gửi: </span>
-                                    <input name="ggt[0][sent_to]" class="flex-1 fs-14pt">
+                                <div class="fs-14pt mt-4 row">
+                                    <div class="col-5 text-right">Kính gửi: </div>
+                                    <textarea name="ggt[0][sent_to]" class="flex-1 fs-14pt col-7" rows="2">{{@$item['sent_to']}}</textarea>
                                 </div>
                                 
                                 <div class="mt-4 fs-14pt d-print-inline">
@@ -1085,9 +1085,9 @@
                         </div>
                     </div>
 
-                    <div class="fs-14pt text-center mt-4">
-                        <span>Kính gửi: </span>
-                        <input name="ggt[${k}][sent_to]" class="flex-1 fs-14pt">
+                    <div class="fs-14pt mt-4 row">
+                        <div class="col-5 text-right">Kính gửi: </div>
+                        <textarea name="ggt[${k}][sent_to]" class="flex-1 fs-14pt col-7" rows="2"></textarea>
                     </div>
                     
                     <div class="mt-4 fs-13pt d-print-inline">

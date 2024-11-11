@@ -98,7 +98,8 @@ class PostController extends Controller
             'author_id'  => $request->user()->id,
             'status'     => auth()->user()->position == 'staff' ? 0: (auth()->user()->position == 'manager' ? 1: 2),
             'ggt'        => $request->is_ggt ? array_values($request->input('ggt', [])) : array_values($request->input('cv', [])),
-            'is_ggt'     => $request->is_ggt
+            'is_ggt'     => $request->is_ggt,
+            'work_content' => $request->work_content
         ]);
 
         PostHistory::create([
@@ -207,6 +208,7 @@ class PostController extends Controller
             'excerpt' => $request->excerpt,
             'body'    => $request->body,
             'ggt'     => array_values($request->input('ggt', [])),
+            'work_content' => $request->work_content,
             'status'  => 0
         ])->save();
 
