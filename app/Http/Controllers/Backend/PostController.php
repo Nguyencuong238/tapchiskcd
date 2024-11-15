@@ -334,6 +334,7 @@ class PostController extends Controller
 
         if($post->ggt != $request->ggt) {
             $post->ggt = array_values($request->input('ggt', []));
+            $post->work_content = $request->work_content;
             $post->save();
 
             PostHistory::create([

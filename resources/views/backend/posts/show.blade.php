@@ -106,14 +106,9 @@
         .custom-checkbox .custom-control-label.error:before {
             border-color: red;
         }
-        @page {
-            size: {{$post->is_ggt ? 'auto' : 'portrait'}};
-        }
         @media print {
             .work_content {
                 border: 0 !important;
-                page-break-before: always;
-                page-break-after: auto;
             }
             .section-ggt {
                 border: 0;
@@ -159,6 +154,9 @@
                 padding-left: 45px !important;
             }
         }
+    </style>
+    <style id="page-size">
+        
     </style>
     @endpush
     <div class="row">
@@ -729,15 +727,35 @@
             </form>
         @endif
         <div class="d-inline">
-            <a class="btn btn btn-primary ml-2" title="In giấy giới thiệu" onclick="window.print()">
-                <i class="icon-printer2 mr-2"></i>{{ $post->is_ggt ? 'In GGT' : 'In công văn' }} 
-            </a>
-            @unless($post->status > 0 && auth()->user()->position == 'staff')
-            <a class="btn btn btn-success ml-2 btn-save-ggt">
-                <i class="icon-paperplane mr-2"></i>{{ $post->is_ggt ? 'Lưu GGT' : 'Lưu công văn' }} 
-            </a>
-            @endunless
-            <a class="btn btn btn-primary btn-history ml-2" data-toggle="modal" data-target="#exampleModal">
+            @if($post->is_ggt)
+                <a class="btn btn-primary mr-2" id="print-ggt">
+                    <i class="icon-printer2 mr-2"></i>In GGT
+                </a>
+                <a class="btn btn-primary mr-2" id="print-work-content">
+                    <i class="icon-printer2 mr-2"></i><span>In nội dung làm việc</span>
+                </a>
+                
+                @unless($post->status > 0 && auth()->user()->position == 'staff')
+                <a class="btn btn-success mr-2 btn-save-ggt">
+                    <i class="icon-paperplane mr-2"></i>Lưu GGT
+                </a>
+                @endunless
+            @else
+                <a class="btn btn-primary mr-2 d-none" id="print-cv">
+                    <i class="icon-printer2 mr-2"></i>In công văn
+                </a>
+
+                <button type="button" class="btn btn-primary btn-add-cv d-none">
+                    <i class="icon-plus2 mr-1"></i>Thêm công văn</button>
+                
+                @unless($post->status > 0 && auth()->user()->position == 'staff')
+                <a class="btn btn-success mr-2 btn-save-ggt">
+                    <i class="icon-paperplane mr-2"></i>Lưu công văn
+                </a>
+                @endunless
+            @endif
+
+            <a class="btn btn btn-primary btn-history" data-toggle="modal" data-target="#exampleModal">
                 <i class="icon-history mr-2"></i> Lịch sử
             </a>
         </div>
@@ -949,6 +967,28 @@
                     $(element).siblings('.print-show').html(value);
                 }
                
+            })
+
+            $('#print-cv').on('click', function() {
+                $('#page-size').html('@page { size: portrait}');
+
+                window.print();
+            })
+
+            $('#print-ggt').on('click', function() {
+                $('.ggt-container').removeClass('print-hide');
+                $('.work_content').addClass('print-hide');
+                $('#page-size').html('@page { size: landscape}');
+
+                window.print();
+            })
+
+            $('#print-work-content').on('click', function() {
+                $('.work_content').removeClass('print-hide');
+                $('.ggt-container').addClass('print-hide');
+                $('#page-size').html('@page { size: portrait}');
+
+                window.print();
             })
         </script>
         <script type="text/template" id="add-note">

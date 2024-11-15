@@ -78,8 +78,6 @@
             @media print {
                 .work_content {
                     border: 0 !important;
-                    page-break-before: always;
-                    page-break-after: auto;
                 }
                 .section-ggt {
                     border: 0;
@@ -499,12 +497,20 @@
         </div>
 
         <div class="action-bar print-hide pb-2">
-            <button type="submit" class="btn btn-success"><i class="icon-paperplane mr-2"></i>Gửi </button>
-            <a class="btn btn-primary mx-2" title="In giấy giới thiệu" onclick="window.print()">
-                <i class="icon-printer2 mr-2"></i><span class="in-ggt">In GGT </span>
+            <button type="submit" class="btn btn-success mr-2">
+                <i class="icon-paperplane mr-2"></i>Gửi </button>
+            
+            <a class="btn btn-primary mr-2" id="print-ggt">
+                <i class="icon-printer2 mr-2"></i>In GGT
             </a>
-
+            <a class="btn btn-primary mr-2" id="print-work-content">
+                <i class="icon-printer2 mr-2"></i><span>In nội dung làm việc</span>
+            </a>
             <button type="button" class="btn btn-primary btn-add-ggt"><i class="icon-plus2 mr-1"></i>Thêm GGT</button>
+
+            <a class="btn btn-primary mr-2 d-none" id="print-cv">
+                <i class="icon-printer2 mr-2"></i>In công văn
+            </a>
             <button type="button" class="btn btn-primary btn-add-cv d-none"><i class="icon-plus2 mr-1"></i>Thêm công văn</button>
         </div>
     </form>
@@ -825,28 +831,48 @@
                 var val = $("input[name=is_ggt]:checked").val();
                 
                 if(val == 1) {
-                    $('#page-size').html('@page { size: auto}');
-
                     $('.cv-container').addClass('d-none');
                     $('.btn-add-cv').addClass('d-none');
+                    $('#print-cv').addClass('d-none');
 
                     $('.ggt-container').removeClass('d-none');
                     $('.btn-add-ggt').removeClass('d-none');
                     $('.work_content').removeClass('d-none');
-
-                    $('.in-ggt').text('In GGT');
+                    $('#print-work-content').removeClass('d-none');
+                    $('#print-ggt').removeClass('d-none');
                 } else {
-                    $('#page-size').html('@page { size: portrait}');
-
                     $('.ggt-container').addClass('d-none');
                     $('.btn-add-ggt').addClass('d-none');
                     $('.work_content').addClass('d-none');
+                    $('#print-work-content').addClass('d-none');
+                    $('#print-ggt').addClass('d-none');
 
                     $('.cv-container').removeClass('d-none');
                     $('.btn-add-cv').removeClass('d-none');
-
-                    $('.in-ggt').text('In công văn');
+                    $('#print-cv').removeClass('d-none');
                 }
+            })
+
+            $('#print-cv').on('click', function() {
+                $('#page-size').html('@page { size: portrait}');
+
+                window.print();
+            })
+
+            $('#print-ggt').on('click', function() {
+                $('.ggt-container').removeClass('print-hide');
+                $('.work_content').addClass('print-hide');
+                $('#page-size').html('@page { size: landscape}');
+
+                window.print();
+            })
+
+            $('#print-work-content').on('click', function() {
+                $('.work_content').removeClass('print-hide');
+                $('.ggt-container').addClass('print-hide');
+                $('#page-size').html('@page { size: portrait}');
+
+                window.print();
             })
         </script>
 
