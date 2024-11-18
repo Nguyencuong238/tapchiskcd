@@ -340,7 +340,7 @@
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
 	<script src="{{ asset('plugins/forms/selects/select2.min.js') }}"></script>
-	<script src="https://cdn.tiny.cloud/1/1p1r9bz5it3wda2ba93em6rbhtrcilgk76gplex4m2386gra/tinymce/5/tinymce.min.js" referrerpolicy="origin" defer></script>
+	<script src="https://cdn.tiny.cloud/1/{{env('TINYMCE')}}/tinymce/5/tinymce.min.js" referrerpolicy="origin" defer></script>
 
 	<script>
 		function setSearchSelect2(selector, searchUrl) {
