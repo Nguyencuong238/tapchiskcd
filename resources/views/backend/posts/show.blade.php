@@ -744,9 +744,6 @@
                 <a class="btn btn-primary mr-2" id="print-cv">
                     <i class="icon-printer2 mr-2"></i>In công văn
                 </a>
-
-                <button type="button" class="btn btn-primary btn-add-cv">
-                    <i class="icon-plus2 mr-1"></i>Thêm công văn</button>
                 
                 @unless($post->status > 0 && auth()->user()->position == 'staff')
                 <a class="btn btn-success mr-2 btn-save-ggt">
