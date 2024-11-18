@@ -970,7 +970,7 @@
             })
 
             $('#print-cv').on('click', function() {
-                $('#page-size').html('@page { size: portrait}');
+                $('#page-size').html('@page { size: portrait; margin: 2cm 2cm 2cm 3cm;}');
 
                 window.print();
             })
