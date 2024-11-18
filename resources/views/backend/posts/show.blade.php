@@ -741,11 +741,11 @@
                 </a>
                 @endunless
             @else
-                <a class="btn btn-primary mr-2 d-none" id="print-cv">
+                <a class="btn btn-primary mr-2" id="print-cv">
                     <i class="icon-printer2 mr-2"></i>In công văn
                 </a>
 
-                <button type="button" class="btn btn-primary btn-add-cv d-none">
+                <button type="button" class="btn btn-primary btn-add-cv">
                     <i class="icon-plus2 mr-1"></i>Thêm công văn</button>
                 
                 @unless($post->status > 0 && auth()->user()->position == 'staff')

@@ -690,10 +690,10 @@
                 </a>
                 <button type="button" class="btn btn-primary btn-add-ggt"><i class="icon-plus2 mr-1"></i>Thêm GGT</button>
             @else
-                <a class="btn btn-primary mr-2 d-none" id="print-cv">
+                <a class="btn btn-primary mr-2" id="print-cv">
                     <i class="icon-printer2 mr-2"></i>In công văn
                 </a>
-                <button type="button" class="btn btn-primary btn-add-cv d-none"><i class="icon-plus2 mr-1"></i>Thêm công văn</button>
+                <button type="button" class="btn btn-primary btn-add-cv"><i class="icon-plus2 mr-1"></i>Thêm công văn</button>
             @endif
 
             <a class="btn btn btn-primary btn-history ml-2" data-toggle="modal" data-target="#exampleModal">
