@@ -107,7 +107,10 @@
             border-color: red;
         }
         @media print {
-            .work_content {
+            body {
+                background: #fff;
+            }
+            .work_content, textarea {
                 border: 0 !important;
             }
             .section-ggt {
@@ -744,7 +747,7 @@
                 <a class="btn btn-primary mr-2" id="print-cv">
                     <i class="icon-printer2 mr-2"></i>In công văn
                 </a>
-                
+
                 @unless($post->status > 0 && auth()->user()->position == 'staff')
                 <a class="btn btn-success mr-2 btn-save-ggt">
                     <i class="icon-paperplane mr-2"></i>Lưu công văn

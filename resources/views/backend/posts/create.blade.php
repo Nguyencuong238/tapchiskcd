@@ -76,7 +76,10 @@
                 border-color: red;
             }
             @media print {
-                .work_content {
+                body {
+                    background: #fff;
+                }
+                .work_content, textarea {
                     border: 0 !important;
                 }
                 .section-ggt {
