@@ -619,7 +619,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-5 offset-2 text-center">
+                                <div class="col-5 offset-1 text-center">
                                     <div class="fs-12pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
                                     <div class="fs-13pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
                                     <hr style="width: 20%;" class="mt-2 mb-2">
@@ -654,7 +654,7 @@
                                 </div>
                             </div>
 
-                            <div class="fs-11pt fw-600">Thông tin liên hệ:</div>
+                            <div class="fs-11pt fw-600 mt-3">Thông tin liên hệ:</div>
                             <div class="fs-11pt">Tạp chí Sức Khỏe Cộng Đồng</div>
                             <div class="fs-11pt">Tầng 4, Tòa nhà SaiGonbank, số 99 Nguyễn Phong Sắc, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội.</div>
                             <div class="fs-11pt">Hotline: 0914946668</div>
