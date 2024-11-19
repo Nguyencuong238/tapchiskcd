@@ -29,6 +29,12 @@
         .fs-14pt {
             font-size: 14pt !important;
         }
+        .fs-15pt {
+            font-size: 15pt !important;
+        }
+        .fs-16pt {
+            font-size: 16pt !important;
+        }
         .fs-18pt {
             font-size: 18pt !important;
         }
@@ -562,26 +568,26 @@
                                     </div>
                                 </div>
 
-                                <div class="col-5 offset-2 text-center">
+                                <div class="col-5 offset-1 text-center">
                                     <div class="fs-12pt fw-600">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
                                     <div class="fs-13pt fw-600"> Độc lập – Tự do – Hạnh phúc</div>
                                     <hr style="width: 20%;" class="mt-2 mb-2">
                                     <div class="fs-14pt font-italic">
                                         <input name="ggt[{{$key}}][address]" value="{{@$item['address']}}" class="fs-14pt font-italic text-right" style="width: 100px;">
-                                        , ngày <input name="ggt[{{$key}}][date]" value="{{@$item['date']}}" class="fs-14pt font-italic" style="width: 20px;">
-                                            tháng <input name="ggt[{{$key}}][month]" value="{{@$item['month']}}" class="fs-14pt font-italic" style="width: 20px;">
-                                            năm <input name="ggt[{{$key}}][year]" value="{{@$item['year']}}" class="fs-14pt font-italic" style="width: 35px;">
+                                        , ngày <input name="ggt[{{$key}}][date]" value="{{@$item['date']}}" class="fs-14pt font-italic" style="width: 25px;">
+                                            tháng <input name="ggt[{{$key}}][month]" value="{{@$item['month']}}" class="fs-14pt font-italic" style="width: 25px;">
+                                            năm <input name="ggt[{{$key}}][year]" value="{{@$item['year']}}" class="fs-14pt font-italic" style="width: 40px;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="fs-14pt mt-4 row">
+                            <div class="fs-15pt mt-4 row">
                                 <div class="col-5 text-right">Kính gửi: </div>
-                                <textarea name="ggt[{{$key}}][sent_to]" class="flex-1 fs-14pt col-7" rows="2">{{@$item['sent_to']}}</textarea>
+                                <textarea name="ggt[{{$key}}][sent_to]" class="flex-1 fs-15pt col-7" rows="2">{{@$item['sent_to']}}</textarea>
                             </div>
                             
-                            <div class="mt-4 fs-14pt d-print-inline">
-                                <div class="d-none print-show fs-14pt content-print">{!! @$item['content'] !!}</div>
+                            <div class="mt-4 fs-15pt d-print-inline">
+                                <div class="d-none print-show fs-15pt content-print">{!! @$item['content'] !!}</div>
                                 <textarea name="ggt[{{$key}}][content]" class="cv-editor form-control print-hide">{{@$item['content']}}</textarea>
                             </div>
 
@@ -598,10 +604,10 @@
                                 </div>
                             </div>
 
-                            <div class="fs-11pt fw-600">Thông tin liên hệ:</div>
-                            <div class="fs-11pt">Tạp chí Sức Khỏe Cộng Đồng</div>
-                            <div class="fs-11pt">Tầng 4, Tòa nhà SaiGonbank, số 99 Nguyễn Phong Sắc, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội.</div>
-                            <div class="fs-11pt">Hotline: 0914946668</div>
+                            <div class="fs-12pt fw-600 mt-3">Thông tin liên hệ:</div>
+                            <div class="fs-12pt">Tạp chí Sức Khỏe Cộng Đồng</div>
+                            <div class="fs-12pt">Tầng 4, Tòa nhà SaiGonbank, số 99 Nguyễn Phong Sắc, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội.</div>
+                            <div class="fs-12pt">Hotline: 0914946668</div>
                         </div>
                     </div>
                     @endforeach
@@ -625,9 +631,9 @@
                                     <hr style="width: 20%;" class="mt-2 mb-2">
                                     <div class="fs-13pt font-italic">
                                         <input name="ggt[0][address]" class="fs-13pt font-italic text-right" style="width: 100px;">
-                                        , ngày <input name="ggt[0][date]" class="fs-13pt font-italic" style="width: 20px;">
-                                            tháng <input name="ggt[0][month]" class="fs-13pt font-italic" style="width: 20px;">
-                                            năm <input name="ggt[0][year]" class="fs-13pt font-italic" style="width: 35px;">
+                                        , ngày <input name="ggt[0][date]" class="fs-13pt font-italic" style="width: 25px;">
+                                            tháng <input name="ggt[0][month]" class="fs-13pt font-italic" style="width: 25px;">
+                                            năm <input name="ggt[0][year]" class="fs-13pt font-italic" style="width: 40px;">
                                     </div>
                                 </div>
                             </div>
