@@ -162,9 +162,7 @@
             .right-ggt {
                 padding-left: 45px !important;
             }
-            .card-body {
-                padding: 2cm 2cm 2cm 3cm;
-            }
+            
         }
     </style>
     <style id="page-size">
@@ -979,7 +977,7 @@
             })
 
             $('#print-cv').on('click', function() {
-                $('#page-size').html('@page { size: portrait; margin: 0 !important;}');
+                $('#page-size').html('@page { size: portrait; margin: 0 !important;} @media print {.card-body {padding: 2cm 2cm 2cm 3cm;}}');
 
                 window.print();
             })
