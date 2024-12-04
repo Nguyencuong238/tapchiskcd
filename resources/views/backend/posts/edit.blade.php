@@ -681,8 +681,11 @@
             </div>  --}}
         </div>
         <div class="action-bar print-hide pb-2">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success mr-2">
                 <i class="icon-paperplane mr-2"></i>Gửi @if($post->status == -1) lại @endif</button>
+
+            <button type="submit" class="btn btn-success btn-draft mr-2">
+                <i class="icon-floppy-disk mr-2"></i>Lưu nháp </button>
             
             @if($post->is_ggt)
                 <a class="btn btn-primary mr-2" id="print-ggt">
@@ -775,7 +778,11 @@
             $('textarea.print-hide, input.print-hide').on('change', function() {
                 $(this).siblings('.print-show').html($(this).val());
             })
+            @if($post->is_draft == 0)
             $('#post-status-{{$post->status}}').addClass('active');
+            @else
+            $('#post-draft').addClass('active');
+            @endif
 
             var j = {{count($post->ggt)}};
             $('.btn-add-ggt').on('click', function() {
@@ -797,8 +804,22 @@
                     $('.dateline').get(0).scrollIntoView({behavior: 'smooth'});
                     $('.custom-control-label').addClass('error');
                 } else {
-                    $(this).closest('form').submit();
+                    var form = $(this).closest('form');
+                    
+                    form.attr('action', "{{route('posts.update', $post)}}");
+    
+                    form.submit();
                 }
+            });
+
+            $('.btn-draft').on('click', function(e) {
+                e.preventDefault();
+
+                var form = $(this).closest('form');
+
+                form.attr('action', "{{route('posts.updateDraft', $post)}}");
+
+                form.submit();
             });
 
             $('.pv-commit input').on('click', function() {

@@ -500,8 +500,11 @@
         </div>
 
         <div class="action-bar print-hide pb-2">
-            <button type="submit" class="btn btn-success mr-2">
+            <button type="submit" class="btn btn-success btn-send mr-2">
                 <i class="icon-paperplane mr-2"></i>Gửi </button>
+
+            <button type="submit" class="btn btn-success btn-draft mr-2">
+                <i class="icon-floppy-disk mr-2"></i>Lưu nháp </button>
             
             <a class="btn btn-primary mr-2" id="print-ggt">
                 <i class="icon-printer2 mr-2"></i>In GGT
@@ -553,15 +556,29 @@
                 $(this).closest('.section-ggt').remove('');
             })
 
-            $('.btn-success').on('click', function(e) {
+            $('.btn-send').on('click', function(e) {
                 e.preventDefault();
 
                 if(!$('.pv-commit input').is(':checked')) {
                     $('.dateline').get(0).scrollIntoView({behavior: 'smooth'});
                     $('.custom-control-label').addClass('error');
                 } else {
-                    $(this).closest('form').submit();
+                    var form = $(this).closest('form');
+                    
+                    form.attr('action', "{{route('posts.store')}}");
+    
+                    form.submit();
                 }
+            });
+
+            $('.btn-draft').on('click', function(e) {
+                e.preventDefault();
+
+                var form = $(this).closest('form');
+
+                form.attr('action', "{{route('posts.saveDraft')}}");
+
+                form.submit();
             });
 
             $('.pv-commit input').on('click', function() {

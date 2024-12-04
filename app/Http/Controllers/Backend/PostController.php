@@ -43,7 +43,11 @@ class PostController extends Controller
                 $q->where('author_id', request('author'));
             })
             ->when(request()->filled('status'), function ($q) {
-                $q->where('status', request('status'));
+                $q->where('status', request('status'))
+                    ->where('is_draft', 0);
+            })
+            ->when(request()->filled('is_draft'), function ($q) {
+                $q->where('is_draft', request('is_draft'));
             })
             ->when(auth()->user()->position == 'staff', function($q) {
                 $q->where('author_id', auth()->id());
@@ -53,6 +57,8 @@ class PostController extends Controller
                     $subQ->where('department_id', auth()->user()->department_id);
                 });
             })
+            ->orderBy('approve_date', 'desc')
+            ->orderBy('created_at', 'asc')
             ->paginate();
 
         return view('backend.posts.index', compact('posts'));
@@ -96,7 +102,7 @@ class PostController extends Controller
             'start_date' => $request->start_date,
             'end_date'   => $request->end_date,
             'author_id'  => $request->user()->id,
-            'status'     => auth()->user()->position == 'staff' ? 0: (auth()->user()->position == 'manager' ? 1: 2),
+            'status'     => 0,
             'ggt'        => $request->is_ggt ? array_values($request->input('ggt', [])) : array_values($request->input('cv', [])),
             'is_ggt'     => $request->is_ggt,
             'work_content' => $request->work_content
@@ -181,7 +187,7 @@ class PostController extends Controller
             'title'      => 'Tiêu đề',
             'excerpt'    => 'Mô tả',
             'body'       => 'Nội dung',
-            'ggt'        => $post->is_ggt ? 'Giấy giới thiệu' : 'Công văn'
+            'ggt'        => $post->is_ggt ? 'Giấy giới thiệu': 'Công văn',
         ];
 
         foreach ($fields as $key => $value) {
@@ -204,12 +210,14 @@ class PostController extends Controller
         }
 
         $post->fill([
-            'title'   => $request->title,
-            'excerpt' => $request->excerpt,
-            'body'    => $request->body,
-            'ggt'     => array_values($request->input('ggt', [])),
+            'title'        => $request->title,
+            'excerpt'      => $request->excerpt,
+            'body'         => $request->body,
+            'ggt'          => array_values($request->input('ggt', [])),
             'work_content' => $request->work_content,
-            'status'  => 0
+            'start_date'   => $request->start_date,
+            'end_date'     => $request->end_date,
+            'status'       => 0
         ])->save();
 
         if(!empty($changeFields)) {
@@ -279,6 +287,11 @@ class PostController extends Controller
         $post = Post::findOrFail($request->id);
 
         $post->status = $request->status;
+
+        if($request->status == 3) {
+            $post->approve_date = date('Y-m-d H:i:s');
+        }
+
         $post->save();
 
         $labels = [
@@ -301,7 +314,6 @@ class PostController extends Controller
             flash(__('Đề tài "'. $post->title.'" đã bị từ chối!'), 'success');
         }
         
-
         return redirect()->back();
     }
 
@@ -358,6 +370,74 @@ class PostController extends Controller
         $post->categories()->sync($request->categories);
 
         flash(__('Record ":model" updated', ['model' => $post->title]), 'success');
+
+        return redirect()->back();
+    }
+
+    public function saveDraft(Request $request)
+    {
+        if (! auth()->user()->can('posts.create')) {
+            abort(403);
+        }
+
+        $post = Post::create([
+            'title'      => $request->title,
+            'excerpt'    => $request->excerpt,
+            'body'       => $request->body,
+            'start_date' => $request->start_date,
+            'end_date'   => $request->end_date,
+            'author_id'  => $request->user()->id,
+            'status'     => 0,
+            'ggt'        => $request->is_ggt ? array_values($request->input('ggt', [])) : array_values($request->input('cv', [])),
+            'is_ggt'     => $request->is_ggt,
+            'work_content' => $request->work_content,
+            'is_draft' => 1
+        ]);
+
+        $post
+            ->addFromMediaLibraryRequest($request->media)
+            ->toMediaCollection('media');
+
+        $post
+            ->addFromMediaLibraryRequest($request->attachments)
+            ->toMediaCollection('attachments');
+
+        $post->categories()->sync($request->categories);
+
+        flash(__('Bản ghi ":model" đã được lưu nháp', ['model' => $post->title]), 'success');
+
+        return redirect()->back();
+    }
+
+    public function updateDraft(Request $request, Post $post)
+    {
+        if (! auth()->user()->can('posts.update')) {
+            abort(403);
+        }
+
+        $post->fill([
+            'title'      => $request->title,
+            'excerpt'    => $request->excerpt,
+            'body'       => $request->body,
+            'start_date' => $request->start_date,
+            'end_date'   => $request->end_date,
+            'status'     => 0,
+            'ggt'        => array_values($request->input('ggt', [])),
+            'work_content' => $request->work_content,
+            'is_draft' => 1
+        ])->save();
+
+        $post
+            ->syncFromMediaLibraryRequest($request->media)
+            ->toMediaCollection('media');
+
+        $post
+            ->syncFromMediaLibraryRequest($request->attachments)
+            ->toMediaCollection('attachments');
+
+        $post->categories()->sync($request->categories);
+
+        flash(__('Bản ghi ":model" đã được lưu nháp', ['model' => $post->title]), 'success');
 
         return redirect()->back();
     }

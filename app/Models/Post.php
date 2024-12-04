@@ -37,16 +37,6 @@ class Post extends Model implements HasMedia
     }
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array<int, string>
-     */
-    public $dates = [
-        'publish_date',
-    ];
-
-
-    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -55,6 +45,7 @@ class Post extends Model implements HasMedia
         'ggt' => 'array',
         'start_date' => 'date',
         'end_date' => 'date',
+        'approve_date' => 'datetime',
         'ggt' => 'array'
     ];
 

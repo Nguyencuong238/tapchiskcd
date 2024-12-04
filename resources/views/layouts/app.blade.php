@@ -138,8 +138,12 @@
 									<a href="{{ route('posts.create') }}" class="nav-link {{!request()->routeIs('posts.create') ?: 'active'}}">
 										Thêm mới
 									</a>
+									<a href="{{ route('posts.index', ['is_draft' => 1]) }}" id="post-draft"
+									class="nav-link {{(request()->routeIs('posts.index') && request('is_draft') == 1) ? 'active' : ''}}">
+									Nháp
+									</a>
 									<a href="{{ route('posts.index', ['status' => 0]) }}" id="post-status-0"
-									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 0) ? 'active' : ''}}">
+									class="nav-link {{(request()->routeIs('posts.index') && request('status') == 0 && request('is_draft') == 0) ? 'active' : ''}}">
 										Đề tài chờ TB đơn vị duyệt
 									</a>
 									<a href="{{ route('posts.index', ['status' => 1]) }}" id="post-status-1"

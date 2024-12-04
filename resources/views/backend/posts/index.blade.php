@@ -47,13 +47,17 @@
                         <th>{{ __('Author') }}</th>
                         <th>{{ __('Categories') }}</th>
                         {{--  <th>{{ __('Tags') }}</th>  --}}
-                        <th>{{ __('Date') }}</th>
+                        <th>Ngày tạo</th>
+                        <th>Ngày duyệt</th>
                         {{--  <th>Trạng thái</th>  --}}
                         <th class="text-center">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
+                    @php
+                        $approve_date = $post->approve_date ?? ($post->status == 3 ? $post->updated_at : '');
+                    @endphp
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
@@ -76,11 +80,12 @@
                             @endif
                         </td>
                         <td>{{ formatDate($post->created_at) }}</td>
+                        <td>{{ $approve_date ? formatDate($approve_date) : '--' }}</td>
                         {{--  <td><span class="btn btn-{{$statusNames[$post->status]['color']}}">{{ $statusNames[$post->status]['name'] }}</span></td>  --}}
                         <td class="text-center">
                             <div class="d-inline-flex justify-content-center">
                                 @if(auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director', 'assistant']) 
-                                && $post->status >= 1 || $post->status < 1)) 
+                                && $post->status >= 1 || $post->status < 1) && $post->is_draft == 0) 
                                 <a href="{{ route('posts.show', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('View') }}">
                                     <i class="icon-eye mr-1"></i>
                                 </a>
