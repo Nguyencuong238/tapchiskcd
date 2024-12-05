@@ -547,7 +547,7 @@
                         </div>
                     </div>
                     <div class="card-body"> 
-                        <div class="d-none print-show fs-13pt content-print">{!!$post->work_content!!}</div>
+                        <div class="d-none print-show fs-14pt content-print" style="font-family: 'Times New Roman';">{!!$post->work_content!!}</div>
                         <textarea name="work_content" class="cv-editor form-control print-hide">{{$post->work_content}}</textarea>
                     </div>
                 </div>
