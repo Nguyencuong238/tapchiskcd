@@ -48,6 +48,7 @@ class PostController extends Controller
             })
             ->when(request()->filled('is_draft'), function ($q) {
                 $q->where('is_draft', request('is_draft'));
+                $q->where('author_id', auth()->id());
             })
             ->when(auth()->user()->position == 'staff', function($q) {
                 $q->where('author_id', auth()->id());
