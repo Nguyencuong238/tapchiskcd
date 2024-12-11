@@ -197,11 +197,11 @@ class PostController extends Controller
             }
         }
 
-        if($post->start_date->format('Y-m-d') != $request->start_date) {
+        if(!$post->start_date || $post->start_date->format('Y-m-d') != $request->start_date) {
             $changeFields[] = 'Ngày bắt đầu';
         }
 
-        if($post->end_date->format('Y-m-d') != $request->end_date) {
+        if(!$post->end_date || $post->end_date->format('Y-m-d') != $request->end_date) {
             $changeFields[] = 'Ngày kết thúc';
         }
 
@@ -218,7 +218,8 @@ class PostController extends Controller
             'work_content' => $request->work_content,
             'start_date'   => $request->start_date,
             'end_date'     => $request->end_date,
-            'status'       => 0
+            'status'       => 0,
+            'is_draft'     => 0,
         ])->save();
 
         if(!empty($changeFields)) {
@@ -377,10 +378,6 @@ class PostController extends Controller
 
     public function saveDraft(Request $request)
     {
-        if (! auth()->user()->can('posts.create')) {
-            abort(403);
-        }
-
         $post = Post::create([
             'title'      => $request->title,
             'excerpt'    => $request->excerpt,
@@ -412,10 +409,6 @@ class PostController extends Controller
 
     public function updateDraft(Request $request, Post $post)
     {
-        if (! auth()->user()->can('posts.update')) {
-            abort(403);
-        }
-
         $post->fill([
             'title'      => $request->title,
             'excerpt'    => $request->excerpt,
