@@ -45,11 +45,8 @@
                         <th>#</th>
                         <th>{{ __('Title') }}</th>
                         <th>{{ __('Author') }}</th>
-                        <th>{{ __('Categories') }}</th>
-                        {{--  <th>{{ __('Tags') }}</th>  --}}
                         <th>Ngày tạo</th>
                         <th>Ngày duyệt</th>
-                        {{--  <th>Trạng thái</th>  --}}
                         <th class="text-center">{{ __('Action') }}</th>
                     </tr>
                 </thead>
@@ -60,41 +57,29 @@
                     @endphp
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>
-                            {{--  <a href="{{ $post->showUrl() }}" target="_blank" rel="noopener noreferrer">  --}}
-                                {{ $post->title }}
-                            {{--  </a>  --}}
-                        </td>
+                        <td>{{ $post->title }}</td>
                         <td>
                             <a href="{{ route('posts.index', ['author' => $post->author->id]) }}">
                                 {{ $post->author_id == auth()->id() ? 'Tôi' : $post->author->name }}
                             </a>
                         </td>
-                        <td>
-                            @if($post->categories->isEmpty())
-                                --
-                            @else
-                                @foreach($post->categories as $category)
-                                    <a href="{{ route('posts.index', ['category' => $category->slug]) }}">{{ $category->name }}</a> @if(!$loop->last),  @endif 
-                                @endforeach
-                            @endif
-                        </td>
                         <td>{{ formatDate($post->created_at) }}</td>
                         <td>{{ $approve_date ? formatDate($approve_date) : '--' }}</td>
-                        {{--  <td><span class="btn btn-{{$statusNames[$post->status]['color']}}">{{ $statusNames[$post->status]['name'] }}</span></td>  --}}
                         <td class="text-center">
                             <div class="d-inline-flex justify-content-center">
-                                @if(auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director', 'assistant']) 
+                                {{--  @if(auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director', 'assistant']) 
                                 && $post->status >= 1 || $post->status < 1) && $post->is_draft == 0) 
                                 <a href="{{ route('posts.show', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('View') }}">
                                     <i class="icon-eye mr-1"></i>
                                 </a>
-                                @endcan
+                                @endcan  --}}
 
+                                
+                                <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('Edit') }}">
+                                    <i class="fa fa-pencil mr-1"></i>
+                                </a>
+                                
                                 @if(auth()->id() == $post->author_id && $post->status <= 0 || auth()->user()->hasRole(1))
-                                    <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('Edit') }}">
-                                        <i class="fa fa-pencil mr-1"></i>
-                                    </a>
                                     <a href="javascript:void(0)" data-action-url="{{ route('posts.destroy', $post) }}" 
                                         data-behavior="delete-resource" class="dropdown-item px-1 rounded" title="{{ __('Delete') }}">
                                         <i class="fa fa-trash mr-1"></i> 

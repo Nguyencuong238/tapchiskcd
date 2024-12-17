@@ -26,7 +26,6 @@ class PostController extends Controller
         }
 
         $posts = Post::query()
-            ->latest()
             ->with('author', 'categories')
             ->when(request('search'), function ($q) {
                 $q->where('title', 'like', '%' . request('search') . '%')
@@ -59,7 +58,7 @@ class PostController extends Controller
                 });
             })
             ->orderBy('approve_date', 'desc')
-            ->orderBy('created_at', 'asc')
+            ->latest()
             ->paginate();
 
         return view('backend.posts.index', compact('posts'));
@@ -139,6 +138,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        abort(404);
+
         $post = Post::with('media')->findOrFail($id);
 
         if (auth()->user()->can('posts.view') && (in_array(auth()->user()->position, ['secretary', 'director', 'assistant']) 
@@ -218,7 +219,6 @@ class PostController extends Controller
             'work_content' => $request->work_content,
             'start_date'   => $request->start_date,
             'end_date'     => $request->end_date,
-            'status'       => 0,
             'is_draft'     => 0,
         ])->save();
 
@@ -310,10 +310,10 @@ class PostController extends Controller
             'note' => $labels[$post->status]
         ]);
 
-        if($post->status == 1)
+        if($post->status == -1) {
+            flash(__('Đề tài "'. $post->title.'" đã bị trả lại!'), 'success');
+        } else {
             flash(__('Đề tài "'. $post->title.'" đã được duyệt!'), 'success');
-        else {
-            flash(__('Đề tài "'. $post->title.'" đã bị từ chối!'), 'success');
         }
         
         return redirect()->back();
@@ -334,7 +334,7 @@ class PostController extends Controller
                 'first_character' => substr($note->user->name, 0, 1),
                 'name' => $note->user->name,
                 'content' => $note->content,
-                'date' => $note->created_at->format('H:i d/m/Y')
+                'date' => $note->created_at->format('H:i:s d/m/Y')
             ]
         ];
     }
@@ -415,7 +415,6 @@ class PostController extends Controller
             'body'       => $request->body,
             'start_date' => $request->start_date,
             'end_date'   => $request->end_date,
-            'status'     => 0,
             'ggt'        => array_values($request->input('ggt', [])),
             'work_content' => $request->work_content,
             'is_draft' => 1

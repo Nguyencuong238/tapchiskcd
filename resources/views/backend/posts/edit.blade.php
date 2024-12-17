@@ -48,8 +48,12 @@
             .section-ggt input, .section-ggt textarea {
                 color: #333;
             }
+            .content {
+                position: relative;
+                padding-bottom: 0;
+            }
             .action-bar {
-                position: fixed;
+                position: sticky;
                 bottom: 0;
                 padding-top: 20px;
                 background: whitesmoke;
@@ -78,7 +82,40 @@
             .custom-checkbox .custom-control-label.error:before {
                 border-color: red;
             }
-            
+            .text-avatar {
+                width: 35px;
+                height: 35px;
+                background: #aaa;
+                border-radius: 50%;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                margin-right: 8px;
+            }
+            .note-input {
+                background: #f0f2f5;
+                border: 0;
+                border-radius: 6px;
+                padding: 10px;
+                margin-right: 10px;
+                color: #333;
+            }
+            .note-input:focus {
+                outline: 0;
+            }
+            .note-date {
+                color: #666;
+                font-size: 13px;
+                line-height: 16px;
+            }
+            .btn-send-note .fa-check {
+                font-size: 12px;
+            }
+            .cv-container .section-ggt:last-child {
+                margin-bottom: 15px !important;
+            }
+
             @media print {
                 body {
                     background: #fff;
@@ -129,26 +166,30 @@
                 .right-ggt {
                     padding-left: 45px !important;
                 }
+                .pre {
+                    line-height: 1.25;
+                }
             }
         </style>
         <style id="page-size">
             
         </style>
     @endpush
-    <form action="{{ route('posts.update', $post) }}" method="post">
-        @csrf
-        @method('PUT')
-        <div class="row">
-            <div class="col-lg-12 w-print-100">
-                @php
-                    $pageTitles = [
-                        0 => 'Đề tài chờ TB đơn vị duyệt',
-                        1 => 'Đề tài chờ Tổng thư ký duyệt',
-                        2 => 'Đề tài chờ TBT duyệt',
-                        3 => 'Đề tài được duyệt',
-                        -1 => 'Đề tài bị trả lại'
-                    ];
-                @endphp
+    <div class="row">
+        <div class="col-md-9 w-print-100">
+            @php
+                $pageTitles = [
+                    0 => 'Đề tài chờ TB đơn vị duyệt',
+                    1 => 'Đề tài chờ Tổng thư ký duyệt',
+                    2 => 'Đề tài chờ TBT duyệt',
+                    3 => 'Đề tài được duyệt',
+                    -1 => 'Đề tài bị trả lại'
+                ];
+            @endphp
+
+            <form action="{{ route('posts.update', $post) }}" method="post" id="post-form">
+                @csrf
+                @method('PUT')
                 <div class="card print-hide">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
@@ -163,14 +204,6 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        {{--  <div class="form-group">
-                            <label>Mô tả:</label>
-                            <textarea name="excerpt" class="form-control @error('excerpt')is-invalid @enderror" placeholder="Thêm mô tả">{{ old('excerpt', $post->excerpt) }}</textarea>
-                            @error('excerpt')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>  --}}
 
                         <div class="form-group">
                             <label>Hồ sơ, tư liệu phục vụ đề tài:</label>
@@ -638,75 +671,122 @@
                         @endif
                     </div>
                 @endif
-            </div>
-            {{--  <div class="col-lg-3 print-hide">
-                <div class="card">
-                    <div class="sidebar-section-header">
-                        <span class="font-weight-semibold">{{ __('Categories') }}</span>
-                        <div class="list-icons ml-auto">
-                            <a href="#category" class="list-icons-item" data-toggle="collapse" aria-expanded="true">
-                                <i class="icon-arrow-down12"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="collapse show" id="category">
-                        <div class="card-body">
-                            @include('backend.posts._categories', ['categories' => $categories, 'selected' => old('categories', $post->categories()->pluck('id')->toArray())])
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>{{ __('Ngày bắt đầu') }}:</label>
-                            <input type="text" name="start_date" value="{{ old('start_date', $post->start_date) }}" 
-                                    class="form-control @error('start_date')is-invalid @enderror start_date">
-                            @error('start_date')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>{{ __('Ngày kết thúc') }}:</label>
-                            <input type="text" name="end_date" value="{{ old('end_date', $post->end_date) }}" 
-                                    class="form-control @error('end_date')is-invalid @enderror end_date">
-                            @error('end_date')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-
-            </div>  --}}
+            </form>
         </div>
-        <div class="action-bar print-hide pb-2">
-            <button type="submit" class="btn btn-success mr-2">
-                <i class="icon-paperplane mr-2"></i>Gửi @if($post->status == -1) lại @endif</button>
+        <div class="col-md-3 print-hide">
+            <div class="card">
+                <div class="sidebar-section-header">
+                    <span class="font-weight-semibold">{{ __('Ý kiến') }}</span>
+                </div>
+                <div class="card-body pt-1">
+                    <div class="note-box d-flex position-relative mb-4">
+                        <textarea name="note_content" type="text" class="note-input flex-1" placeholder="Ý kiến . . ."></textarea>
+                        <div>
+                            <button type="button" class="btn btn-success py-1" id="btn-send-note">
+                                <i class="fa fa-check"></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+                    <div class="list-notes">
+                    @if($post->notes->count())
+                        @php
+                            $post_notes = $post->notes()->latest()->get();
+                        @endphp
+                        @foreach($post_notes as $note)
+                        <div class="d-flex mb-3">
+                            <span class="text-avatar mr-10">{{ substr($note->user->name, 0, 1) }}</span>
+                            <div class="flex-1">
+                                <div class="d-flex justify-content-between">
+                                    <span class="reviewer fw-600 mr-5">{{$note->user->name}}</span>
+                                </div>
+                                <div class="note-content mt-1">{{$note->content}}</div>
+                                <div class="note-date mt-1">{{ $note->created_at->format('H:i:s d/m/Y')}}</div>
+                            </div>
+                        </div>
+                        @endforeach
+                    @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="action-bar print-hide pb-2 d-flex justify-content-between">
+        <div>
+            @if(auth()->id() == $post->author_id && $post->status <= 0 || auth()->user()->hasRole(1) && $post->status != 3)
+                <button type="submit" class="btn btn-success mr-2 btn-submit-post">
+                    <i class="icon-paperplane mr-2"></i>Gửi @if($post->status == -1) lại @endif
+                </button>
+            @endif
 
-            <button type="submit" class="btn btn-success btn-draft mr-2">
-                <i class="icon-floppy-disk mr-2"></i>Lưu nháp </button>
-            
+            @if(auth()->id() == $post->author_id && $post->status <= 0)
+                <button type="submit" class="btn btn-success btn-draft mr-2">
+                    <i class="icon-floppy-disk mr-2"></i>Lưu nháp 
+                </button>
+            @endif
+
             @if($post->is_ggt)
                 <a class="btn btn-primary mr-2" id="print-ggt">
                     <i class="icon-printer2 mr-2"></i>In GGT
                 </a>
+
                 <a class="btn btn-primary mr-2" id="print-work-content">
                     <i class="icon-printer2 mr-2"></i><span>In nội dung làm việc</span>
                 </a>
-                <button type="button" class="btn btn-primary btn-add-ggt"><i class="icon-plus2 mr-1"></i>Thêm GGT</button>
+
+                @if(auth()->id() == $post->author_id && $post->status <= 0 || auth()->user()->hasRole(1) && $post->status != 3)
+                    <button type="button" class="btn btn-primary btn-add-ggt mr-2">
+                        <i class="icon-plus2 mr-1"></i>Thêm GGT
+                    </button>
+                @endif
             @else
                 <a class="btn btn-primary mr-2" id="print-cv">
                     <i class="icon-printer2 mr-2"></i>In công văn
                 </a>
-                <button type="button" class="btn btn-primary btn-add-cv"><i class="icon-plus2 mr-1"></i>Thêm công văn</button>
+
+                @if(auth()->id() == $post->author_id && $post->status <= 0 || auth()->user()->hasRole(1) && $post->status != 3)
+                <button type="button" class="btn btn-primary btn-add-cv mr-2">
+                    <i class="icon-plus2 mr-1"></i>Thêm công văn
+                </button>
+                @endif
             @endif
 
-            <a class="btn btn btn-primary btn-history ml-2" data-toggle="modal" data-target="#exampleModal">
+            <a class="btn btn btn-primary btn-history" data-toggle="modal" data-target="#exampleModal">
                 <i class="icon-history mr-2"></i> Lịch sử
             </a>
         </div>
-    </form>
+
+        <div>
+            @php
+                $allowPositions = [
+                    0 => ['manager', 'secretary', 'director'],
+                    1 => ['secretary', 'director'],
+                    2 => ['director']
+                ];
+                $nextStatus = [1, 2, 3];
+            @endphp
+
+            @if(in_array(auth()->user()->position, $allowPositions[$post->status] ?? []))
+                <form action="{{route('posts.updateStatus')}}" method="post" class="d-inline-block mb-2 mr-2">
+                    @csrf
+
+                    <input type="hidden" name="id" value="{{$post->id}}">
+                    <input type="hidden" name="status" value="{{$nextStatus[$post->status]}}">
+
+                    <button type="submit" class="btn btn-success px-2 mw-100px @if($post->status == 0) btn-approve @endif">Phê duyệt </button>
+                </form>
+
+                <form action="{{route('posts.updateStatus')}}" method="post" class="d-inline-block mb-2 mr-2">
+                    @csrf
+
+                    <input type="hidden" name="id" value="{{$post->id}}">
+                    <input type="hidden" name="status" value="-1">
+
+                    <button type="submit" class="btn btn-danger px-2 mw-100px">Trả lại </button>
+                </form>
+            @endif
+        </div>
+    </div>
     
     @php
         $typeLabels = [
@@ -775,13 +855,15 @@
                     altFormat: 'd/m/Y'
                 })
             })
+
             $('textarea.print-hide, input.print-hide').on('change', function() {
                 $(this).siblings('.print-show').html($(this).val());
             })
+
             @if($post->is_draft == 0)
-            $('#post-status-{{$post->status}}').addClass('active');
+                $('#post-status-{{$post->status}}').addClass('active');
             @else
-            $('#post-draft').addClass('active');
+                $('#post-draft').addClass('active');
             @endif
 
             var j = {{count($post->ggt)}};
@@ -797,14 +879,18 @@
                 $(this).closest('.section-ggt').remove('');
             })
 
-            $('.btn-success').on('click', function(e) {
+            $('.cv-container').on('click', '.fa-times', function() {
+                $(this).closest('.section-ggt').remove('');
+            })
+
+            $('.btn-submit-post').on('click', function(e) {
                 e.preventDefault();
 
                 if(!$('.pv-commit input').is(':checked')) {
                     $('.dateline').get(0).scrollIntoView({behavior: 'smooth'});
                     $('.custom-control-label').addClass('error');
                 } else {
-                    var form = $(this).closest('form');
+                    var form = $('#post-form').closest('form');
                     
                     form.attr('action', "{{route('posts.update', $post)}}");
     
@@ -815,7 +901,7 @@
             $('.btn-draft').on('click', function(e) {
                 e.preventDefault();
 
-                var form = $(this).closest('form');
+                var form = $('#post-form').closest('form');
 
                 form.attr('action', "{{route('posts.updateDraft', $post)}}");
 
@@ -827,6 +913,7 @@
                     $('.custom-control-label').removeClass('error');
                 }
             })
+
             $('.ggt-container').on('change', '[name^="ggt"]', function() {
                 var name = $(this).attr('name');
                 var value = $(this).val();
@@ -836,6 +923,30 @@
                     $(element).siblings('.print-show').html(value);
                 }
                
+            })
+
+            $('#btn-send-note').on('click', function() {
+                $.ajax({
+                    type: 'post',
+                    url: '/backend/create-note',
+                    data: {
+                        post_id: '{{$post->id}}',
+                        content: $('.note-input').val(),
+                        _token: $('[name=csrf-token]').attr('content')
+                    }
+                }).then(function (res) {
+                    if(res.status == 'success') {
+                        var note_html = $('#add-note').html();
+
+                        note_html = note_html.replaceAll('${first_character}', res.data.first_character)
+                                    .replaceAll('${name}', res.data.name)
+                                    .replaceAll('${content}', res.data.content)
+                                    .replaceAll('${date}', res.data.date);
+
+                        $('.list-notes').prepend(note_html);
+                        $('.note-input').val('');
+                    }
+                });
             })
         </script>
 
@@ -1165,6 +1276,19 @@
                     <div class="fs-11pt">Tạp chí Sức Khỏe Cộng Đồng</div>
                     <div class="fs-11pt">Tầng 4, Tòa nhà SaiGonbank, số 99 Nguyễn Phong Sắc, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội.</div>
                     <div class="fs-11pt">Hotline: 0914946668</div>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/template" id="add-note">
+            <div class="d-flex mb-3">
+                <span class="text-avatar mr-10">${first_character}</span>
+                <div class="flex-1">
+                    <div class="d-flex justify-content-between">
+                        <span class="reviewer fw-600 mr-5">${name}</span>
+                    </div>
+                    <div class="note-content mt-1">${content}</div>
+                    <div class="note-date mt-1">${date}</div>
                 </div>
             </div>
         </script>

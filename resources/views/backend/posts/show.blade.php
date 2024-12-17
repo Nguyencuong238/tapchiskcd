@@ -681,7 +681,7 @@
                     <div class="note-box d-flex position-relative mb-4">
                         <textarea name="note_content" type="text" class="note-input flex-1" placeholder="Ý kiến . . ."></textarea>
                         <div>
-                            <button class="btn btn-success py-1" id="btn-send-note">
+                            <button type="button" class="btn btn-success py-1" id="btn-send-note">
                                 <i class="fa fa-check"></i>
                             </button>
                         </div>
