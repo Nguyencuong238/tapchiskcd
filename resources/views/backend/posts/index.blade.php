@@ -74,11 +74,16 @@
                                 </a>
                                 @endcan  --}}
 
-                                
+                                @if($post->status == 3)
+                                <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-1 rounded" title="Xem">
+                                    <i class="fa fa-eye mr-1"></i>
+                                </a>
+                                @else
                                 <a href="{{ route('posts.edit', $post) }}" class="dropdown-item px-1 rounded" title="{{ __('Edit') }}">
                                     <i class="fa fa-pencil mr-1"></i>
                                 </a>
-                                
+                                @endif
+
                                 @if(auth()->id() == $post->author_id && $post->status <= 0 || auth()->user()->hasRole(1))
                                     <a href="javascript:void(0)" data-action-url="{{ route('posts.destroy', $post) }}" 
                                         data-behavior="delete-resource" class="dropdown-item px-1 rounded" title="{{ __('Delete') }}">

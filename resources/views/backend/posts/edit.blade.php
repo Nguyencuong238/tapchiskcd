@@ -169,6 +169,9 @@
                 .pre {
                     line-height: 1.25;
                 }
+                .mce-pagebreak {
+                    page-break-after: always !important;
+                }
             }
         </style>
         <style id="page-size">
@@ -1097,7 +1100,7 @@
             function initEditor() {
                 tinymce.init({
                     selector: '.cv-editor',
-                    plugins: ' paste  charmap hr   advlist lists ',
+                    plugins: ' paste  charmap hr table pagebreak advlist lists',
                     imagetools_cors_hosts: ['picsum.photos'],
                     menubar: 'edit insert format tools table help',
                     toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
@@ -1137,7 +1140,12 @@
                     setup: function (editor) {
                         // Listen for change events
                         editor.on('change', function (e) {
-                        $('.content-print').html(editor.getContent());
+                            let content = editor.getContent({ format: 'raw' });
+                            $('.content-print').html(content);
+                            $('.content-print .mce-pagebreak').each(function(){
+                                $(this).replaceWith( "<div class='mce-pagebreak'>" + $(this).html()  + "</div>" );
+                            });
+                            console.log($('.content-print').html())
                         });
 
                         editor.on('init', function() {
